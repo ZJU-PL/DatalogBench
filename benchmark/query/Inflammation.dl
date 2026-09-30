@@ -1,0 +1,12 @@
+.decl NotLumbarPain(patient_id:symbol)
+.input NotLumbarPain
+.decl UrinePushing(patient_id:symbol)
+.input UrinePushing
+.decl Nausea(patient_id:symbol)
+.input Nausea
+
+.decl Inflammation(patient_id:symbol)
+.output Inflammation
+
+Inflammation(x0) :- NotLumbarPain(x0), UrinePushing(x0).
+Inflammation(x0) :- Nausea(x0), UrinePushing(x0).

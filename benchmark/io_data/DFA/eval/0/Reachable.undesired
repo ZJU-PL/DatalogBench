@@ -1,0 +1,11 @@
+b1	b4
+b1	d1
+b2	b1
+b3	b1
+b3	d1
+b4	b2
+b4	b3
+d1	b2
+d2	b4
+end	b4
+end	d1

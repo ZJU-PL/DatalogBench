@@ -1,0 +1,10 @@
+.decl Relation(start:symbol, next:symbol, step:number, turn:symbol)
+.input Relation
+
+.output Relation
+.decl Josephus(survivor:symbol)
+.output Josephus
+
+Relation(a, c, step+1, c) :- Relation(a, b, step, a), Relation(b, c, step, a), a!=c.
+Relation(d, e, step+1, c) :- Relation(a, b, step, a), Relation(b, c, step, a), Relation(d, e, step, a), a!=c, d!=a, d!=b.
+Josephus(a) :- Relation(a, b, step, a), Relation(b, a, step, a).

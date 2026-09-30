@@ -1,0 +1,6 @@
+1	FunctionExpression	function func1() {}
+100	FunctionExpression_rv103_1	function() {}
+103	FunctionExpression	function func1() {}
+111	FunctionDeclaration	function func1() {}
+2	FunctionExpression	function() {}
+3	FunctionDeclaration	function func1() {}

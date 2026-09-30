@@ -1,0 +1,26 @@
+.decl Check(n1:number, n2:number, n3:number, n4:number, n5:number, n6: number)
+.input Check
+.decl In(n1:number, n2:number, n3:number, n4:number, n5:number, n6: number, id:number)
+.input In
+.decl Bucket(start:number, length:number, id:number)
+.output Bucket
+
+Bucket(1, 1, i) :- Check(_, b, c, d, e, f), In(_, b, c, d, e, f, i).
+Bucket(2, 1, i) :- Check(a, _, c, d, e, f), In(a, _, c, d, e, f, i).
+Bucket(3, 1, i) :- Check(a, b, _, d, e, f), In(a, b, _, d, e, f, i).
+Bucket(4, 1, i) :- Check(a, b, c, _, e, f), In(a, b, c, _, e, f, i).
+Bucket(5, 1, i) :- Check(a, b, c, d, _, f), In(a, b, c, d, _, f, i).
+Bucket(6, 1, i) :- Check(a, b, c, d, e, _), In(a, b, c, d, e, _, i).
+Bucket(1, 2, i) :- Check(_, _, c, d, e, f), In(_, _, c, d, e, f, i).
+Bucket(2, 2, i) :- Check(a, _, _, d, e, f), In(a, _, _, d, e, f, i).
+Bucket(3, 2, i) :- Check(a, b, _, _, e, f), In(a, b, _, _, e, f, i).
+Bucket(4, 2, i) :- Check(a, b, c, _, _, f), In(a, b, c, _, _, f, i).
+Bucket(5, 2, i) :- Check(a, b, c, d, _, _), In(a, b, c, d, _, _, i).
+Bucket(1, 3, i) :- Check(_, _, _, d, e, f), In(_, _, _, d, e, f, i).
+Bucket(2, 3, i) :- Check(a, _, _, _, e, f), In(a, _, _, _, e, f, i).
+Bucket(3, 3, i) :- Check(a, b, _, _, _, f), In(a, b, _, _, _, f, i).
+Bucket(4, 3, i) :- Check(a, b, c, _, _, _), In(a, b, c, _, _, _, i).
+Bucket(1, 4, i) :- Check(_, _, _, _, e, f), In(_, _, _, _, e, f, i).
+Bucket(2, 4, i) :- Check(a, _, _, _, _, f), In(a, _, _, _, _, f, i).
+Bucket(3, 4, i) :- Check(a, b, _, _, _, _), In(a, b, _, _, _, _, i).
+Bucket(0, 0, i) :- Check(a, b, c, d, e, f), In(a, b, c, d, e, f, i).

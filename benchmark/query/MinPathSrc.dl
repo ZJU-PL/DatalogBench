@@ -1,0 +1,30 @@
+.decl Start(node:symbol)
+.input Start
+.decl Edge(src_node:symbol, dst_node:symbol, weight:number)
+.input Edge
+.decl ShortestPath(node:symbol, weight:number)
+.output ShortestPath
+
+.decl Bound(b:number)
+.decl Dist(node:symbol, distance:number)
+
+// The bound is what makes the recursion terminate, and it has to be a real
+// upper bound rather than a stand-in for infinity. A shortest path uses each
+// edge at most once, so the sum of all weights bounds every distance worth
+// keeping; anything longer is discarded rather than carried forward.
+//
+// The previous reference instead seeded every non-source node with that same
+// sum as a pretend "infinity" and then relaxed it like an ordinary distance.
+// Two things went wrong. The sentinel could survive to the final round and be
+// reported as a real answer -- a source with no outgoing edges yielded
+// distances for nodes it cannot reach at all -- and a node whose predecessor
+// had no value of its own dropped out of the scan entirely, so reachable nodes
+// went missing. Against a true single-source shortest-path oracle it agreed on
+// 29% of random acyclic graphs (1% when the source had no outgoing edges) and
+// did not terminate on cyclic ones.
+Bound(b) :- b = sum w : { Edge(_, _, w) }.
+
+Dist(u, 0) :- Start(u).
+Dist(v, d + w) :- Dist(u, d), Edge(u, v, w), Bound(b), d + w <= b.
+
+ShortestPath(v, m) :- Dist(v, _), m = min d : Dist(v, d).

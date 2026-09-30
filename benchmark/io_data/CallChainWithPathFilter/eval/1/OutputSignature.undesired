@@ -1,0 +1,6 @@
+101	Service.methodA
+101	UserDao.query
+103	UserDao.query
+104	Service.methodA
+104	UserDao.query
+Service.methodA	Service.methodA

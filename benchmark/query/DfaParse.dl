@@ -1,0 +1,21 @@
+.decl Transition(from:symbol, on:symbol, to:symbol)
+.input Transition
+.decl Accepting(state:symbol)
+.input Accepting
+.decl Start(state:symbol)
+.input Start
+.decl Toparse(string:symbol)
+.input Toparse
+
+.decl Out(s:symbol, result:symbol)
+.output Out
+
+.decl Parse(in:symbol, cur:symbol, i:number)
+.decl Accept(in:symbol)
+
+Parse(in, cur, 0) :- Toparse(in), Start(cur).
+Parse(in, new, i+j) :- Parse(in, old, i), Transition(old, diff, new), j=strlen(diff), diff=substr(in, i, j).
+Accept(in) :- Parse(in, cur, strlen(in)), Accepting(cur).
+
+Out(s, "Accept") :- Accept(s).
+Out(s, "Reject") :- Toparse(s), !Accept(s).

@@ -1,0 +1,9 @@
+.decl KnownGenericallyAs(brand:symbol, drug:symbol)
+.input KnownGenericallyAs
+.decl Reduces(drug:symbol, symptom:symbol)
+.input Reduces
+
+.decl Reduce(brand:symbol, symptom:symbol)
+.output Reduce
+
+Reduce(b0, s3) :- KnownGenericallyAs(b0, d1), Reduces(d1, s3).

@@ -1,0 +1,4 @@
+1	com.alipay.demo.Main.test:void()
+2	com.alipay.demo.Helper.doWork:void()
+3	com.alipay.demo.Logger.log:void()
+4	com.alipay.demo.Unrelated.foo:void()

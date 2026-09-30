@@ -1,0 +1,15 @@
+.decl Intersect(road_a:symbol, road_b:symbol)
+.input Intersect
+.decl GreenSignal(road:symbol)
+.input GreenSignal
+.decl HasTraffic(road:symbol)
+.input HasTraffic
+
+.decl Crashable(road_a:symbol, road_b:symbol)
+.output Crashable
+.decl Crashes(road:symbol)
+.output Crashes
+
+Crashable(x, y) :- Intersect(x, y), GreenSignal(x), GreenSignal(y).
+Crashes(x) :- HasTraffic(x), Crashable(x, y), HasTraffic(y).
+Crashes(x) :- HasTraffic(x), Crashable(y, x), HasTraffic(y).

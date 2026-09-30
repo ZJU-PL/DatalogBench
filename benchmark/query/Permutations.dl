@@ -1,0 +1,8 @@
+.decl Item(item:symbol)
+.input Item
+
+.decl Permutation(list:symbol)
+.output Permutation
+
+Permutation(x) :- Item(x).
+Permutation(cat(x, cat(",", y))) :- Item(x), Permutation(y), !contains(cat(",", cat(x, ",")), cat(",", cat(y, ","))).

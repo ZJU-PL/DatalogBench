@@ -1,0 +1,21 @@
+.decl JsFunction(id:symbol, type:symbol, text:symbol)
+.input JsFunction
+.decl JsNodeType(id:symbol, type:symbol)
+.input JsNodeType
+.decl JsAstParent(child:symbol, parent:symbol)
+.input JsAstParent
+.decl JsComment(id:symbol, text:symbol)
+.input JsComment
+.decl JsNodeComment(node_id:symbol, comment_id:symbol)
+.input JsNodeComment
+
+.decl CmtCodePair(method_text:symbol, comment_text:symbol)
+.output CmtCodePair
+
+.decl FunctionCommentPair(func_id:symbol, comment_id:symbol)
+
+FunctionCommentPair(func_id, comment_id) :- JsFunction(func_id, _, _), JsNodeComment(func_id, comment_id).
+FunctionCommentPair(func_id, comment_id) :- JsFunction(func_id, type, _), (type = "FunctionExpression"; type = "ArrowFunction"), JsAstParent(func_id, var_decl), JsAstParent(var_decl, var_decl_list), JsAstParent(var_decl_list, var_stmt), JsNodeType(var_stmt, "VariableStatement"), JsNodeComment(var_stmt, comment_id).
+FunctionCommentPair(func_id, comment_id) :- JsFunction(func_id, type, _), (type = "FunctionExpression"; type = "ArrowFunction"), JsAstParent(func_id, prop_decl), JsNodeType(prop_decl, "PropertyDeclaration"), JsNodeComment(prop_decl, comment_id).
+
+CmtCodePair(method_text, comment_text) :- FunctionCommentPair(func_id, comment_id), JsFunction(func_id, _, method_text), JsComment(comment_id, comment_text).

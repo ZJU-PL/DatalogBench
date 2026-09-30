@@ -1,0 +1,15 @@
+.decl XmlElement(id:symbol, name:symbol)
+.input XmlElement
+.decl XmlAttribute(id:symbol, name:symbol, value:symbol)
+.input XmlAttribute
+.decl JavaClass(id:symbol, name:symbol)
+.input JavaClass
+
+.decl DoClass(do_class_name:symbol)
+.output DoClass
+
+.decl DbElementType(id:symbol, type_val:symbol)
+
+DbElementType(id, type_val) :- XmlElement(id, "resultMap"), XmlAttribute(id, "type", type_val).
+
+DoClass(class_name) :- JavaClass(_, class_name), DbElementType(_, type_name), class_name = type_name.

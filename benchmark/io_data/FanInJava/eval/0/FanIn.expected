@@ -1,0 +1,5 @@
+0	com.example.Controller.doLogin()
+0	com.example.App.init()
+0	com.example.DeadCode.unused()
+2	com.example.Service.login()
+3	com.example.Utils.log()

@@ -1,0 +1,6 @@
+1	<module>
+2	foo(a, b)
+3	x
+4	x = foo(a, b)
+5	y
+6	1

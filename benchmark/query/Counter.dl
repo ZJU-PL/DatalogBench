@@ -1,0 +1,14 @@
+.decl Torun(program:symbol)
+.input Torun
+
+.decl CounterVal(counter:number, program:symbol)
+.output CounterVal
+
+.decl Progress(index:number, counter:number, program:symbol)
+
+Progress(0, 0, p) :- Torun(p).
+Progress(i+1, c+1, p) :- Progress(i, c, p), "+"=substr(p, i, 1).
+Progress(i+1, c-1, p) :- Progress(i, c, p), "-"=substr(p, i, 1).
+Progress(i+1, c, p) :- Progress(i, c, p), i < strlen(p), "+" != substr(p, i, 1), "-" != substr(p, i, 1).
+
+CounterVal(c, p) :- Progress(strlen(p), c, p).

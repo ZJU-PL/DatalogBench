@@ -1,0 +1,11 @@
+.decl ClassInfo(id:symbol, name:symbol)
+.input ClassInfo
+.decl MethodInfo(id:symbol, name:symbol)
+.input MethodInfo
+.decl ClassMethod(class_id:symbol, method_id:symbol)
+.input ClassMethod
+
+.decl Methods(class_name:symbol, method_name:symbol)
+.output Methods
+
+Methods(class_name, method_name) :- ClassInfo(class_id, class_name), MethodInfo(method_id, method_name), ClassMethod(class_id, method_id).

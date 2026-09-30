@@ -1,0 +1,12 @@
+.decl Flat(person1:symbol, person2:symbol)
+.input Flat
+.decl Up(person1:symbol, person2:symbol)
+.input Up
+.decl Down(person1:symbol, person2:symbol)
+.input Down
+
+.decl RevSameGen(person1:symbol, person2:symbol)
+.output RevSameGen
+
+RevSameGen(x, y) :- Flat(x, y).
+RevSameGen(x, y) :- Up(x, a), RevSameGen(b, a), Down(b, y).

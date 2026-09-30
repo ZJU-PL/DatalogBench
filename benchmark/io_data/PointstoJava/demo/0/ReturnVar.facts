@@ -1,0 +1,16 @@
+java.lang.String.charAt(I)C|%ret	<java.lang.String.charAt(I)C>
+java.lang.String.concat(Ljava/lang/String;)Ljava/lang/String;|%ret	<java.lang.String.concat(Ljava/lang/String;)Ljava/lang/String;>_v1_0
+java.lang.String.getBytes(Ljava/lang/String;)[B|%ret	<java.lang.String.getBytes(Ljava/lang/String;)[B>
+java.lang.String.getBytes(Ljava/nio/charset/Charset;)[B|%ret	<java.lang.String.getBytes(Ljava/nio/charset/Charset;)[B>
+java.lang.String.replace(CC)Ljava/lang/String;|%ret	<java.lang.String.replace(CC)Ljava/lang/String;>
+java.lang.String.replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;|%ret	<java.lang.String.replaceAll(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;>
+java.lang.String.replaceAll(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;|%ret	<java.lang.String.replaceAll(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;>
+java.lang.String.subSequence(II)Ljava/lang/CharSequence;|%ret	<java.lang.String.subSequence(II)Ljava/lang/CharSequence;>
+java.lang.String.substring(I)Ljava/lang/String;|%ret	<java.lang.String.substring(I)Ljava/lang/String;>
+java.lang.String.toLowerCase()Ljava/lang/String;|%ret	<java.lang.String.toLowerCase()Ljava/lang/String;>
+java.lang.String.toString()Ljava/lang/String;|%ret	<java.lang.String.toString()Ljava/lang/String;>
+java.lang.String.trim()Ljava/lang/String;|%ret	<java.lang.String.toUpperCase(Ljava/util/Locale;)Ljava/lang/String;>
+java.lang.String.valueOf(D)Ljava/lang/String;|%ret	<java.lang.String.valueOf(F)Ljava/lang/String;>
+java.lang.String.valueOf(F)Ljava/lang/String;|%ret_v1_1	<java.lang.Object.toString()Ljava/lang/String;>
+java.lang.String.valueOf(Ljava/lang/Object;)Ljava/lang/String;|%ret	<java.lang.String.replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;>
+java.lang.String.valueOf([C)Ljava/lang/String;|%ret	<java.lang.String.valueOf([C)Ljava/lang/String;>

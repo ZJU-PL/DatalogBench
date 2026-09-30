@@ -1,0 +1,17 @@
+.decl Lim(n:number)
+.input Lim
+.decl Naturals(n:number)
+
+.decl Catalan(n:number, v: number)
+.output Catalan
+
+.decl Choose(n:number, k:number, v:number)
+
+// recursion seeds: part of the program, not of the instance
+Naturals(0).
+
+Naturals(n+1) :- Naturals(n), n < s, Lim(s).
+Choose(n, n, 1) :- Naturals(n).
+Choose(n, (n - k), v) :- Choose(n, k, v).
+Choose(n+1, k+1, v1 + v2) :- Choose(n, k, v1), Choose(n, k+1, v2).
+Catalan(n, v) :- Naturals(n), Choose(2*n, n, c), v=c/(n+1).

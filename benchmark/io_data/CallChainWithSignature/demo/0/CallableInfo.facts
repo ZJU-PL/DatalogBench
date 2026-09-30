@@ -1,0 +1,5 @@
+100	HelloWorld.test2:void()	test2
+101	Controller.handle:void()	func
+103	Unrelated.func:void()	func
+1639	HelloWorld.test2:void()	process
+1639	Unrelated.func:void()	test2

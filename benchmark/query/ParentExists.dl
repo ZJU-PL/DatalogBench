@@ -1,0 +1,7 @@
+.decl ParentRecord(id:symbol, name:symbol, age:symbol, parent:symbol)
+.input ParentRecord
+
+.decl ParentSelf(id:symbol, name:symbol)
+.output ParentSelf
+
+ParentSelf(pid, pname) :- ParentRecord(pid, pname, _, _), ParentRecord(_, _, _, pid).

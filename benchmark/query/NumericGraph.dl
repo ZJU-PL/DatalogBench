@@ -1,0 +1,8 @@
+.decl Edge(src_node:number, dst_node:number)
+.input Edge
+
+.decl Increasing(src_node:number, dst_node:number)
+.output Increasing
+
+Increasing(x, y) :- Edge(x, y), x < y.
+Increasing(x, y) :- Edge(x, z), x < z, Increasing(z, y).

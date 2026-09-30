@@ -1,0 +1,25 @@
+.decl Edge(u_node:symbol, v_node:symbol)
+.input Edge
+
+.decl Centroid(node:symbol)
+.output Centroid
+
+.decl Leaf(node:symbol)
+.decl NotLeaf(node:symbol)
+.decl InSubtree(u_node:symbol, v_node:symbol, w_node:symbol)
+
+.decl TreeCard(node_count:number)
+.decl SubtreeCard(u_node:symbol, v_node:symbol, node_count:number)
+.decl NotCentroid(node:symbol)
+
+Edge(m, n) :- Edge(n, m).
+NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b.
+Leaf(n) :- Edge(_, n), !NotLeaf(n).
+InSubtree(m, n, n) :- Edge(m, n).
+InSubtree(m, n, a) :- Edge(m, n), Edge(n, p), InSubtree(n, p, a), m != p.
+
+TreeCard(a + b) :- a = sum 1 : Leaf(_), b = sum 1 : NotLeaf(_).
+SubtreeCard(m, n, c) :- Edge(m, n), c = sum 1 : InSubtree(m, n, _).
+NotCentroid(n) :- TreeCard(c), SubtreeCard(n, _, d), d > c/2.
+
+Centroid(n) :- Edge(n, _), !NotCentroid(n).

@@ -1,0 +1,11 @@
+.decl CustomerCity(customer:symbol, city:symbol)
+.input CustomerCity
+.decl HasOrdered(customer:symbol, product_id:symbol)
+.input HasOrdered
+.decl ProductName(product_id:symbol, product_name:symbol)
+.input ProductName
+
+.decl ShipTo(product_name:symbol, city:symbol)
+.output ShipTo
+
+ShipTo(prod_name, city) :- HasOrdered(cust_no, prod_no), CustomerCity(cust_no, city), ProductName(prod_no, prod_name).

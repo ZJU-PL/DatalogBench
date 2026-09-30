@@ -1,0 +1,9 @@
+.decl Input(id:symbol, phone:symbol, first_name:symbol, last_name:symbol, action:symbol)
+.input Input
+.decl NotEqual(action1: symbol, action2: symbol)
+.input NotEqual
+
+.decl Output(id:symbol, phone:symbol, first_name:symbol, last_name:symbol, action:symbol)
+.output Output
+
+Output(i, p, f, l, a) :- Input(i, p, f, l, a), Input(_, _, f, l, a2), NotEqual(a, a2).

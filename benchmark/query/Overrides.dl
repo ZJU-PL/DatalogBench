@@ -1,0 +1,9 @@
+.decl HasMethod(class:symbol, method:symbol)
+.input HasMethod
+.decl Extends(super_class:symbol, sub_class:symbol)
+.input Extends
+
+.decl Overrides(super_class:symbol, sub_class:symbol, method:symbol)
+.output Overrides
+
+Overrides(super, sub, method) :- HasMethod(super, method), HasMethod(sub, method), Extends(super, sub).

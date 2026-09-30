@@ -1,0 +1,9 @@
+.decl MetricFunction(id:symbol, name:symbol, complexity:symbol, file_id:symbol, sline:symbol, eline:symbol)
+.input MetricFunction
+.decl FilePath(id:symbol, path:symbol)
+.input FilePath
+
+.decl CycloComplexity(name:symbol, value:symbol, path:symbol, sline:symbol, eline:symbol)
+.output CycloComplexity
+
+CycloComplexity(name, value, path, s_line, e_line) :- MetricFunction(_, name, value, file_id, s_line, e_line), FilePath(file_id, path).

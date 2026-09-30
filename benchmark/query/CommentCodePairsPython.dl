@@ -1,0 +1,16 @@
+.decl PyFunction(id:symbol, qname:symbol, source:symbol)
+.input PyFunction
+.decl PyDocstring(id:symbol, text:symbol, owner:symbol)
+.input PyDocstring
+.decl PyComment(id:symbol, text:symbol, owner:symbol)
+.input PyComment
+
+.decl CmtCodePair(method_text:symbol, comment_text:symbol, signature:symbol)
+.output CmtCodePair
+
+.decl ElementComment(element_id:symbol, text:symbol)
+
+ElementComment(element_id, text) :- PyDocstring(_, text, element_id).
+ElementComment(element_id, text) :- PyComment(_, text, element_id).
+
+CmtCodePair(method_text, comment_text, signature) :- PyFunction(func_id, signature, method_text), ElementComment(func_id, comment_text).

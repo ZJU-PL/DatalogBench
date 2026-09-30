@@ -1,0 +1,2 @@
+Service.process:void()	{ process... }	/** Process data */
+Service.helper:void()	{ helper... }	// Helper function

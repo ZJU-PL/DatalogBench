@@ -1,0 +1,16 @@
+.decl AddressOf(var_ptr:symbol, var:symbol)
+.input AddressOf
+.decl Assign(var_dst:symbol, var_src:symbol)
+.input Assign
+.decl Load(var_dst:symbol, var_addr:symbol)
+.input Load
+.decl Store(var_src:symbol, var_addr:symbol)
+.input Store
+
+.decl PointsTo(var_ptr:symbol, var:symbol)
+.output PointsTo
+
+PointsTo(y, x) :- AddressOf(y, x).
+PointsTo(y, x) :- Assign(y, z), PointsTo(z, x).
+PointsTo(y, w) :- Load(y, x), PointsTo(x, z), PointsTo(z, w).
+PointsTo(z, w) :- Store(y, x), PointsTo(y, z), PointsTo(x, w).

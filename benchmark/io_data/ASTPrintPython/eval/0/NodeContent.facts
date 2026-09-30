@@ -1,0 +1,4 @@
+100	<module_code>
+101	def foo(): return 1
+102	return 1
+103	1

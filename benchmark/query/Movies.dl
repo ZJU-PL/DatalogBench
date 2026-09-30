@@ -1,0 +1,17 @@
+.decl Movie(id:symbol, title:symbol, rating:symbol)
+.input Movie
+.decl MovieActors(movie_id:symbol, actors_id:symbol)
+.input MovieActors
+.decl Actors(actor_id:symbol, name:symbol)
+.input Actors
+
+.decl MovieActorsText(title:symbol, actor_name:symbol)
+.output MovieActorsText
+.decl JoeBloggsMovies(title:symbol)
+.output JoeBloggsMovies
+.decl ActorsRatings(name:symbol, rating:symbol)
+.output ActorsRatings
+
+MovieActorsText(c, d) :- MovieActors(a, b), Movie(a, c, _), Actors(b, d).
+JoeBloggsMovies(a) :- MovieActorsText(a, b), match("Joe Bloggs", b).
+ActorsRatings(a, rating) :- MovieActorsText(movie, a), Movie(_, movie_b, rating), match(movie, movie_b).

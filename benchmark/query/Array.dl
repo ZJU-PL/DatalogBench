@@ -1,0 +1,29 @@
+.decl Default(null:number)
+.input Default
+.decl Parameters(length:number)
+.input Parameters
+.decl Values(index:number, value:number)
+.input Values
+
+.decl Indices(index:number)
+.output Indices
+.decl Element(index:number, value:number)
+.output Element
+.decl Neighbourhood(index:number, left:number, current:number, right:number)
+.output Neighbourhood
+
+.decl Left(index:number, value:number)
+.decl Right(index:number, value:number)
+
+Indices(0).
+Indices(i+1) :- Indices(i), Parameters(l), i >= 0, i+1 < l.
+
+Element(i, null) :- Indices(i), !Values(i, _), Default(null).
+Element(i, x) :- Indices(i), Values(i, x).
+
+Left(i, null) :- !Element(i-1, _), Element(i, _), Default(null).
+Left(i, x) :- Element(i-1, x), Element(i, _).
+Right(i, null) :- !Element(i+1, _), Element(i, _), Default(null).
+Right(i, x) :- Element(i+1, x), Element(i, _).
+
+Neighbourhood(i, l, c, r) :- Left(i, l), Element(i, c), Right(i, r).

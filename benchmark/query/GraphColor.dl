@@ -1,0 +1,9 @@
+.decl Color(node:symbol, color:symbol)
+.input Color
+.decl Edge(u_node:symbol, v_node:symbol)
+.input Edge
+
+.decl Target(node:symbol)
+.output Target
+
+Target(v0) :- Color(v0, c3), Color(v1, c3), Edge(v0, v1).

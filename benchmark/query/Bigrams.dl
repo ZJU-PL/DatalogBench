@@ -1,0 +1,7 @@
+.decl Words(position:number, word:symbol)
+.input Words
+
+.decl Bigram(word1:symbol, word2:symbol)
+.output Bigram
+
+Bigram(w, w1) :- Words(i, w), Words(i+1, w1).

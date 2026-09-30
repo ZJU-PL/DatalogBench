@@ -1,0 +1,51 @@
+.decl Default(null:number)
+.input Default
+.decl Parameters(row:number, column:number)
+.input Parameters
+.decl Values(row:number, column:number, value:number)
+.input Values
+.decl Indices(row:number, column:number)
+
+.output Indices
+.decl Element(row:number, column:number, value:number)
+.output Element
+.decl Neighbourhood(row:number, column:number, up_left:number, up:number, up_right:number, left:number, current:number, right:number, down_left:number, down:number, down_right:number)
+.output Neighbourhood
+
+.decl Up(row:number, column:number, value:number)
+.decl Down(row:number, column:number, value:number)
+.decl Left(row:number, column:number, value:number)
+.decl Right(row:number, column:number, value:number)
+.decl UpLeft(row:number, column:number, value:number)
+.decl UpRight(row:number, column:number, value:number)
+.decl DownLeft(row:number, column:number, value:number)
+.decl DownRight(row:number, column:number, value:number)
+
+// recursion seeds: part of the program, not of the instance
+Indices(0, 0).
+
+Indices(i+1, j) :- Indices(i, j), Parameters(m, n), i >= 0, i+1 < m, j >= 0, j < n.
+Indices(i, j+1) :- Indices(i, j), Parameters(m, n), i >= 0, i < m, j >= 0, j+1 < n.
+
+Element(i, j, null) :- Indices(i, j), !Values(i, j, _), Default(null).
+Element(i, j, x) :- Indices(i, j), Values(i, j, x).
+
+Up(i, j, null) :- Element(i, j, _), !Element(i-1, j, _), Default(null).
+Up(i, j, x) :- Element(i, j, _), Element(i-1, j, x).
+Down(i, j, null) :- Element(i, j, _), !Element(i+1, j, _), Default(null).
+Down(i, j, x) :- Element(i, j, _), Element(i+1, j, x).
+Left(i, j, null) :- Element(i, j, _), !Element(i, j-1, _), Default(null).
+Left(i, j, x) :- Element(i, j, _), Element(i, j-1, x).
+Right(i, j, null) :- Element(i, j, _), !Element(i, j+1, _), Default(null).
+Right(i, j, x) :- Element(i, j, _), Element(i, j+1, x).
+
+UpLeft(i, j, null) :- Element(i, j, _), !Element(i-1, j-1, _), Default(null).
+UpLeft(i, j, x) :- Element(i, j, _), Element(i-1, j-1, x).
+UpRight(i, j, null) :- Element(i, j, _), !Element(i-1, j+1, _), Default(null).
+UpRight(i, j, x) :- Element(i, j, _), Element(i-1, j+1, x).
+DownLeft(i, j, null) :- Element(i, j, _), !Element(i+1, j-1, _), Default(null).
+DownLeft(i, j, x) :- Element(i, j, _), Element(i+1, j-1, x).
+DownRight(i, j, null) :- Element(i, j, _), !Element(i+1, j+1, _), Default(null).
+DownRight(i, j, x) :- Element(i, j, _), Element(i+1, j+1, x).
+
+Neighbourhood(i, j, ul, u, ur, l, x, r, dl, d, dr) :- UpLeft(i, j, ul), Up(i, j, u), UpRight(i, j, ur), Left(i, j, l), Element(i, j, x), Right(i, j, r), DownLeft(i, j, dl), Down(i, j, d), DownRight(i, j, dr).

@@ -1,0 +1,4 @@
+openai>=1.0
+
+# ProSynth (symbolic baseline) only; not needed for the LLM or agent pipelines.
+# z3-solver

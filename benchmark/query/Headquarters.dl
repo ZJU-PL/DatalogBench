@@ -1,0 +1,9 @@
+.decl IsBasedIn(business:symbol, city:symbol)
+.input IsBasedIn
+.decl IsLocatedIn(city:symbol, state:symbol)
+.input IsLocatedIn
+
+.decl IsHeadquarteredIn(business:symbol, state:symbol)
+.output IsHeadquarteredIn
+
+IsHeadquarteredIn(b0, s3) :- IsBasedIn(b0, c1), IsLocatedIn(c1, s3).

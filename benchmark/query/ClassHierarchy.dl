@@ -1,0 +1,13 @@
+.decl ClassInfo(id:symbol, name:symbol)
+.input ClassInfo
+.decl ClassInheritance(child:symbol, parent:symbol)
+.input ClassInheritance
+
+.decl ClassHierarchy(class_name:symbol, super_class_name:symbol)
+.output ClassHierarchy
+
+.decl AncestorOf(child:symbol, ancestor:symbol)
+
+AncestorOf(child, parent) :- ClassInheritance(child, parent).
+AncestorOf(child, ancestor) :- ClassInheritance(child, parent), AncestorOf(parent, ancestor).
+ClassHierarchy(class_name, super_class_name) :- AncestorOf(child_id, ancestor_id), ClassInfo(child_id, class_name), ClassInfo(ancestor_id, super_class_name).

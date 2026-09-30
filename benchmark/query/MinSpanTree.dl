@@ -1,0 +1,66 @@
+.decl Graph(u_node:symbol, v_node:symbol, weight:number)
+.input Graph
+
+.decl MinimumSpanningTree(weight:number)
+.output MinimumSpanningTree
+
+.decl Node(node:symbol)
+// A spanning tree is an undirected notion, but the input lists each edge once,
+// in one direction. Reading Graph as directed made the answer depend on which
+// way each edge happened to be written and on which edge autoinc() numbered 0:
+// on the two-node graph {b->c:2, c->b:1} it returned 2, the weight of the only
+// edge leaving b, where the spanning tree costs 1. The shipped instance hid
+// this because a directed walk from its start node happens to reach every node
+// over the same edges an undirected Prim's would take.
+.decl UndirectedEdge(u_node:symbol, v_node:symbol, weight:number)
+.decl Edge(edge:number, u_node:symbol, v_node:symbol, weight:number)
+.decl EdgePosition(edge:number, position:number)
+.decl EdgeFirst(edge:number)
+.decl EdgeNext(u_edge:number, v_edge:number)
+.decl EdgeNextCandidate(u_edge:number, v_edge:number)
+
+.decl StartNode(node:symbol)
+.decl ValidStep(step:number)
+.decl AddedNode(step:number, node:symbol)
+.decl UnaddedNode(step:number, node:symbol)
+.decl ValidEdge(step:number, edge:number)
+.decl ReachableEdge(step:number, edge:number)
+.decl UnusedEdge(step:number, edge:number)
+.decl NotValidEdge(step:number, edge:number)
+.decl ChosenEdge(step:number, edge:number)
+.decl ChosenEdgeInductive(step:number, position:number, is_chosen:number)
+.decl ChosenNode(step:number, node:symbol)
+.decl PrimsTrace(step:number, edge:number, u_node:symbol, v_node:symbol, weight:number)
+
+Node(x) :- Graph(x, _, _) ; Graph(_, x, _).
+UndirectedEdge(x, y, w) :- Graph(x, y, w).
+UndirectedEdge(y, x, w) :- Graph(x, y, w).
+Edge(autoinc(), x, y, w) :- UndirectedEdge(x, y, w).
+EdgePosition(id, 0) :- EdgeFirst(id).
+EdgePosition(id2, i+1) :- EdgePosition(id1, i), EdgeNext(id1, id2).
+EdgeFirst(id1) :- Edge(id1, _, _, _), !EdgeNext(_, id1).
+EdgeNextCandidate(id1, id2) :- Edge(id1, _, _, w1), id2 = min id : { Edge(id, _, _, w), w = w1, id > id1 }.
+EdgeNext(id1, id2) :- Edge(id1, _, _, w1), w2 = min w : { Edge(_, _, _, w), w > w1 }, id2 = min id : { Edge(id, _, _, w), w = w2 }, !EdgeNextCandidate(id1, _).
+EdgeNext(id1, id2) :- EdgeNextCandidate(id1, id2).
+
+StartNode(node_id) :- Edge(0, node_id, _, _).
+ValidStep(0).
+ValidStep(step+1) :- ValidStep(step), step < count : Node(_).
+AddedNode(0, start) :- StartNode(start).
+AddedNode(step+1, node_id) :- ValidStep(step+1), (AddedNode(step, node_id) ; ChosenNode(step, node_id)).
+UnaddedNode(0, node_id) :- Node(node_id), !StartNode(node_id).
+UnaddedNode(prev_step+1, node_id) :- UnaddedNode(prev_step, node_id), ChosenEdge(prev_step, new_edge_id), Edge(new_edge_id, _, y, _), node_id != y.
+ValidEdge(step, edge_id) :-ReachableEdge(step, edge_id), Edge(edge_id, _, node_id, _), UnaddedNode(step, node_id), UnusedEdge(step, edge_id).
+ReachableEdge(step, edge_id) :- AddedNode(step, node_id), Edge(edge_id, node_id, _, _).
+UnusedEdge(0, edge_id) :- Edge(edge_id, _, _, _).
+UnusedEdge(prev_step+1, edge_id) :- UnusedEdge(prev_step, edge_id), ChosenEdge(prev_step, new_edge_id), new_edge_id != edge_id.
+NotValidEdge(step, edge_id) :- ValidStep(step), ChosenEdge(prev_step, edge_id), prev_step < step.
+NotValidEdge(step, edge_id) :- UnaddedNode(step, node_id), Edge(edge_id, node_id, _, _).
+NotValidEdge(step, edge_id) :- AddedNode(step, node_id), Edge(edge_id, _, node_id, _).
+ChosenEdge(step, edge_id) :- ChosenEdgeInductive(step, edge_position, 1), EdgePosition(edge_id, edge_position).
+ChosenEdgeInductive(step, -1, 0) :- ValidStep(step).
+ChosenEdgeInductive(step, cur_edge_pos, is_chosen) :- ChosenEdgeInductive(step, prev_edge_pos, 0), EdgePosition(edge_id, cur_edge_pos), cur_edge_pos = prev_edge_pos + 1, ((ValidEdge(step, edge_id), is_chosen = 1) ; (NotValidEdge(step, edge_id), is_chosen = 0)).
+ChosenNode(step, node_id) :- ChosenEdge(step, edge_id), Edge(edge_id, _, node_id, _).
+
+PrimsTrace(step, edge_id, x, y, w) :- ChosenEdge(step, edge_id), Edge(edge_id, x, y, w).
+MinimumSpanningTree(sum w : { PrimsTrace(_, _, _, _, w) }).

@@ -1,0 +1,9 @@
+.decl JavaImport(id:symbol, name:symbol, file_id:symbol)
+.input JavaImport
+.decl JavaFile(id:symbol, path:symbol)
+.input JavaFile
+
+.decl ImportStatement(name:symbol, filepath:symbol)
+.output ImportStatement
+
+ImportStatement(name, file_path) :- JavaImport(_, name, file_id), contains("springframework", name), JavaFile(file_id, file_path).

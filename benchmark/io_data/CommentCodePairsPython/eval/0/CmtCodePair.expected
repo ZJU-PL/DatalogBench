@@ -1,0 +1,2 @@
+def foo(): pass	""" Doc for foo """	module.foo
+def bar(): return 1	# Comment for bar	module.bar

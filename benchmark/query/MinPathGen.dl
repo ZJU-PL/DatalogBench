@@ -1,0 +1,15 @@
+.decl Edge(u_node:symbol, v_node:symbol, weight:number)
+.input Edge
+
+.decl ShortestPath(u_node:symbol, v_node:symbol, weight:number)
+.output ShortestPath
+
+.decl Path(u_node:symbol, v_node:symbol, weight:number)
+.decl ConnectedNodes(u_node:symbol, v_node:symbol)
+
+Edge(a, b, w) :- Edge(b, a, w).
+Path(a, c, w) :- Edge(a, c, w).
+Path(a, c, w1+w2) :- Path(a, b, w1), Edge(b, c, w2), h = sum w :Edge(_, _, w), (w1+w2) < h.
+ConnectedNodes(a, b) :- Path(a, b, _).
+
+ShortestPath(a, b, w1) :- ConnectedNodes(a, b), w1 = min w2 : Path(a, b, w2).

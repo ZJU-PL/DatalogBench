@@ -1,0 +1,2 @@
+1	module.foo	def foo(): pass
+6	module.bar	def bar(): return 1

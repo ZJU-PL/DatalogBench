@@ -1,0 +1,2 @@
+org.demo.Repository	cacheSettings	maxSize
+org.demo.Scheduler	retryPolicy	attempts

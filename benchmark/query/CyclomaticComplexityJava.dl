@@ -1,0 +1,20 @@
+.decl JavaMethod(id:number, signature:symbol)
+.input JavaMethod
+.decl AstNodeType(id:number, type:symbol)
+.input AstNodeType
+.decl AstParent(child:number, parent:number)
+.input AstParent
+
+.decl CycloComplexity(i:number, n:symbol)
+.output CycloComplexity
+
+.decl IsBranchingNode(id:number)
+.decl MethodContains(method_id:number, node_id:number)
+.decl ComplexityScore(method_id:number, score:number)
+
+IsBranchingNode(id) :- AstNodeType(id, type), (type = "IfStatement"; type = "ForStatement"; type = "EnhancedForStatement"; type = "WhileStatement"; type = "DoStatement"; type = "SwitchCase"; type = "CatchClause"; type = "ConditionalExpression"). 
+MethodContains(method_id, node_id) :- AstParent(node_id, method_id).
+MethodContains(method_id, descendant_id) :- MethodContains(method_id, child_id), AstParent(descendant_id, child_id).
+ComplexityScore(method_id, score) :- JavaMethod(method_id, _), branch_count = count :{ MethodContains(method_id, node_id), IsBranchingNode(node_id) }, score = branch_count + 1.
+
+CycloComplexity(score, signature) :- ComplexityScore(id, score), JavaMethod(id, signature).

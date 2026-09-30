@@ -1,0 +1,18 @@
+.decl CallableInfo(id:symbol, signature:symbol)
+.input CallableInfo
+.decl CallEdge(caller:symbol, callee:symbol)
+.input CallEdge
+.decl SpecifiedSignature(signature:symbol)
+.input SpecifiedSignature
+
+.decl OutputSignature(caller:symbol, callee:symbol)
+.output OutputSignature
+
+.decl IsSpecifiedCallable(id:symbol)
+.decl ReachableFromRoot(id:symbol)
+
+IsSpecifiedCallable(id) :- CallableInfo(id, sig), SpecifiedSignature(sig).
+ReachableFromRoot(id) :- IsSpecifiedCallable(id).
+ReachableFromRoot(y) :- ReachableFromRoot(x), CallEdge(x, y).
+
+OutputSignature(caller_sig, callee_sig) :- ReachableFromRoot(caller_id), CallEdge(caller_id, callee_id), CallableInfo(caller_id, caller_sig), CallableInfo(callee_id, callee_sig).

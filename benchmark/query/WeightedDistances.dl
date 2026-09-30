@@ -1,0 +1,13 @@
+.decl Edge(src_node:symbol, dst_node:symbol, weight:number)
+.input Edge
+
+.decl Reachable(src_node:symbol, dst_node:symbol, weight:number)
+.output Reachable
+
+.decl ShortestDuplicates(src_node:symbol, dst_node:symbol, weight:number)
+.output ShortestDuplicates
+
+Reachable(x, y, r) :- r=w, Edge(x, y, w).
+Reachable(x, y, d+w) :- Edge(x, z, w), Reachable(z, y, d).
+
+ShortestDuplicates(x, y, a) :- Reachable(x, y, a), Reachable(x, y, b), a>b.

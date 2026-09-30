@@ -1,0 +1,17 @@
+3_0	Accept
+5_0	Accept
+Binary Mod 3:00	Reject
+Binary Mod 3:000010010	Reject
+Binary Mod 3:000011100	Accept
+Binary Mod 3:10	Accept
+Binary Mod 3:1001	Reject
+Binary Mod 3:11	Reject
+Binary Mod 3:1111111	Accept
+Ternary Mod 5:000	Reject
+Ternary Mod 5:00001021000	Accept
+Ternary Mod 5:00001022000	Reject
+Ternary Mod 5:101	Reject
+Ternary Mod 5:1022	Reject
+Ternary Mod 5:11	Accept
+Ternary Mod 5:111112222	Accept
+Ternary Mod 5:12	Reject

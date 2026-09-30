@@ -1,0 +1,12 @@
+carolIII	amy
+carolIII	carolII
+adam	amy
+adam	carolII
+amy	carolIII
+amy	adam
+amy	carolII
+carolII	carolIII
+carolII	adam
+carolII	amy
+carolII	fred
+fred	carolII

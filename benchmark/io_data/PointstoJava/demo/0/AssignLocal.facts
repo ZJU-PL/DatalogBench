@@ -1,0 +1,4 @@
+A.<init>()V|@this	A.method2()V|0	<A.<init>()V>
+X.foo()V|@this	A.method1()V|0	<A.method2()V>
+X.foo()V|@this	X.foo()V|0	<X.foo()V>
+Z.<init>()V|@this	Z.<init>()V|0	<Z.<init>()V>

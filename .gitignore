@@ -1,0 +1,26 @@
+.DS_Store
+**/__pycache__/
+
+# Host-local dependencies (used when system packages or a venv are unavailable).
+.local/
+.venv/
+
+# Pipeline outputs: what each system generated and what it scored.
+benchmark/infer_data/
+benchmark/res_data/
+# qa/ holds derived reports; only the two frozen oracle-validation files are
+# tracked. Ignore qa/'s contents rather than the directory, so the negated rules
+# below can bring those two back.
+benchmark/qa/*
+!benchmark/qa/mutation_frozen.json
+!benchmark/qa/survivor_triage_frozen.json
+# Task-context cache, regenerated from dataset.json by context_synth.py.
+benchmark/data/
+
+# Image tarballs from docker/export-images.sh, rebuildable from the Dockerfiles.
+dlb-images-*.tar.gz
+dlb-images-*.tar.gz.digests
+docker/allow.txt
+
+# Soufflé package fetched by docker/export-images.sh.
+souffle-*.deb

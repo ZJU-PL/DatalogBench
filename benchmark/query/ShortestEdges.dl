@@ -1,0 +1,7 @@
+.decl Edge(src_node:symbol, dst_node:symbol, weight:number)
+.input Edge
+
+.decl ShortestEdge(node:symbol, length:number)
+.output ShortestEdge
+
+ShortestEdge(x, l) :- Edge(x, _, _), l = min z : Edge(x, _, z).

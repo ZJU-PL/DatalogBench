@@ -1,0 +1,11 @@
+.decl Store(var1:symbol, field:symbol, var2:symbol)
+.input Store
+.decl VarPointsTo(var:symbol, heap:symbol)
+.input VarPointsTo
+.decl IntVar(var:symbol, int_id:symbol)
+.input IntVar
+
+.decl IntField(heap:symbol, field:symbol, int_id:symbol)
+.output IntField
+
+IntField(h, f, i) :- Store(v1, f, v2), VarPointsTo(v1, h), IntVar(v2, i).

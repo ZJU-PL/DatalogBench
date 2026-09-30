@@ -1,0 +1,17 @@
+.decl Move(src_node:symbol, dst_node:symbol)
+.input Move
+
+.decl OddMove(src_node:symbol, end_node:symbol)
+.output OddMove
+.decl CanMove(node:symbol)
+.output CanMove
+.decl PossibleWinning(node:symbol)
+.output PossibleWinning
+.decl Winning(node:symbol)
+.output Winning
+
+CanMove(x):- Move(x, _).
+PossibleWinning(x):- OddMove(x, y), !CanMove(y).
+Winning(x):- Move(x, y), !PossibleWinning(y).
+OddMove(x, y) :- Move(x, y).
+OddMove(x, y) :- Move(x, z1), Move(z1, z2), OddMove(z2, y).

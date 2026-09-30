@@ -1,0 +1,23 @@
+.decl XmlElement(id:symbol, name:symbol, parent_id:symbol, file_id:symbol)
+.input XmlElement
+.decl XmlCharacter(id:symbol, text:symbol, belonged_element_id:symbol)
+.input XmlCharacter
+.decl PomFile(id:symbol, path:symbol)
+.input PomFile
+
+.decl PomInfo(file_name:symbol, group_id:symbol, version:symbol, artifact_id:symbol)
+.output PomInfo
+
+.decl DependencyElement(id:symbol, parent_id:symbol, file_id:symbol)
+.decl GroupElement(id:symbol, parent_id:symbol)
+.decl VersionElement(id:symbol, parent_id:symbol)
+.decl ArtifactElement(id:symbol, parent_id:symbol)
+.decl ElementText(element_id:symbol, text:symbol)
+
+DependencyElement(id, parent_id, file_id) :- XmlElement(id, "dependency", parent_id, file_id).
+GroupElement(id, parent_id) :- XmlElement(id, "groupId", parent_id, _).
+VersionElement(id, parent_id) :- XmlElement(id, "version", parent_id, _).
+ArtifactElement(id, parent_id) :- XmlElement(id, "artifactId", parent_id, _).
+ElementText(element_id, text) :- XmlCharacter(_, text, element_id).
+
+PomInfo(file_name, group_id, version, artifact_id) :- PomFile(file_id, file_name), DependencyElement(dep_id, _, file_id), GroupElement(group_id_node, dep_id), ElementText(group_id_node, group_id), VersionElement(version_node, dep_id), ElementText(version_node, version), ArtifactElement(artifact_node, dep_id), ElementText(artifact_node, artifact_id).

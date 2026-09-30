@@ -1,0 +1,15 @@
+101	com.example.Animal
+101	com.example.Mammal
+101	java.lang.Object
+102	com.example.Animal
+102	java.lang.Object
+103	java.lang.Object
+com.example.Animal	103
+com.example.Animal	com.example.Animal
+com.example.Animal	com.example.Mammal
+com.example.Dog	101
+com.example.Dog	com.example.Dog
+com.example.Mammal	102
+com.example.Mammal	com.example.Dog
+com.example.Mammal	com.example.Mammal
+java.lang.Object	com.example.Animal

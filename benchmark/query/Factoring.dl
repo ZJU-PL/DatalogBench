@@ -1,0 +1,18 @@
+.decl Gen(x:number)
+.decl Lim(x:number)
+.input Lim
+
+.decl PrimeFactor(x:number, fc:number)
+.output PrimeFactor
+
+.decl Factor(num:number, fc:number)
+.decl Prod(num:number)
+
+// recursion seeds: part of the program, not of the instance
+Gen(1).
+
+Gen(x+1) :- Gen(x), !Lim(x).
+Factor(x, fc) :- Gen(x), Gen(fc), x % fc = 0, fc != 1.
+Prod(x) :- Gen(x), Gen(a), Gen(b), b != x, a != x, x = a*b.
+
+PrimeFactor(x, fc) :- Factor(x, fc), !Prod(fc).

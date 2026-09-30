@@ -1,0 +1,3 @@
+1	ArrowFunction	() => {}
+2	FunctionExpression	function() {}
+3	FunctionDeclaration	function func1() {}

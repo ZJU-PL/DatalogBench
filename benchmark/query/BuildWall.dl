@@ -1,0 +1,20 @@
+.decl Continuous(brick:symbol)
+.input Continuous
+.decl Offset(brick:symbol)
+.input Offset
+.decl Fetch(from_brick:symbol, via_brick:symbol)
+.input Fetch
+.decl PutOn(top_brick:symbol, base_brick:symbol)
+.input PutOn
+
+.decl FetchPlace(from_brick:symbol, target_brick:symbol)
+.decl EligiblePlace(from_brick:symbol, target_brick:symbol)
+.decl ValidSurface(brick:symbol)
+.decl BuildWall(from_brick:symbol, target_brick:symbol)
+.output BuildWall
+
+BuildWall(s, t) :- EligiblePlace(s, t), ValidSurface(t).
+BuildWall(s, t) :- EligiblePlace(s, z), BuildWall(z, t).
+EligiblePlace(s, t) :- FetchPlace(s, t), ValidSurface(t).
+FetchPlace(s, t) :- Fetch(s, z), PutOn(z, t).
+ValidSurface(s) :- Offset(s), Continuous(s).

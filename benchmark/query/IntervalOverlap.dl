@@ -1,0 +1,7 @@
+.decl In(id:number, d1:number, d2:number)
+.input In
+
+.decl Out(id:number, d1:number, d2:number, id2:number, od1:number, od2:number)
+.output Out
+
+Out(i1, s1, e1, i2, s2, e2) :- In(i1, s1, e1), In(i2, s2, e2), s1 <= e2, e1 >= s2, i1 < i2.

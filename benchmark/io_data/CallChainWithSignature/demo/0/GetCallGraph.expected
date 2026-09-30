@@ -1,0 +1,5 @@
+func	com.example.HelloWorld	func	com.example.HelloWorld
+func	com.example.HelloWorld	func	com.example.HelloWorld_rv1531_3
+func	com.example.HelloWorld_rv1531_3	func	com.example.HelloWorld
+func	com.example.HelloWorld_rv1531_3	func	com.example.HelloWorld_rv1531_3
+func	com.example.Unrelated	func	com.example.Unrelated

@@ -1,0 +1,3 @@
+Class	src.main.MyClass	src/main.py	10	20	0
+Function	src.main.my_func	src/main.py	25	30	0
+Function	src.utils.orphan_func	src/utils.py	5	8	1

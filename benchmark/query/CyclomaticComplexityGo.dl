@@ -1,0 +1,11 @@
+.decl GoFile(id:number, name:symbol, is_generated:number)
+.input GoFile
+.decl GoFunction(id:number, name:symbol, file_id:number, complexity:number)
+.input GoFunction
+.decl FunctionLocation(id:number, sline:number, eline:number)
+.input FunctionLocation
+
+.decl CycloComplexity(name:symbol, func:symbol, cmplx:number, sl:number, el:number)
+.output CycloComplexity
+
+CycloComplexity(file_name, func_name, cmplx, sl, el) :- GoFile(file_id, file_name, is_generated), is_generated = 0, GoFunction(func_id, func_name, file_id, cmplx), FunctionLocation(func_id, sl, el).

@@ -1,0 +1,17 @@
+.decl Flight(airline:symbol, src_spot:symbol, dst_spot:symbol)
+.input Flight
+
+.decl QAflies(src_spot:symbol, dst_spot:symbol)
+.output QAflies
+.decl VAflies(src_spot:symbol, dst_spot:symbol)
+.output VAflies
+.decl QAonly(src_spot:symbol, dst_spot:symbol)
+.output QAonly
+
+QAflies(x, y) :- Flight("QA", x, y).
+QAflies(x, y) :- Flight("QA", x, z), QAflies(z, y).
+
+VAflies(x, y) :- Flight("VA", x, y).
+VAflies(x, y) :- Flight("VA", x, z), VAflies(z, y).
+
+QAonly(x, y)  :- QAflies(x, y), !VAflies(x, y).

@@ -1,0 +1,10 @@
+carolIII	carolII
+carolIII	fred
+amy	carolII
+amy	fred
+carolII	carolIII
+carolII	amy
+carolII	fred
+fred	carolIII
+fred	amy
+fred	carolII

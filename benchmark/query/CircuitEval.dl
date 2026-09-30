@@ -1,0 +1,17 @@
+.decl CircuitAND(out_gate:symbol, left_in:symbol, right_in:symbol)
+.input CircuitAND
+.decl CircuitOR(out_gate:symbol, left_in:symbol, right_in:symbol)
+.input CircuitOR
+.decl CircuitNOT(out_gate:symbol, in_gate:symbol)
+.input CircuitNOT
+.decl SetInput(node:symbol, value:symbol)
+.input SetInput
+
+.decl CircuitAssign(x:symbol, y:symbol)
+.output CircuitAssign
+.decl YieldOuts(node:symbol, value:symbol)
+.output YieldOuts
+
+CircuitAssign(x, "true") :-SetInput(x, "true"); CircuitAND(x, o1, o2), CircuitAssign(o1, "true"), CircuitAssign(o2, "true"); CircuitOR(x, o1, _), CircuitAssign(o1, "true"); CircuitOR(x, _, o2), CircuitAssign(o2, "true"); CircuitNOT(x, o1), CircuitAssign(o1, "false").
+CircuitAssign(x, "false") :- SetInput(x, "false");CircuitAND(x, o1, _), CircuitAssign(o1, "false"); CircuitAND(x, _, o2), CircuitAssign(o2, "false"); CircuitOR(x, o1, o2), CircuitAssign(o1, "false"), CircuitAssign(o2, "false"); CircuitNOT(x, o1), CircuitAssign(o1, "true").
+YieldOuts(x, val) :- !SetInput(x, _), CircuitAssign(x, val).

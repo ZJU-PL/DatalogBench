@@ -1,0 +1,12 @@
+.decl Edge(src_node:symbol, dst_node:symbol, weight:number)
+.input Edge
+
+.decl ShortestPath(src_node:symbol, dst_node:symbol, weight:number)
+.output ShortestPath
+
+.decl Path(src_node:symbol, dst_node:symbol, weight:number)
+
+Path(x, y, t) :- t=l, Edge(x, y, l).
+Path(x, y, t+l) :- Edge(x, z, l), Path(z, y, t).
+
+ShortestPath(x, y, a) :- Path(x, y, _), a = min z : Path(x, y, z).

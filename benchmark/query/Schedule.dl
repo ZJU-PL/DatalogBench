@@ -1,0 +1,9 @@
+.decl NotEqual(constraint0:symbol, constraint1:symbol)
+.input NotEqual
+.decl Assigned(task:symbol, slot:symbol, constraint:symbol)
+.input Assigned
+
+.decl Conflict(task:symbol)
+.output Conflict
+
+Conflict(d0) :- NotEqual(c2, c4), Assigned(d0, s1, c4), Assigned(d0, s1, c2).

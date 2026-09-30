@@ -1,0 +1,49 @@
+{
+ "_comment": [
+  "Input relations that carry an instance *parameter* rather than instance data:",
+  "a limit, a default value, a dimension, a designated start node. Semantically",
+  "they hold exactly one tuple, but nothing in a .decl says so, so an input",
+  "generator would scale them like any other relation and the results would be",
+  "silently wrong rather than obviously broken -- a single-source shortest-path",
+  "task, for instance, would become a many-source one.",
+  "",
+  "Membership is a semantic judgement, not something a scan can decide:",
+  "inferring it from singular wording in the description, or from a relation",
+  "being consumed under negation or in a comparison, gives mostly false",
+  "positives. Keep this list by hand and let qa_check enforce it."
+ ],
+ "singletons": {
+  "Amicable": [
+   "Lim"
+  ],
+  "Array": [
+   "Default",
+   "Parameters"
+  ],
+  "Catalan": [
+   "Lim"
+  ],
+  "CircuitSAT": [
+   "Lim"
+  ],
+  "Factorial": [
+   "Lim"
+  ],
+  "Factoring": [
+   "Lim"
+  ],
+  "Grid": [
+   "Default",
+   "Parameters"
+  ],
+  "MinPathSrc": [
+   "Start"
+  ],
+  "PerfectNum": [
+   "Lim"
+  ],
+  "Speed": [
+   "CurrentNode"
+  ]
+ }
+}

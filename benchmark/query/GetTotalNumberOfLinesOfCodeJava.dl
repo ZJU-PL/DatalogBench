@@ -1,0 +1,19 @@
+.decl JavaMethod(id:number, signature:symbol)
+.input JavaMethod
+.decl JavaLocation(id:number, start_line:number, end_line:number)
+.input JavaLocation
+.decl JavaModifier(id:number, modifier:symbol)
+.input JavaModifier
+
+.decl TotalNumberOfLinesOfCode(name:symbol, lines_of_code:number)
+.output TotalNumberOfLinesOfCode
+
+.decl ConcreteMethod(id:number)
+.decl MethodLoc(id:number, loc:number)
+
+ConcreteMethod(id) :- JavaMethod(id, _), !JavaModifier(id, "abstract").
+MethodLoc(id, loc) :- ConcreteMethod(id), JavaLocation(id, start, end), end >= start, loc = end - start + 1.
+
+TotalNumberOfLinesOfCode(signature, total) :-
+  JavaMethod(id, signature), MethodLoc(id, _),
+  total = sum loc : { JavaMethod(i, signature), MethodLoc(i, loc) }.

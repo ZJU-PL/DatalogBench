@@ -1,0 +1,9 @@
+/daointerface/
+/dataobject/
+/ibatis/
+/mybatis/domain/
+/mybatis/mapper/
+/mybatis/model/
+/dal/
+/dao/
+/entity/

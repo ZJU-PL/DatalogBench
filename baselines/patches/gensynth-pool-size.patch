@@ -1,0 +1,22 @@
+diff --git a/gensynth b/gensynth
+index e4c8122..b0fb840 100755
+--- a/gensynth
++++ b/gensynth
+@@ -1308,7 +1308,7 @@ if __name__ == "__main__":
+ 			populations.append(Population(ACCRETION_POPULATION_SIZE, input_relations, output_relation, i))
+ 
+ 		accretion_start_time = time.time()
+-		pool = multiprocessing.Pool(multiprocessing.cpu_count())
++		pool = multiprocessing.Pool(min(NUM_POPULATIONS, multiprocessing.cpu_count()))
+ 		for idx in range(len(populations)):
+ 			print("starting subproc: " + str(idx))
+ 			pool.apply_async(run_accretion, args=(populations[idx], idx), callback=(halt_acc_algorithm))
+@@ -1341,7 +1341,7 @@ if __name__ == "__main__":
+ 			for i in range(0, NUM_POPULATIONS):
+ 				populations.append(Population(REDUCTION_POPULATION_SIZE, input_relations, output_relation, i, final_acc_program))
+ 
+-			pool = multiprocessing.Pool(multiprocessing.cpu_count())
++			pool = multiprocessing.Pool(min(NUM_POPULATIONS, multiprocessing.cpu_count()))
+ 			for idx in range(len(populations)):
+ 				print("starting subproc: " + str(idx))
+ 				pool.apply_async(run_reduction, args=(populations[idx], idx), callback=(halt_red_algorithm))

@@ -1,0 +1,11 @@
+b1	b1	kind
+b2	b2	spins
+b3	b1	kind
+b3	b3	kind
+b4	b4	nusers
+b5	b5	owner
+b5	b6	owner
+b6	b5	owner
+b6	b6	owner
+b9	b9	elision
+kind	b3	b1

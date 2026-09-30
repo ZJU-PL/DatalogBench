@@ -1,0 +1,15 @@
+.decl CfEdge(src_point:symbol, dst_point:symbol)
+.input CfEdge
+.decl Use(point:symbol, variable:symbol)
+.input Use
+.decl Def(point:symbol, variable:symbol)
+.input Def
+
+.decl LiveVarsIn(point:symbol, variable:symbol)
+.output LiveVarsIn
+.decl LiveVarsOut(point:symbol, variable:symbol)
+.output LiveVarsOut
+
+LiveVarsIn(x, v) :- Use(x, v).
+LiveVarsIn(x, v) :- !Def(x, v), LiveVarsOut(x, v).
+LiveVarsOut(x, v) :- CfEdge(x, y), LiveVarsIn(y, v).

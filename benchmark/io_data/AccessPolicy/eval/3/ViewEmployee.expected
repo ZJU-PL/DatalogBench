@@ -1,0 +1,25 @@
+Alice	Alice	0	0	alice.admin@corp.com	Records	Systems Administrator III	38
+Alice	Alice	748-05-3567	25	alice.admin@corp.com	Records	Systems Administrator III	38
+Alice	alice	0	0	alice.lowercase@corp.com	Sales	Manager	61
+Alice	alice	561-84-7147	67	alice.lowercase@corp.com	Sales	Manager	61
+Alice	bob	0	0	bob@corp.com	Sales	Engineer	75
+Alice	bob	271-07-8912	13	bob@corp.com	Sales	Engineer	75
+Alice	carol	0	0	carol@corp.com	Ops	Engineer	0
+Alice	carol	442-20-7888	88	carol@corp.com	Ops	Engineer	0
+alice	Alice	0	0	alice.admin@corp.com	Records	Systems Administrator III	38
+alice	alice	0	0	alice.lowercase@corp.com	Sales	Manager	61
+alice	alice	561-84-7147	67	alice.lowercase@corp.com	Sales	Manager	61
+alice	bob	0	0	bob@corp.com	Sales	Engineer	75
+alice	bob	271-07-8912	13	bob@corp.com	Sales	Engineer	75
+alice	carol	0	0	carol@corp.com	Ops	Engineer	0
+bob	Alice	0	0	alice.admin@corp.com	Records	Systems Administrator III	38
+bob	alice	0	0	alice.lowercase@corp.com	Sales	Manager	61
+bob	bob	0	0	bob@corp.com	Sales	Engineer	75
+bob	bob	271-07-8912	13	bob@corp.com	Sales	Engineer	75
+bob	carol	0	0	carol@corp.com	Ops	Engineer	0
+carol	Alice	0	0	alice.admin@corp.com	Records	Systems Administrator III	38
+carol	alice	0	0	alice.lowercase@corp.com	Sales	Manager	61
+carol	bob	0	0	bob@corp.com	Sales	Engineer	75
+carol	carol	0	0	carol@corp.com	Ops	Engineer	0
+carol	carol	442-20-7888	88	carol@corp.com	Ops	Engineer	0
+ins1	bob	0	0	 	 	 	75

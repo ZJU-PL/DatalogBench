@@ -1,0 +1,28 @@
+.decl Kind(kind_name:symbol)
+.input Kind
+.decl Term(term_id:symbol, kind_name:symbol, payload_id:symbol )
+.input Term
+.decl Lits(lit_id:symbol, lit_value:symbol )
+.input Lits
+.decl Vars(var_id:symbol, var_name:symbol )
+.input Vars
+.decl Abs(abs_id:symbol, param_var_id:symbol, body_term_id:symbol)
+.input Abs
+.decl App(app_id:symbol, func_term_id:symbol, arg_term_id:symbol )
+.input App
+
+.decl DataTerm(term_id:symbol, data_value:symbol )
+.output DataTerm
+
+.decl DataVar(var_id:symbol, data_value:symbol )
+.decl CtrlVar(var_id:symbol, ctrl_abs_id:symbol )
+.decl CtrlTerm(term_id:symbol, ctrl_abs_id:symbol )
+
+DataTerm(i, v) :- Term(i,"Lit", l), Lits(l, v ).
+DataTerm(i, v) :- Term(i,"Var", x), DataVar(x, v).
+DataTerm(i, v) :- Term(i,"App", x), App(x, t1, _), CtrlTerm(t1, f), Abs(f, _, b), DataTerm(b, v).
+DataVar(i, v) :- App(_, a, b), CtrlTerm(a, f ), Abs(f, i, _), DataTerm(b, v).
+CtrlTerm(i, v) :- Term(i,"Var", x), CtrlVar(x, v).
+CtrlTerm(i, v) :- Term(i,"App", x), App(x, t1, _), CtrlTerm(t1, f), Abs(f, _, b), CtrlTerm(b, v).
+CtrlTerm(i, v) :- Term(i, "Abs", v).
+CtrlVar(i, v) :- App(_, a, b), CtrlTerm(a, f), Abs(f, i, _), CtrlTerm(b, v).

@@ -1,0 +1,9 @@
+.decl MethodInfo(id:symbol, signature:symbol)
+.input MethodInfo
+.decl MethodCallBinding(caller:symbol, callee:symbol)
+.input MethodCallBinding
+
+.decl UnusedMethod(signature:symbol)
+.output UnusedMethod
+
+UnusedMethod(signature) :- MethodInfo(method_id, signature), !MethodCallBinding(_, method_id).

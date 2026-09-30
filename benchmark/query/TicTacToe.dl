@@ -1,0 +1,67 @@
+.decl Player(player:symbol)
+.input Player
+.decl Cell(cell:symbol)
+.input Cell
+.decl Other(p:symbol, q:symbol)
+.input Other
+.decl ReachableState(r1c1:symbol, r1c2:symbol, r1c3:symbol, r2c1:symbol, r2c2:symbol, r2c3:symbol, r3c1:symbol, r3c2:symbol, r3c3:symbol, turn:symbol)
+.input ReachableState
+
+.decl DecidedGames(r1c1:symbol, r1c2:symbol, r1c3:symbol, r2c1:symbol, r2c2:symbol, r2c3:symbol, r3c1:symbol, r3c2:symbol, r3c3:symbol, player:symbol, winner:symbol)
+.output DecidedGames
+
+.decl AllStates(a1:symbol, b1:symbol, c1:symbol, a2:symbol, b2:symbol, c2:symbol, a3:symbol, b3:symbol, c3:symbol, p:symbol)
+.decl StateSucc(aa1:symbol, aa2:symbol, aa3:symbol, ab1:symbol, ab2:symbol, ab3:symbol, ac1:symbol, ac2:symbol, ac3:symbol, a:symbol, ba1:symbol, ba2:symbol, ba3:symbol, bb1:symbol, bb2:symbol, bb3:symbol, bc1:symbol, bc2:symbol, bc3:symbol, b:symbol)
+.decl Row1(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Row2(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Row3(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Col1(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Col2(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Col3(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Dig1(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl Dig2(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, a:symbol, b:symbol, c:symbol)
+.decl HasWon(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, x:symbol)
+.decl Won(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol)
+.decl PossibleResults(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol, p:symbol, w:symbol)
+.decl Draw(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol)
+.decl Finished(a1:symbol, a2:symbol, a3:symbol, b1:symbol, b2:symbol, b3:symbol, c1:symbol, c2:symbol, c3:symbol)
+.decl ValidMove(aa1:symbol, aa2:symbol, aa3:symbol, ab1:symbol, ab2:symbol, ab3:symbol, ac1:symbol, ac2:symbol, ac3:symbol, a:symbol, ba1:symbol, ba2:symbol, ba3:symbol, bb1:symbol, bb2:symbol, bb3:symbol, bc1:symbol, bc2:symbol, bc3:symbol)
+
+AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, p) :- Cell(a1), Cell(b1), Cell(c1), Cell(a2), Cell(b2), Cell(c2), Cell(a3), Cell(b3), Cell(c3), Player(p).
+ReachableState(a1, b1, c1, a2, b2, c2, a3, b3, c3, p) :- StateSucc(_, _, _, _, _, _, _, _, _, _, a1, b1, c1, a2, b2, c2, a3, b3, c3, p).
+Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b1, c1) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, a2, b2, c2) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Col1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, a2, a3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Col2(a1, b1, c1, a2, b2, c2, a3, b3, c3, b1, b2, b3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, c2, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Dig1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b2, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, b2, a3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Col1(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Col2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Dig1(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).
+Won(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3,"X").
+Won(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3,"O").
+Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _), !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), a1 != " ", b1 != " ", c1 != " ", a2 != " ", b2 != " ", c2 != " ", a3 != " ", b3 != " ", c3 != " ".
+Finished(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- Won(a1, b1, c1, a2, b2, c2, a3, b3, c3).
+Finished(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3).
+ValidMove(" ", ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, a, a , ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3) :- ReachableState(" ", ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, a).
+ValidMove(aa1," ", ac1, aa2, ab2, ac2, aa3, ab3, ac3, a, aa1, a , ac1, aa2, ab2, ac2, aa3, ab3, ac3) :- ReachableState(aa1," ", ac1, aa2, ab2, ac2, aa3, ab3, ac3, a).
+ValidMove(aa1, ab1," ", aa2, ab2, ac2, aa3, ab3, ac3, a, aa1, ab1, a , aa2, ab2, ac2, aa3, ab3, ac3) :- ReachableState(aa1, ab1," ", aa2, ab2, ac2, aa3, ab3, ac3, a).
+ValidMove(aa1, ab1, ac1," ", ab2, ac2, aa3, ab3, ac3, a, aa1, ab1, ac1, a , ab2, ac2, aa3, ab3, ac3) :- ReachableState(aa1, ab1, ac1," ", ab2, ac2, aa3, ab3, ac3, a).
+ValidMove(aa1, ab1, ac1, aa2," ", ac2, aa3, ab3, ac3, a, aa1, ab1, ac1, aa2, a , ac2, aa3, ab3, ac3) :- ReachableState(aa1, ab1, ac1, aa2," ", ac2, aa3, ab3, ac3, a).
+ValidMove(aa1, ab1, ac1, aa2, ab2," ", aa3, ab3, ac3, a, aa1, ab1, ac1, aa2, ab2, a , aa3, ab3, ac3) :- ReachableState(aa1, ab1, ac1, aa2, ab2," ", aa3, ab3, ac3, a).
+ValidMove(aa1, ab1, ac1, aa2, ab2, ac2," ", ab3, ac3, a, aa1, ab1, ac1, aa2, ab2, ac2, a , ab3, ac3) :- ReachableState(aa1, ab1, ac1, aa2, ab2, ac2," ", ab3, ac3, a).
+ValidMove(aa1, ab1, ac1, aa2, ab2, ac2, aa3," ", ac3, a, aa1, ab1, ac1, aa2, ab2, ac2, aa3, a , ac3) :- ReachableState(aa1, ab1, ac1, aa2, ab2, ac2, aa3," ", ac3, a).
+ValidMove(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3," ", a, aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, a) :- ReachableState(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3," ", a).
+StateSucc(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, a, ba1, bb1, bc1, ba2, bb2, bc2, ba3, bb3, bc3, b) :- ReachableState(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, a), Other(a, b), !Finished(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3), ValidMove(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, a, ba1, bb1, bc1, ba2, bb2, bc2, ba3, bb3, bc3).
+PossibleResults(a1, b1, c1, a2, b2, c2, a3, b3, c3, p, "X") :- ReachableState(a1, b1, c1, a2, b2, c2, a3, b3, c3, p), HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, "X").
+PossibleResults(a1, b1, c1, a2, b2, c2, a3, b3, c3, p, "O") :- ReachableState(a1, b1, c1, a2, b2, c2, a3, b3, c3, p), HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, "O").
+PossibleResults(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, ap, x) :- StateSucc(aa1, ab1, ac1, aa2, ab2, ac2, aa3, ab3, ac3, ap, ba1, bb1, bc1, ba2, bb2, bc2, ba3, bb3, bc3, bp), PossibleResults(ba1, bb1, bc1, ba2, bb2, bc2, ba3, bb3, bc3, bp, x).
+DecidedGames(a1, b1, c1, a2, b2, c2, a3, b3, c3, "O", "X") :- !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), PossibleResults(a1, b1, c1, a2, b2, c2, a3, b3, c3, "O", "X"), !PossibleResults(a1, b1, c1, a2, b2, c2, a3, b3, c3, "O", "O").
+DecidedGames(a1, b1, c1, a2, b2, c2, a3, b3, c3, "X", "O") :- !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), PossibleResults(a1, b1, c1, a2, b2, c2, a3, b3, c3, "X", "O"), !PossibleResults(a1, b1, c1, a2, b2, c2, a3, b3, c3, "X", "X").

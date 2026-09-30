@@ -1,0 +1,6 @@
+b1	class	org.demo.Repository
+p1	name	cacheSettings
+e1	key	maxSize
+b2	class	org.demo.Scheduler
+p2	name	retryPolicy
+e2	key	attempts

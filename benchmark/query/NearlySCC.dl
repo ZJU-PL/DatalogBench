@@ -1,0 +1,13 @@
+.decl Edge(src_node: symbol, dst_node: symbol)
+.input Edge
+
+.decl NearlySCC(src_node: symbol, dst_node: symbol)
+.output NearlySCC
+
+.decl Reachable(src_node: symbol, dst_node: symbol)
+
+Reachable(x, y) :- Edge(x, y).
+Reachable(x, z) :- Reachable(x, y), Edge(y, z).
+
+NearlySCC(x, y) :- Reachable(x, y).
+NearlySCC(x, y) :- Reachable(y, x).

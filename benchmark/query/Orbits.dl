@@ -1,0 +1,16 @@
+.decl Star(body:symbol)
+.input Star
+.decl Orbits(src_body:symbol, dst_body:symbol)
+.input Orbits
+
+.decl Planet(body:symbol)
+.output Planet
+.decl Intermediate(src_body:symbol, dst_body:symbol)
+.output Intermediate
+.decl Satellite(src_body:symbol, dst_body:symbol)
+.output Satellite
+
+Orbits(x, y) :- Orbits(x, z), Orbits(z, y).
+Satellite(x, y) :- Orbits(x, y), !Intermediate(x, y), !Star(y).
+Planet(x) :- Orbits(x, y), Star(y), !Intermediate(x, y).
+Intermediate(x, y) :- Orbits(x, z), Orbits(z, y).

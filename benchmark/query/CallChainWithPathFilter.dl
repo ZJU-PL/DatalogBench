@@ -1,0 +1,24 @@
+.decl Callable(id:symbol, signature:symbol)
+.input Callable
+.decl CallEdge(caller_id:symbol, callee_id:symbol)
+.input CallEdge
+.decl CallableFile(callable_id:symbol, file_id:symbol)
+.input CallableFile
+.decl FilePath(id:symbol, path:symbol)
+.input FilePath
+.decl FilterPattern(pattern:symbol)
+.input FilterPattern
+
+.decl FilteredFile(id:symbol)
+.decl FilteredCallable(id:symbol)
+.decl Reachable(caller:symbol, callee:symbol)
+
+.decl OutputSignature(caller:symbol, callee:symbol)
+.output OutputSignature
+
+FilteredFile(file_id) :- FilePath(file_id, path), FilterPattern(pattern), contains(pattern, path).
+FilteredCallable(callable_id) :- CallableFile(callable_id, file_id), FilteredFile(file_id).
+Reachable(caller, callee) :- CallEdge(caller, callee).
+Reachable(caller, callee) :- CallEdge(caller, mid), Reachable(mid, callee).
+
+OutputSignature(caller_sig, callee_sig) :- Reachable(caller_id, callee_id), !FilteredCallable(caller_id), !FilteredCallable(callee_id), Callable(caller_id, caller_sig), Callable(callee_id, callee_sig).

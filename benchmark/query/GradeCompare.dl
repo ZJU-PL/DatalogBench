@@ -1,0 +1,10 @@
+.decl GradeRecord(id:symbol, person_id:symbol, name:symbol, grade:symbol)
+.input GradeRecord
+
+.decl LessThan(grade1:symbol, grade2:symbol)
+.input LessThan
+
+.decl GradeCompare(person_id:symbol, name:symbol, grade1:symbol, grade2:symbol)
+.output GradeCompare
+
+GradeCompare(p, n, g1, g2) :- GradeRecord(_, p, n, g1), GradeRecord(_, p, n, g2), LessThan(g1, g2).

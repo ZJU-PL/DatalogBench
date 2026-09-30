@@ -1,0 +1,29 @@
+.decl ClassDecl(id:number, name:symbol)
+.input ClassDecl
+.decl FunctionDecl(id:number, name:symbol)
+.input FunctionDecl
+.decl ElementType(id:number, type:symbol)
+.input ElementType
+.decl ElementLocation(id:number, path:symbol, sline:number, eline:number)
+.input ElementLocation
+.decl DocstringLink(comment_id:number, element_id:number)
+.input DocstringLink
+.decl CommentLink(comment_id:number, element_id:number)
+.input CommentLink
+
+.decl CodeInfo(type:symbol, name:symbol, file_path:symbol, sline:number, eline:number, is_commented:number)
+.output CodeInfo
+
+.decl PublicElement(id:number)
+.decl ElementName(id:number, name:symbol)
+.decl HasComment(id:number)
+
+PublicElement(id) :- ClassDecl(id, _).
+PublicElement(id) :- FunctionDecl(id, _).
+ElementName(id, name) :- ClassDecl(id, name).
+ElementName(id, name) :- FunctionDecl(id, name).
+HasComment(id) :- PublicElement(id), DocstringLink(_, id).
+HasComment(id) :- PublicElement(id), CommentLink(_, id).
+
+CodeInfo(type, name, path, s_line, e_line, 1) :- PublicElement(id), ElementType(id, type), ElementName(id, name), ElementLocation(id, path, s_line, e_line), HasComment(id).
+CodeInfo(type, name, path, s_line, e_line, 0) :- PublicElement(id), ElementType(id, type), ElementName(id, name), ElementLocation(id, path, s_line, e_line), !HasComment(id).

@@ -1,0 +1,17 @@
+.decl Succ(a:symbol, b:symbol)
+.input Succ
+.decl CountSecond(a:symbol)
+.decl CountThird(a:symbol)
+
+.output CountSecond
+.output CountThird
+.decl CountAll(a:symbol)
+.output CountAll
+
+// recursion seeds: part of the program, not of the instance
+CountSecond("3").
+CountThird("3").
+
+CountSecond(n) :- Succ(pn, n), Succ(ppn, pn), CountSecond(ppn).
+CountThird(n) :- Succ(pn, n), Succ(ppn, pn), Succ(pppn, ppn), CountThird(pppn).
+CountAll(x) :- CountSecond(x), CountThird(x).

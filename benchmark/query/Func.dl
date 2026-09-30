@@ -1,0 +1,15 @@
+.decl TermHasFunc(term_id:symbol, func_sym:symbol)
+.input TermHasFunc
+.decl ArgIndexNext(prev_idx:symbol, next_idx:symbol)
+.input ArgIndexNext
+.decl TermArg(term_id:symbol, arg_idx:symbol, arg_sym:symbol)
+.input TermArg
+
+.decl FuncEqual(func1:symbol, func2:symbol)
+.output FuncEqual
+
+.decl ArgsEqualUpTo(term1:symbol, term2:symbol, arg_idx:symbol)
+
+FuncEqual(a, b) :- TermHasFunc(v, a), TermHasFunc(w, b), ArgsEqualUpTo(v, w, "3").
+ArgsEqualUpTo(v, w, i) :- ArgIndexNext(p, i), TermArg(v, i, k), TermArg(w, i, k), ArgsEqualUpTo(v, w, p).
+ArgsEqualUpTo(v, w, "1") :- TermArg(v, "1", k), TermArg(w, "1", k).

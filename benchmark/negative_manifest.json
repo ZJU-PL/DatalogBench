@@ -1,0 +1,1247 @@
+[
+ {
+  "case": "ASTPrintJavaScript",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 4,
+  "positives": 2,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ASTPrintPython",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 1,
+  "positives": 20,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "AccessPolicy",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 516,
+  "positives": 212909,
+  "modes": 6,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Ackermann",
+  "status": "ok",
+  "mutants": 10,
+  "negatives": 160,
+  "positives": 3253,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ActionDiff",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 7,
+  "positives": 2,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Agent",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 8,
+  "positives": 5,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Amicable",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 53,
+  "positives": 3,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Andersen",
+  "status": "ok",
+  "mutants": 14,
+  "negatives": 69,
+  "positives": 3208,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Animals",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 2,
+  "positives": 17,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ArithmeticError",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 3,
+  "positives": 1,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Array",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 71,
+  "positives": 4860,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Bigrams",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 0,
+  "positives": 1610,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "BuildWall",
+  "status": "ok",
+  "mutants": 16,
+  "negatives": 17,
+  "positives": 6,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CallChain",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 5,
+  "positives": 2,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CallChainWithPathFilter",
+  "status": "ok",
+  "mutants": 17,
+  "negatives": 16,
+  "positives": 4,
+  "modes": 8,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CallChainWithSignature",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 5,
+  "positives": 2,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Catalan",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 16,
+  "positives": 17,
+  "modes": 1,
+  "stalled_mutants": [
+   10
+  ]
+ },
+ {
+  "case": "CbaExprValue",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 14,
+  "positives": 7,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Centroids",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 20,
+  "positives": 3202,
+  "modes": 9,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ChangeEffect",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 7,
+  "positives": 3,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CircuitEval",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 10,
+  "positives": 16,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CircuitSAT",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 16,
+  "positives": 4,
+  "modes": 1,
+  "stalled_mutants": [
+   10
+  ]
+ },
+ {
+  "case": "ClassHierarchy",
+  "status": "ok",
+  "mutants": 10,
+  "negatives": 15,
+  "positives": 6,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ClassMethods",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 8,
+  "positives": 3,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ColorTarget",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 5,
+  "positives": 6,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CommentCodePairsJava",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 5,
+  "positives": 4,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CommentCodePairsJavaScript",
+  "status": "ok",
+  "mutants": 15,
+  "negatives": 6,
+  "positives": 3,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CommentCodePairsPython",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 4,
+  "positives": 2,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CommentRatioJava",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 15,
+  "positives": 4,
+  "modes": 16,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ContainAllergen",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 7,
+  "positives": 4,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Counter",
+  "status": "ok",
+  "mutants": 14,
+  "negatives": 1,
+  "positives": 4,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CourseSelection",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 4,
+  "positives": 1605,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CyclomaticComplexityGo",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 0,
+  "positives": 2,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CyclomaticComplexityJava",
+  "status": "ok",
+  "mutants": 15,
+  "negatives": 52,
+  "positives": 1602,
+  "modes": 7,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CyclomaticComplexityJavaScript",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 6,
+  "positives": 3,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "CyclomaticComplexityPython",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 6,
+  "positives": 3,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "DFA",
+  "status": "ok",
+  "mutants": 6,
+  "negatives": 61,
+  "positives": 3206,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "DNF",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 6,
+  "positives": 59,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Degree",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 0,
+  "positives": 3207,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "DfaLiveVars",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 9,
+  "positives": 9,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "DfaMin",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 58,
+  "positives": 1604,
+  "modes": 14,
+  "stalled_mutants": [
+   17,
+   18
+  ]
+ },
+ {
+  "case": "DfaParse",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 17,
+  "positives": 15,
+  "modes": 8,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Disconnected",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 76,
+  "positives": 20141,
+  "modes": 7,
+  "stalled_mutants": []
+ },
+ {
+  "case": "DocumentedPercentage",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 6,
+  "positives": 3,
+  "modes": 8,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Earley",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 40,
+  "positives": 17,
+  "modes": 10,
+  "stalled_mutants": []
+ },
+ {
+  "case": "EditDistance",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 8,
+  "positives": 1,
+  "modes": 8,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Equal",
+  "status": "ok",
+  "mutants": 5,
+  "negatives": 39,
+  "positives": 22,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Escape",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 18,
+  "positives": 19,
+  "modes": 6,
+  "stalled_mutants": []
+ },
+ {
+  "case": "EvenPath",
+  "status": "ok",
+  "mutants": 10,
+  "negatives": 244,
+  "positives": 20153,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Factorial",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 100,
+  "positives": 25,
+  "modes": 1,
+  "stalled_mutants": [
+   2
+  ]
+ },
+ {
+  "case": "Factoring",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 157,
+  "positives": 185,
+  "modes": 5,
+  "stalled_mutants": [
+   5
+  ]
+ },
+ {
+  "case": "FanInJava",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 0,
+  "positives": 1605,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "FanOutJava",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 0,
+  "positives": 1604,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "FibNumeric",
+  "status": "ok",
+  "mutants": 5,
+  "negatives": 2,
+  "positives": 34,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "FibSymbolic",
+  "status": "ok",
+  "mutants": 6,
+  "negatives": 1,
+  "positives": 23,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Flights",
+  "status": "ok",
+  "mutants": 15,
+  "negatives": 193,
+  "positives": 2410,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Func",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 20,
+  "positives": 6,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Game",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 216,
+  "positives": 10513,
+  "modes": 11,
+  "stalled_mutants": []
+ },
+ {
+  "case": "GetBean",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 2,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "GetImportSpringFrameworkFileJava",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 4,
+  "positives": 2,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "GetMybatisDOClass",
+  "status": "ok",
+  "mutants": 6,
+  "negatives": 1,
+  "positives": 1,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "GetTotalNumberOfLinesOfCodeJava",
+  "status": "ok",
+  "mutants": 10,
+  "negatives": 3,
+  "positives": 1604,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "GradeCompare",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 8,
+  "positives": 2,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "GraphColor",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 9,
+  "positives": 3,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Grid",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 13,
+  "positives": 7377,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Headquarters",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 7,
+  "positives": 4,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "HighestDegree",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 0,
+  "positives": 2,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Inflammation",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 15,
+  "positives": 1649,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "IntField",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 2,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "IntervalOverlap",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 4,
+  "positives": 4,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Josephus",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 16,
+  "positives": 21,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Kinship",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 306,
+  "positives": 11759,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "LUBM",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 0,
+  "positives": 1867,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "LabelTwoStepReach",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 13,
+  "positives": 6,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "LinkSum",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 29,
+  "positives": 3222,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "LongestPath",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 71,
+  "positives": 1601,
+  "modes": 3,
+  "stalled_mutants": [
+   5
+  ]
+ },
+ {
+  "case": "MagicPrime",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 95,
+  "positives": 112,
+  "modes": 11,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MatchBucket",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 0,
+  "positives": 15273,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MatrixMult",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 4,
+  "positives": 105,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MethodComment",
+  "status": "ok",
+  "mutants": 18,
+  "negatives": 53,
+  "positives": 1603,
+  "modes": 6,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MinPathEnum",
+  "status": "ok",
+  "mutants": 19,
+  "negatives": 100,
+  "positives": 836,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MinPathGen",
+  "status": "ok",
+  "mutants": 14,
+  "negatives": 0,
+  "positives": 1636,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MinPathSrc",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 0,
+  "positives": 168,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MinSpanTree",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 9,
+  "positives": 2,
+  "modes": 20,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Movies",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 33,
+  "positives": 18,
+  "modes": 7,
+  "stalled_mutants": []
+ },
+ {
+  "case": "MutualRecursion",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 47,
+  "positives": 19921,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "NearlySCC",
+  "status": "ok",
+  "mutants": 10,
+  "negatives": 62,
+  "positives": 10118,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "NotMatch",
+  "status": "ok",
+  "mutants": 2,
+  "negatives": 2,
+  "positives": 2,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "NumericGraph",
+  "status": "ok",
+  "mutants": 6,
+  "negatives": 70,
+  "positives": 19955,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "OneCallSite",
+  "status": "ok",
+  "mutants": 16,
+  "negatives": 18,
+  "positives": 7,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "OneObject",
+  "status": "ok",
+  "mutants": 16,
+  "negatives": 17,
+  "positives": 4,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "OneObjectOneType",
+  "status": "ok",
+  "mutants": 19,
+  "negatives": 20,
+  "positives": 7,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "OneType",
+  "status": "ok",
+  "mutants": 15,
+  "negatives": 16,
+  "positives": 7,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "OnlyChild",
+  "status": "ok",
+  "mutants": 2,
+  "negatives": 5,
+  "positives": 1601,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Orbits",
+  "status": "ok",
+  "mutants": 14,
+  "negatives": 33,
+  "positives": 22,
+  "modes": 7,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Overrides",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 6,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "POM",
+  "status": "ok",
+  "mutants": 14,
+  "negatives": 2,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Palindrome",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 4,
+  "positives": 3,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ParentExists",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 3,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Path",
+  "status": "ok",
+  "mutants": 6,
+  "negatives": 8,
+  "positives": 10031,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "PathRecursion",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 24,
+  "positives": 20042,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "PerfectNum",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 0,
+  "positives": 2,
+  "modes": 0,
+  "stalled_mutants": [
+   4
+  ]
+ },
+ {
+  "case": "Permutations",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 0,
+  "positives": 15,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Planar",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 3,
+  "positives": 12,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "PointstoJava",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 0,
+  "positives": 1664,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "PublicChannel",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 3,
+  "positives": 1,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "PyFuncDefaultMutable",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 3,
+  "positives": 2,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "RPC",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 2,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Reach",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 4,
+  "positives": 2,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ReachingDefEntry",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 102,
+  "positives": 1601,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ReallocMisuseDraft",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 2,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Recipes",
+  "status": "ok",
+  "mutants": 5,
+  "negatives": 1,
+  "positives": 8,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Reduce",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 10,
+  "positives": 6,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "RevSameGen",
+  "status": "ok",
+  "mutants": 6,
+  "negatives": 64,
+  "positives": 3210,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "SCC",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 41,
+  "positives": 10025,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "SameGen",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 34,
+  "positives": 10012,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Schedule",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 4,
+  "positives": 1,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "SequentialKinship",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 0,
+  "positives": 11276,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ShadowedVar",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 11,
+  "positives": 1,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Ship",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 10,
+  "positives": 5,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ShortestEdges",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 0,
+  "positives": 1603,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "ShortestPath",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 0,
+  "positives": 1609,
+  "modes": 0,
+  "stalled_mutants": [
+   7
+  ]
+ },
+ {
+  "case": "Speed",
+  "status": "ok",
+  "mutants": 8,
+  "negatives": 3,
+  "positives": 103,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "SuccIntersect",
+  "status": "ok",
+  "mutants": 12,
+  "negatives": 31,
+  "positives": 24,
+  "modes": 6,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Tak",
+  "status": "ok",
+  "mutants": 13,
+  "negatives": 20,
+  "positives": 13,
+  "modes": 2,
+  "stalled_mutants": [
+   10
+  ]
+ },
+ {
+  "case": "ThreePath",
+  "status": "ok",
+  "mutants": 4,
+  "negatives": 117,
+  "positives": 12790,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "TicTacToe",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 555,
+  "positives": 414,
+  "modes": 18,
+  "stalled_mutants": []
+ },
+ {
+  "case": "TopologicalOrdering",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 219,
+  "positives": 8728,
+  "modes": 5,
+  "stalled_mutants": []
+ },
+ {
+  "case": "Traffic",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 11,
+  "positives": 9,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "TrafficStops",
+  "status": "ok",
+  "mutants": 9,
+  "negatives": 18,
+  "positives": 23,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "TuringMachine",
+  "status": "ok",
+  "mutants": 20,
+  "negatives": 11,
+  "positives": 5391,
+  "modes": 1,
+  "stalled_mutants": []
+ },
+ {
+  "case": "TwoCallSite",
+  "status": "ok",
+  "mutants": 16,
+  "negatives": 16,
+  "positives": 7,
+  "modes": 3,
+  "stalled_mutants": []
+ },
+ {
+  "case": "TwoSAT",
+  "status": "ok",
+  "mutants": 16,
+  "negatives": 5,
+  "positives": 11,
+  "modes": 4,
+  "stalled_mutants": []
+ },
+ {
+  "case": "UnionFind",
+  "status": "ok",
+  "mutants": 16,
+  "negatives": 0,
+  "positives": 10237,
+  "modes": 0,
+  "stalled_mutants": []
+ },
+ {
+  "case": "UnusedMethod",
+  "status": "ok",
+  "mutants": 3,
+  "negatives": 4,
+  "positives": 1602,
+  "modes": 2,
+  "stalled_mutants": []
+ },
+ {
+  "case": "WeightedDistances",
+  "status": "ok",
+  "mutants": 11,
+  "negatives": 4,
+  "positives": 18,
+  "modes": 1,
+  "stalled_mutants": [
+   7
+  ]
+ }
+]

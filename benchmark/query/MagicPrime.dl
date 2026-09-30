@@ -1,0 +1,25 @@
+.decl Nat(x:number)
+.decl Lim(x:number)
+.input Lim
+
+.decl Prime(x:number)
+.output Prime
+
+.decl Succ(a:number, b:number)
+.decl Add(a:number, b:number, r:number)
+.decl Mul(a:number, b:number, r:number)
+.decl Candidate(x:number)
+.decl Prod(x:number)
+
+// recursion seeds: part of the program, not of the instance
+Nat(0).
+
+Nat(x+1) :- Nat(x), Lim(l), x < l.
+Succ(a, b) :- Nat(a), Nat(b), b=a+1.
+Add(a, 0, a) :- Nat(a).
+Add(a, b, r) :- Succ(pb, b), Add(a, pb, pr), Succ(pr, r).
+Mul(a, 0, 0) :- Nat(a).
+Mul(a, b, r) :- Succ(pb, b), Mul(a, pb, pr), Add(a, pr, r).
+Candidate(x) :- Nat(x), x!=0, x!=1.
+Prod(x) :- Candidate(a), Candidate(b), Mul(a, b, x).
+Prime(x) :- Candidate(x), !Prod(x).

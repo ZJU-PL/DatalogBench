@@ -1,0 +1,4 @@
+test.js	100	SourceFile	1	10	2	FunctionDeclaration	2	5	0
+test.js	100	SourceFile	1	10	501	FunctionDeclaration	2	5	0
+test.js	101	FunctionDeclaration	2	5	3	Block	3	4	0
+test.js	101	FunctionDeclaration	2	5	502	Block	3	4	0

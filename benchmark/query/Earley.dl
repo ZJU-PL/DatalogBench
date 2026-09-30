@@ -1,0 +1,28 @@
+.decl Product(nonterminal:number, position:number, character:symbol)
+.input Product
+.decl String(position:number, character:symbol)
+.input String
+.decl State(current_pos:number, nonterminal:number, len_pos:number, initial_pos:number)
+
+.decl Accept(result:symbol)
+.output Accept
+
+.decl EndProduct(nonterminal:number, position:number)
+.output EndProduct
+.decl EndString(position:number)
+.output EndString
+.decl NotEndProduct(nonterminal:number, position:number)
+.decl NotEndString(position:number)
+
+// recursion seeds: part of the program, not of the instance
+State(1, 1, 1, 1).
+
+NotEndProduct(x, p) :- Product(x, p, _), Product(x, q, _), p < q.
+EndProduct(x, p + 1) :- Product(x, p, _), !NotEndProduct(x, p).
+NotEndString(c) :- String(c, _), String(d, _), c < d.
+EndString(c + 1) :- String(c, _), !NotEndString(c).
+State(c, x, 1, c) :- State(c, y, p, _), Product(x, 0, n), Product(y, p, n).
+State(c + 1, x, p + 1, j) :- String(c, a), State(c, x, p, j), Product(x, p, a).
+State(c, x, p + 1, j) :- State(c, y, q, k), EndProduct(y, q), Product(y, 0, n), State(k, x, p, j), Product(x, p, n).
+
+Accept("Yes") :- State(c, 1, q, 1), EndString(c), EndProduct(1, q).

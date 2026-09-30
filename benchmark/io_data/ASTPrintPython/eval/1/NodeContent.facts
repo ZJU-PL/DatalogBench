@@ -1,0 +1,6 @@
+101	def foo(): return 1
+102	return 1
+102	return 1_rv1429_3
+1529	1435
+1534	1425
+1538	def foo(): return 1_rv1429_2

@@ -1,0 +1,34 @@
+.decl Father(person1:symbol, person2:symbol)
+.input Father
+.decl Mother(person1:symbol, person2:symbol)
+.input Mother
+
+.decl Parent(person1:symbol, person2:symbol)
+.output Parent
+.decl Ancestor(person1:symbol, person2:symbol)
+.output Ancestor
+.decl Grandparent(person1:symbol, person2:symbol)
+.output Grandparent
+.decl Sibling(person1:symbol, person2:symbol)
+.output Sibling
+.decl Cousin(person1:symbol, person2:symbol)
+.output Cousin
+.decl Relative(person1:symbol, person2:symbol)
+.output Relative
+
+Parent(x, y) :- Father(x, y).
+Parent(x, y) :- Mother(x, y).
+
+Ancestor(x, y) :- Parent(x, y).
+Ancestor(x, y) :- Parent(x, z), Ancestor(z, y).
+
+Grandparent(x, y) :- Father(x, z), Mother(z, y).
+Grandparent(x, y) :- Mother(x, z), Father(z, y).
+Grandparent(x, y) :- Mother(x, z), Mother(z, y).
+Grandparent(x, y) :- Father(x, z), Father(z, y).
+
+Sibling(x, y) :- Parent(z, x), Parent(z, y), x != y.
+
+Cousin(x, y) :- Parent(z, x), Parent(w, y), Sibling(z, w), x != y.
+
+Relative(x, y) :- Sibling(x, z), Parent(z, y).

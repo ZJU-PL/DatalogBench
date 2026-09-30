@@ -1,0 +1,10 @@
+101	Service.methodB
+102	Service.methodB
+Service.methodA	Service.methodA
+Service.methodA	UserDao.query
+Service.methodB	Service.methodA
+Service.methodB	Service.methodB
+Service.methodB	UserDao.query
+ServiceTest.testA	Service.methodA
+ServiceTest.testA	Service.methodB
+ServiceTest.testA	UserDao.query

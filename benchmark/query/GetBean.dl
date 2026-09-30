@@ -1,0 +1,15 @@
+.decl BeanElement(id:symbol)
+.input BeanElement
+.decl PropertyElement(id:symbol)
+.input PropertyElement
+.decl EntryElement(id:symbol)
+.input EntryElement
+.decl XmlParent(child:symbol, parent:symbol)
+.input XmlParent
+.decl XmlAttribute(id:symbol, name:symbol, value:symbol)
+.input XmlAttribute
+
+.decl BeanDef(class_name:symbol, p_name:symbol, k_name:symbol)
+.output BeanDef
+
+BeanDef(class_name, p_name, k_name) :- BeanElement(bean), PropertyElement(prop), EntryElement(entry), XmlParent(prop, bean), XmlParent(entry, intermediate), XmlParent(intermediate, prop), XmlAttribute(bean, "class", class_name), XmlAttribute(prop, "name", p_name), XmlAttribute(entry, "key", k_name).

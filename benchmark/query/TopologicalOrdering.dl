@@ -1,0 +1,24 @@
+.decl Vertex(vertex:symbol)
+.input Vertex
+.decl Edge(src_vertex:symbol, dst_vertex:symbol)
+.input Edge
+
+.decl IsBefore(src_vertex:symbol, dst_vertex:symbol)
+.output IsBefore
+.decl IsAfter(src_vertex:symbol, dst_vertex:symbol)
+.output IsAfter
+.decl Indices(vertex:symbol, index:number)
+.decl Index(vertex:symbol, index:number)
+.output Index
+
+IsBefore(x, y) :- Edge(x, y).
+IsBefore(x, y) :- IsBefore(x, z), IsBefore(z, y).
+IsAfter(x, y) :- Edge(y, x).
+IsAfter(x, y) :- IsAfter(z, x), IsAfter(y, z).
+Indices(x, 0) :- Vertex(x), !Edge(_, x), !Edge(x, _).
+Indices(x, 1) :- Vertex(x), !Edge(_, x), Edge(x, _).
+Indices(x, i+1) :- IsBefore(y, x), !IsBefore(x, y), IsAfter(x, y), Indices(y, i).
+// The level is the highest of a vertex's indices, not merely one whose
+// successor is absent: a vertex whose predecessors sit at levels 1 and 3
+// collects indices {2, 4}, and the gap at 3 made the old rule report both.
+Index(x, i) :- Indices(x, _), i = max j : Indices(x, j).

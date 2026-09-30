@@ -1,0 +1,11 @@
+.decl Edge(src_node:symbol, dst_node:symbol)
+.input Edge
+
+.decl LongestPath(src_node:symbol, dst_node:symbol, path_len:number)
+.output LongestPath
+
+.decl Length(src_node:symbol, dst_node:symbol, path_len:number)
+
+Length(x, y, l) :- l = 1, Edge(x, y).
+Length(x, y, l+1) :- Edge(x, z), Length(z, y, l).
+LongestPath(x, y, l) :- l = max m : Length(x, y, m).

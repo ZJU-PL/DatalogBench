@@ -1,0 +1,12 @@
+main.py	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1	3	3
+main.py	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1	1437	1438
+main.py	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1_rv1429_3	3	3
+main.py	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1_rv1429_3	1437	1438
+main.py_rv1429_0	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1	3	3
+main.py_rv1429_0	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1	1437	1438
+main.py_rv1429_0	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1_rv1429_3	3	3
+main.py_rv1429_0	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1_rv1429_3	1437	1438
+main.py_rv1429_2	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1	3	3
+main.py_rv1429_2	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1	1437	1438
+main.py_rv1429_2	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1_rv1429_3	3	3
+main.py_rv1429_2	1	101	FunctionDef	def foo(): return 1	2	1	102	Return	return 1_rv1429_3	1437	1438

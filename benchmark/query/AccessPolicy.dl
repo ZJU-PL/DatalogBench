@@ -1,0 +1,31 @@
+.decl ViewCwPriv(user: symbol, person:symbol, bank1_priv:number, bank2_priv:number)
+.input ViewCwPriv
+.decl ViewBank1(user:symbol, data1:number, data2:number)
+.input ViewBank1
+.decl ViewBank2(user:symbol, data1:number, data2:number)
+.input ViewBank2
+.decl Employee(person:symbol, ssn:symbol, salary:number, email:symbol, dept:symbol, position:symbol, bday:number)
+.input Employee
+.decl Inslogtable(use:symbol, person:symbol, day:number)
+.input Inslogtable
+.decl Insurance(user:symbol)
+.input Insurance
+.decl Bank1(data1:number, data2:number)
+.input Bank1
+.decl Bank2(data1:number, data2:number)
+.input Bank2
+.decl InscwPriv(user:symbol, bank1_priv:number, bank2_priv:number)
+.input InscwPriv
+.decl DelcwPriv(user:symbol, bank1_priv:number, bank2_priv:number)
+.input DelcwPriv
+.decl CwPriv(user:symbol, bank1_priv:number, bank2_priv:number)
+.input CwPriv
+
+.decl ViewEmployee(user:symbol, person:symbol, ssn:symbol, salary:number, email:symbol, dept:symbol, position:symbol, bday:number)
+.output ViewEmployee
+
+ViewEmployee("Alice", person, ssn, salary, email, dept, position, bday) :- Employee(person, ssn, salary, email, dept, position, bday).
+ViewEmployee(user, person, ssn, salary, email, dept, position, bday) :- user=person, ViewEmployee("Alice", person, ssn, salary, email, dept, position, bday).
+ViewEmployee(user, person, ssn, salary, email, dept, position, bday) :- ViewEmployee("Alice", user, _, _, _, dept,"Manager", _), ViewEmployee("Alice", person, ssn, salary, email, dept, position, bday).
+ViewEmployee(user, person, "0", 0, email, dept, position, bday) :- ViewEmployee("Alice", user, _, _, _, _, _, _), ViewEmployee("Alice", person, _, _, email, dept, position, bday).
+ViewEmployee(user, person, "0", 0, " ", " ", " ", bday) :- Insurance(user), ViewEmployee("Alice", person, _, _, _, _, _, bday), Inslogtable(user, person, 92311).

@@ -1,0 +1,24 @@
+.decl Tape(position:number, symbol:symbol, step:number)
+.input Tape
+.decl Configuration(position: number, state:symbol, step:number)
+.input Configuration
+.decl TapeLimits(step:number, left:number, right:number)
+.input TapeLimits
+.decl Transition(src:symbol, dst:symbol, read:symbol, write:symbol, move:symbol)
+.input Transition
+
+.output Tape
+.output Configuration
+.output TapeLimits
+
+Tape(position, newSymbol, step + 1) :- Tape(position, oldSymbol, step), Configuration(position, currentState, step), Transition(currentState, _, oldSymbol, newSymbol, _).
+Tape(position, symbol, step + 1) :- Tape(position, symbol, step), Configuration(writePosition, _, step), position != writePosition.
+Tape(position, "b", step + 1) :- Configuration(position, _, step + 1), TapeLimits(step, left, _), position < left.
+Tape(position, "b", step + 1) :- Configuration(position, _, step + 1), TapeLimits(step, _, right), position > right.
+
+Configuration(position - 1, nextState, step + 1) :- Tape(position, oldSymbol, step), Configuration(position, currentState, step), Transition(currentState, nextState, oldSymbol, _, "L").
+Configuration(position + 1, nextState, step + 1) :- Tape(position, oldSymbol, step), Configuration(position, currentState, step), Transition(currentState, nextState, oldSymbol, _, "R").
+
+TapeLimits(step + 1, left, right) :- TapeLimits(step, left, right), Configuration(position, _, step + 1), left <= position, position <= right.
+TapeLimits(step + 1, position, right) :- TapeLimits(step, left, right), Configuration(position, _, step + 1), position < left.
+TapeLimits(step + 1, left, position) :- TapeLimits(step, left, right), Configuration(position, _, step + 1), right < position.

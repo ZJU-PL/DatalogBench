@@ -1,0 +1,7 @@
+.decl InputData(string:symbol)
+.input InputData
+
+.decl OutputData(string:symbol)
+.output OutputData
+
+OutputData(x) :- InputData(x), !match("a.*", x).

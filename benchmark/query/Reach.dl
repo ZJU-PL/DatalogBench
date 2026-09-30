@@ -1,0 +1,11 @@
+.decl StatementAt(line:symbol, stmt:symbol)
+.input StatementAt
+.decl Assign(stmt:symbol, var:symbol)
+.input Assign
+.decl Follows(stmt1:symbol, stmt2:symbol)
+.input Follows
+
+.decl Reach(stmt1:symbol, var:symbol, stmt2:symbol)
+.output Reach
+
+Reach(s, x, j) :- StatementAt(i, s), Assign(s, x), Follows(i, j).

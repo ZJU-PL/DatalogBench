@@ -1,0 +1,34 @@
+.decl FileRelPath(id:number, path:symbol)
+.input FileRelPath
+.decl FileRoot(file_id:number, root_id:number)
+.input FileRoot
+.decl AstParent(child_id:number, parent_id:number)
+.input AstParent
+.decl NodeType(id:number, type:symbol)
+.input NodeType
+.decl NodeContent(id:number, content:symbol)
+.input NodeContent
+.decl AstLocation(id:number, line:number, col:number)
+.input AstLocation
+.decl IsStatement(id:number)
+.input IsStatement
+.decl IsExpression(id:number)
+.input IsExpression
+.decl NodeLineCount(id:number, line_cnt:number)
+.input NodeLineCount
+
+.decl ParentChildEdge(file_path:symbol, depth:number, parent:number, parent_kind:symbol, parent_content:symbol, parent_line:number, parent_column:number, child:number, child_kind:symbol, child_content:symbol, child_line:number, child_column:number)
+.output ParentChildEdge
+
+.decl DistFromRoot(root:number, node:number, dist:number)
+.decl IsLongExpr(id:number)
+.decl ShortPrint(id:number, text:symbol)
+
+DistFromRoot(root, root, 0) :- FileRoot(_, root).
+DistFromRoot(root, child, n + 1) :- DistFromRoot(root, parent, n), AstParent(child, parent).
+IsLongExpr(id) :- IsExpression(id), NodeLineCount(id, cnt), cnt > 4.
+ShortPrint(id, type) :- IsStatement(id), NodeType(id, type).
+ShortPrint(id, type) :- !IsStatement(id), IsLongExpr(id), NodeType(id, type).
+ShortPrint(id, content) :- !IsStatement(id), !IsLongExpr(id), NodeContent(id, content).
+
+ParentChildEdge(file_path, depth, parent, parent_kind, parent_content, p_line, p_col, child, child_kind, child_content, c_line, c_col) :- FileRelPath(file_id, file_path), FileRoot(file_id, root), AstParent(child, parent), DistFromRoot(root, parent, depth), NodeType(parent, parent_kind), ShortPrint(parent, parent_content), AstLocation(parent, p_line, p_col), NodeType(child, child_kind), NodeContent(child, child_content), AstLocation(child, c_line, c_col).

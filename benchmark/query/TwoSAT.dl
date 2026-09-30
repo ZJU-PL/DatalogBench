@@ -1,0 +1,20 @@
+.decl Clause(polarity0:symbol, variable0:symbol, polarity1:symbol, variable1:symbol)
+.input Clause
+.decl Not(polarity0:symbol, polarity1:symbol)
+.input Not
+
+.decl Satisfiable(result:symbol)
+.output Satisfiable
+
+.decl Impl(polarity0:symbol, variable0:symbol, polarity1:symbol, variable1:symbol)
+.decl Incon(variable:symbol)
+.output Incon
+
+Impl(m, u, n, v) :- Not(m, p), Clause(p, u, n, v).
+Impl(m, u, n, v) :- Not(m, p), Clause(n, v, p, u).
+Impl(m, u, n, v) :- Impl(m, u, p, w), Impl(p, w, n, v).
+
+Incon(u) :- Impl("Pos", u, "Neg", u), Impl("Neg", u, "Pos", u).
+
+Satisfiable("Yes") :- !Incon(_).
+Satisfiable("No") :- Incon(_).

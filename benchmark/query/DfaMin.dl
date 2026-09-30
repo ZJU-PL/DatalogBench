@@ -1,0 +1,21 @@
+.decl Final(state:symbol)
+.input Final
+.decl Tr(src_state:symbol, input_symbol:symbol, dst_state:symbol)
+.input Tr
+
+.decl MinEquiv(state1:symbol, state2:symbol)
+.output MinEquiv
+
+.decl Q(state:symbol)
+.decl Init(state:symbol)
+.decl Dis(state1:symbol, state2:symbol)
+.decl Equiv(state1:symbol, state2:symbol)
+.decl NotMinEquiv(state1:symbol, state2:symbol)
+
+Q(q) :- Tr(q, _, _).
+Dis(q, r) :- Q(q), Q(r), Final(q), !Final(r).
+Dis(q, r) :- Tr(q, a, s), Tr(r, a, t), Dis(s, t).
+Dis(q, r) :- Dis(r, q).
+Equiv(q, r) :- Q(q), Q(r), !Dis(q, r).
+NotMinEquiv(q, r) :- Equiv(q, r), Equiv(q, s), s < r.
+MinEquiv(q, r) :- Equiv(q, r), !NotMinEquiv(q, r).

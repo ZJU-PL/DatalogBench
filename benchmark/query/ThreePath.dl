@@ -1,0 +1,7 @@
+.decl Edge(src_node:symbol, dst_node:symbol)
+.input Edge
+
+.decl ThreePath(src_node:symbol, dst_node:symbol)
+.output ThreePath
+
+ThreePath(x, w) :- Edge(x, y), Edge(y, z), Edge(z, w).

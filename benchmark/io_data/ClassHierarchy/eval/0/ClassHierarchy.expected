@@ -1,0 +1,6 @@
+com.example.Dog	com.example.Mammal
+com.example.Dog	com.example.Animal
+com.example.Dog	java.lang.Object
+com.example.Mammal	com.example.Animal
+com.example.Mammal	java.lang.Object
+com.example.Animal	java.lang.Object

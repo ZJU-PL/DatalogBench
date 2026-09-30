@@ -1,0 +1,8 @@
+.decl Edge(src_node: symbol, dst_node: symbol)
+.input Edge
+
+.decl Reachable(src_node: symbol, dst_node: symbol)
+.output Reachable
+
+Reachable(x, y) :- Edge(x, y).
+Reachable(x, z) :- Reachable(x, y), Edge(y, z).

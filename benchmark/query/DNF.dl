@@ -1,0 +1,30 @@
+.decl A(x:symbol)
+.input A
+.decl B(x:symbol)
+.input B
+.decl C(x:symbol)
+.input C
+.decl D(x:symbol)
+.input D
+.decl E(x:symbol)
+.input E
+
+.decl U(x:symbol)
+.output U
+.decl N(x:symbol)
+.output N
+.decl R1(x:symbol)
+.output R1
+.decl R2(x:symbol)
+.output R2
+.decl R3(x:symbol)
+.output R3
+.decl R6(x:symbol)
+.output R6
+
+U(x) :- A(x); B(x); C(x); D(x); E(x).
+N(x) :- A(x), B(x).
+R1(x) :- A(x); B(x), D(x).
+R2(x) :- U(x), !(B(x); D(x)).
+R3(x) :- U(x), !(B(x), D(x)).
+R6(x) :- (!B(x); D(x)), U(x).

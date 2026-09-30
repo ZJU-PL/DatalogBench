@@ -1,0 +1,12 @@
+.decl Edge(src_node: symbol, dst_node: symbol)
+.input Edge
+
+.decl SCC(src_node: symbol, dst_node: symbol)
+.output SCC
+
+.decl Reachable(src_node: symbol, dst_node: symbol)
+
+Reachable(x, y) :- Edge(x, y).
+Reachable(x, z) :- Reachable(x, y), Edge(y, z).
+
+SCC(x, y) :- Reachable(x, y), Reachable(y, x).

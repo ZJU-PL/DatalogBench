@@ -1,0 +1,47 @@
+.decl JavaElement(id:number, type:symbol, parent_id:number, file_id:number, sl:number, el:number)
+.input JavaElement
+.decl JavaModifier(id:number, mod:symbol)
+.input JavaModifier
+.decl JavaAnnotation(id:number, name:symbol)
+.input JavaAnnotation
+.decl JavaAnonymousClass(id:number, parent_id:number)
+.input JavaAnonymousClass
+.decl JavaComment(id:number, file_id:number, sl:number, el:number)
+.input JavaComment
+.decl JavaDoc(id:number, file_id:number, sl:number, el:number, owner_id:number)
+.input JavaDoc
+
+.decl CommentRatio(ratio:number)
+.output CommentRatio
+
+.decl IsPublic(id:number)
+.decl IsOverride(id:number)
+.decl IsAnonymousMethod(id:number)
+.decl PublicVisitedElement(id:number, file_id:number, sl:number, el:number)
+.decl CommentConnectsDoc(cid:number)
+.decl ElementHasCommentAbove(eid:number)
+.decl ElementHasOrphanDoc(eid:number)
+.decl ElementHasDocOwner(eid:number)
+.decl IsDocumented(id:number)
+.decl StatsTotal(c:number)
+.decl StatsDocumented(c:number)
+
+IsPublic(id) :- JavaModifier(id, "public").
+IsOverride(id) :- JavaAnnotation(id, "java.lang.Override").
+IsAnonymousMethod(id) :- JavaElement(id, "Method", parent_id, _, _, _), JavaAnonymousClass(parent_id, _).
+PublicVisitedElement(id, file_id, sl, el) :- JavaElement(id, type, _, file_id, sl, el), (type = "Class"; type = "Interface"; type = "Field"; type = "EnumConstant"), IsPublic(id).
+PublicVisitedElement(id, file_id, sl, el) :- JavaElement(id, "Method", _, file_id, sl, el), IsPublic(id), !IsAnonymousMethod(id), !IsOverride(id).
+PublicVisitedElement(id, file_id, sl, el) :- JavaElement(id, "Constructor", _, file_id, sl, el), IsPublic(id).
+CommentConnectsDoc(cid) :- JavaComment(cid, file, c_start, _), JavaDoc(_, file, _, j_end, _), c_start = j_end + 1.
+ElementHasCommentAbove(eid) :- PublicVisitedElement(eid, file, e_start, _), JavaComment(cid, file, _, c_end), e_start = c_end + 1, !CommentConnectsDoc(cid).
+ElementHasCommentAbove(eid) :- PublicVisitedElement(eid, file, e_start, _), JavaComment(cid, file, c_start, _), e_start = c_start, !CommentConnectsDoc(cid).
+ElementHasOrphanDoc(eid) :- PublicVisitedElement(eid, file, e_start, _), JavaDoc(_, file, _, j_end, 0), e_start = j_end + 1.
+ElementHasDocOwner(eid) :- PublicVisitedElement(eid, _, _, _), JavaDoc(_, _, _, _, eid).
+IsDocumented(id) :- ElementHasDocOwner(id).
+IsDocumented(id) :- ElementHasOrphanDoc(id).
+IsDocumented(id) :- ElementHasCommentAbove(id).
+StatsTotal(c) :- c = count :{ PublicVisitedElement(_, _, _, _) }.
+StatsDocumented(c) :- c = count :{ IsDocumented(_) }.
+
+CommentRatio(ratio) :- StatsTotal(total), StatsDocumented(doc), total > 0, ratio = (doc * 1000) / total.
+CommentRatio(-1) :- StatsTotal(0).

@@ -1,0 +1,11 @@
+.decl Prerequisite(pre_course:symbol, post_course:symbol)
+.input Prerequisite
+.decl SelectCourse(student:symbol, course:symbol)
+.input SelectCourse
+
+.decl Student2Course(student:symbol)
+.output Student2Course
+.output Prerequisite
+
+Prerequisite(pre, post) :- Prerequisite(pre, x), Prerequisite(x, post).
+Student2Course(s) :- SelectCourse(s, c1), SelectCourse(s, c2), c1 != c2.

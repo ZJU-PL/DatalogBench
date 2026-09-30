@@ -1,0 +1,3 @@
+com.example.User	getName
+com.example.User	setPassword
+com.example.Order	pay

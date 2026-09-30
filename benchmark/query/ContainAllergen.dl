@@ -1,0 +1,9 @@
+.decl IsMadeFrom(dish:symbol, ingredient:symbol)
+.input IsMadeFrom
+.decl Allergens(ingredient:symbol, allergen:symbol)
+.input Allergens
+
+.decl Contains(dish:symbol, allergen:symbol)
+.output Contains
+
+Contains(d0, a3) :- IsMadeFrom(d0, i1), Allergens(i1, a3).

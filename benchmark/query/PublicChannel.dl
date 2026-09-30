@@ -1,0 +1,13 @@
+.decl ChannelMember(channel:symbol, account:symbol, role:symbol)
+.input ChannelMember
+.decl ChannelInfo(channel:symbol, name:symbol, ctype:symbol)
+.input ChannelInfo
+.decl PublicType(public_type:symbol)
+.input PublicType
+.decl TargetAccount(target_account:symbol)
+.input TargetAccount
+
+.decl PublicMember(channel:symbol, account:symbol, role:symbol)
+.output PublicMember
+
+PublicMember(ch, acc, r) :- ChannelMember(ch, acc, r), ChannelInfo(ch, _, t), PublicType(t), TargetAccount(acc).

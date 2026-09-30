@@ -1,0 +1,8 @@
+false	and1
+false	not1
+false	or1
+not1	true
+not2	false
+true	and2
+true	not2
+true	or2

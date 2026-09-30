@@ -1,0 +1,12 @@
+.decl Mat1(row:number, col:number, value:number)
+.input Mat1
+.decl Mat2(row:number, col:number, value:number)
+.input Mat2
+
+.decl Mat3(row:number, col:number, value:number)
+.output Mat3
+
+.decl Product(i:number, j:number, k:number, value:number)
+
+Product(i, j, k, value1*value2) :- Mat1(i, k, value1), Mat2(k, j, value2).
+Mat3(i, j, value) :- Mat1(i, _, _), Mat2(_, j, _), value = sum x : Product(i, j, _, x), value != 0.

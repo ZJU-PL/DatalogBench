@@ -1,0 +1,5 @@
+X.<init>()V|java.lang.Object.<init>()V|0	<java.lang.Object.<init>()V>
+X.foo()V|Z.<init>()V|0	<Z.<init>()V>
+X.foo()V|Z.<init>()V|0_v1_0	<Z.<init>()V>
+Z.<init>()V|java.lang.Object.<init>()V|0	<X.<init>()V>
+Z.<init>()V|java.lang.Object.<init>()V|0	<java.lang.Object.<init>()V>

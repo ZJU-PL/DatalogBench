@@ -1,0 +1,8 @@
+1	getName
+1	setPassword
+2	pay
+com.example.Order	2
+com.example.Order	getName
+com.example.Order	setPassword
+com.example.User	1
+com.example.User	pay

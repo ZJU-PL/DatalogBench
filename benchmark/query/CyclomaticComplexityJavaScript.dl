@@ -1,0 +1,11 @@
+.decl FunctionInfo(id:symbol, name:symbol, complexity:symbol)
+.input FunctionInfo
+.decl NodeLocation(id:symbol, file_id:symbol, sline:symbol, eline:symbol)
+.input NodeLocation
+.decl FileInfo(id:symbol, path:symbol)
+.input FileInfo
+
+.decl CycloComplexity(file_path:symbol, function_name:symbol, complexity:symbol, start_line:symbol, end_line:symbol)
+.output CycloComplexity
+
+CycloComplexity(file_path, function_name, complexity, start_line, end_line) :- FunctionInfo(func_id, function_name, complexity), NodeLocation(func_id, file_id, start_line, end_line), FileInfo(file_id, file_path).

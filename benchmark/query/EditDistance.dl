@@ -1,0 +1,30 @@
+.decl String1(position:number, character:symbol)
+.input String1
+.decl String2(position:number, character:symbol)
+.input String2
+.decl Match(i:number, j:number, distance:number)
+
+.decl MinEditDistance(distance:number)
+.output MinEditDistance
+
+.decl End1(position:number)
+.decl End2(position:number)
+.decl NotEnd1(position:number)
+.decl NotEnd2(position:number)
+.decl MinMatch(i:number, j:number, distance:number)
+.decl NotMinMatch(i:number, j:number, distance:number)
+
+// recursion seeds: part of the program, not of the instance
+Match(0, 0, 0).
+
+NotEnd1(p) :- String1(p, _), String1(q, _), p < q.
+End1(p) :- String1(p, _), !NotEnd1(p).
+NotEnd2(p) :- String2(p, _), String2(q, _), p < q.
+End2(p) :- String2(p, _), !NotEnd2(p).
+Match(i + 1, j + 1, s) :- End1(e), i < e, End2(f), j < f, Match(i, j, s), String1(i + 1, a), String2(j + 1, a).
+Match(i + 1, j, s + 1) :- End1(e), i < e, End2(f), j <= f, Match(i, j, s).
+Match(i, j + 1, s + 1) :- End1(e), i <= e, End2(f), j < f, Match(i, j, s).
+NotMinMatch(i, j, s) :- Match(i, j, s), Match(i, j, t), t < s.
+MinMatch(i, j, s) :- Match(i, j, s), !NotMinMatch(i, j, s).
+
+MinEditDistance(c) :- End1(e), End2(f), MinMatch(e, f, c).

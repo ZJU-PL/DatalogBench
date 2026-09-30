@@ -1,0 +1,10 @@
+.decl JavaMethod(id:number, signature:symbol)
+.input JavaMethod
+
+.decl MethodCall(caller:number, callee:number)
+.input MethodCall
+
+.decl FanOut(i:number, n:symbol)
+.output FanOut
+
+FanOut(cnt, signature) :- JavaMethod(id, signature), cnt = count :{ MethodCall(id, _) }.

@@ -1,0 +1,24 @@
+.decl HasMilk(animal:symbol)
+.input HasMilk
+.decl HasGills(animal:symbol)
+.input HasGills
+.decl Scales(cover:symbol)
+.input Scales
+.decl HasCovering(animal:symbol, cover:symbol)
+.input HasCovering
+.decl Feathers(cover:symbol)
+.input Feathers
+
+.decl Mammal(animal:symbol)
+.output Mammal
+.decl Fish(animal:symbol)
+.output Fish
+.decl Reptile(animal:symbol)
+.output Reptile
+.decl Bird(animal:symbol)
+.output Bird
+
+Mammal(a0) :- HasMilk(a0).
+Fish(a0) :- HasGills(a0).
+Reptile(a1) :- Scales(c0), HasCovering(a1, c0).
+Bird(a1) :- Feathers(c0), HasCovering(a1, c0).

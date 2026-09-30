@@ -1,0 +1,11 @@
+.decl Supplier(supplier_key:symbol, part_id:symbol)
+.input Supplier
+.decl Color(part_id:symbol, color:symbol)
+.input Color
+.decl Constraint(target:symbol)
+.input Constraint
+
+.decl SupplierWithColor(supplier_key:symbol)
+.output SupplierWithColor
+
+SupplierWithColor(s) :- Supplier(s, p), Color(p, c), Constraint(c).

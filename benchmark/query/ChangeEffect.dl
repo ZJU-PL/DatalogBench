@@ -1,0 +1,20 @@
+.decl FuncSymbol(id:symbol, signature:symbol)
+.input FuncSymbol
+.decl FuncLocation(id:symbol, path:symbol, sline:symbol, eline:symbol)
+.input FuncLocation
+.decl EnclosingScope(expr_id:symbol, func_id:symbol)
+.input EnclosingScope
+.decl CallSite(expr_id:symbol, callee_id:symbol)
+.input CallSite
+
+.decl CallerFunction(callee:symbol, caller:symbol)
+.decl EffectedFunction(source:symbol, effected:symbol)
+
+.decl FuncSrcEff(function:symbol, signature:symbol, function_path:symbol, start_line:symbol, end_line:symbol, effected_function:symbol, effected_signature:symbol, effected_function_path:symbol, effected_start_line:symbol, effected_end_line:symbol)
+.output FuncSrcEff
+
+CallerFunction(callee, caller) :- CallSite(expr, callee), EnclosingScope(expr, caller).
+EffectedFunction(source, caller) :- CallerFunction(source, caller).
+EffectedFunction(source, indirect_caller) :- EffectedFunction(source, caller), CallerFunction(caller, indirect_caller).
+
+FuncSrcEff(src, src_sig, src_path, src_sl, src_el, eff, eff_sig, eff_path, eff_sl, eff_el) :- EffectedFunction(src, eff), FuncSymbol(src, src_sig), FuncLocation(src, src_path, src_sl, src_el), FuncSymbol(eff, eff_sig), FuncLocation(eff, eff_path, eff_sl, eff_el).

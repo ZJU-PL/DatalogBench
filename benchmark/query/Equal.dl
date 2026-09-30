@@ -1,0 +1,10 @@
+.decl Succ(prev:symbol, curr:symbol)
+.input Succ
+.decl Equal(left:symbol, right:symbol, label:symbol)
+
+.output Equal
+
+// recursion seeds: part of the program, not of the instance
+Equal("0", "0", "1").
+
+Equal(m, n, r) :- Succ(pm, m) , Succ(pn, n), Equal(pm, pn, r).

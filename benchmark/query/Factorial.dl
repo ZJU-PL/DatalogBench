@@ -1,0 +1,10 @@
+.decl Fact(i:number, n:number)
+.decl Lim(n:number)
+.input Lim
+
+.output Fact
+
+// recursion seeds: part of the program, not of the instance
+Fact(0, 1).
+
+Fact(i+1, n*(i+1)) :- Fact(i, n), !Lim(i).

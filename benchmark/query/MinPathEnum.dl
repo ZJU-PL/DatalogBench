@@ -1,0 +1,23 @@
+.decl Edge(u_node:symbol, v_node:symbol, weight:number)
+.input Edge
+
+.decl ShortestPath(u_node:symbol, v_node:symbol, weight:number)
+.output ShortestPath
+
+.decl Node(x:symbol)
+.decl HopLimit(k:number)
+.decl Path(u_node:symbol, v_node:symbol, weight:number, hops:number)
+.decl Reached(u_node:symbol, v_node:symbol, weight:number)
+.decl FindingShorterPath(u_node:symbol, v_node:symbol, weight:number)
+
+Edge(a, b, w) :- Edge(b, a, w).
+
+Node(x) :- Edge(x, _, _).
+HopLimit(k) :- k = count : { Node(_) }.
+
+Path(a, c, w, 1) :- Edge(a, c, w).
+Path(a, c, w1+w2, k+1) :- HopLimit(lim), Edge(a, b, w1), Path(b, c, w2, k), k+1 <= lim.
+
+Reached(a, c, w) :- Path(a, c, w, _).
+FindingShorterPath(a, b, w1) :- Reached(a, b, w1), Reached(a, b, w2), w2 < w1.
+ShortestPath(a, b, w) :- Reached(a, b, w), !FindingShorterPath(a, b, w).

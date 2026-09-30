@@ -1,0 +1,22 @@
+.decl CallableInfo(id:symbol, signature:symbol, name:symbol)
+.input CallableInfo
+.decl IsMethod(id:symbol)
+.input IsMethod
+.decl MethodClass(id:symbol, class_name:symbol)
+.input MethodClass
+.decl CallEdge(caller:symbol, callee:symbol)
+.input CallEdge
+.decl CheckedSignature(signature:symbol)
+.input CheckedSignature
+
+.decl GetCallGraph(call_method_name:symbol, call_class_name:symbol, callee_method_name:symbol, callee_class_name:symbol)
+.output GetCallGraph
+
+.decl TargetCallable(id:symbol)
+.decl LimitedSet(id:symbol)
+
+TargetCallable(id) :- CallableInfo(id, sig, _), CheckedSignature(sig).
+LimitedSet(id) :- TargetCallable(id).
+LimitedSet(caller) :- CallEdge(caller, callee), LimitedSet(callee).
+
+GetCallGraph(call_name, call_class_name, callee_name, callee_class_name) :- LimitedSet(call_id), LimitedSet(callee_id), CallEdge(call_id, callee_id), IsMethod(call_id), IsMethod(callee_id), CallableInfo(call_id, _, call_name), MethodClass(call_id, call_class_name), CallableInfo(callee_id, _, callee_name), MethodClass(callee_id, callee_class_name).

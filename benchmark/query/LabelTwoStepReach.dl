@@ -1,0 +1,11 @@
+.decl LabeledEdge(src_node:symbol, label:symbol, dst_node:symbol)
+.input LabeledEdge
+
+.decl ReachAfterPath(src_node:symbol, dst_node:symbol)
+.output ReachAfterPath
+.decl SameLabelPath(src_node:symbol, dst_node:symbol)
+.output SameLabelPath
+
+ReachAfterPath(x1, x3) :- SameLabelPath(x1, x2), LabeledEdge(x2, _, x3).
+SameLabelPath(x1, x4) :- LabeledEdge(x1, _, x2), LabeledEdge(x2, _, x3), SameLabelPath(x3, x4).
+SameLabelPath(x1, x3) :- LabeledEdge(x1, a, x2), LabeledEdge(x2, a, x3).

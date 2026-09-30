@@ -1,0 +1,13 @@
+.decl PlusMod(x:symbol, y:symbol, r:symbol)
+.input PlusMod
+.decl Succ(a:symbol, b:symbol)
+.input Succ
+.decl Fib(x:symbol, y:symbol)
+
+.output Fib
+
+// recursion seeds: part of the program, not of the instance
+Fib("0", "0").
+Fib("1", "1").
+
+Fib(i, r) :- Succ(prev, i), Succ(pprev, prev), Fib(prev, x), Fib(pprev, y), PlusMod(x, y, r).

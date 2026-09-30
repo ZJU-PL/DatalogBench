@@ -1,0 +1,12 @@
+.decl AdjacentStops(src_stop:symbol, dst_stop:symbol, line:symbol)
+.input AdjacentStops
+
+.decl ReachableStops(src_stop:symbol, dst_stop:symbol)
+.output ReachableStops
+.decl TransferrableStops(src_line:symbol, dst_line:symbol, stop:symbol)
+.output TransferrableStops
+
+ReachableStops(x, y) :- AdjacentStops(x, y, _).
+ReachableStops(x, y) :- ReachableStops(x, z), AdjacentStops(z, y, _).
+
+TransferrableStops(u, v, x) :- AdjacentStops(_, x, u), AdjacentStops(x, _, v), u!=v.

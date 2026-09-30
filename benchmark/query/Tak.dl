@@ -1,0 +1,16 @@
+.decl Natural(n:number)
+.decl Lim(n:number)
+.input Lim
+
+.decl Query(n:number, q:number)
+.output Query
+
+.decl Tak(x:number, y:number, z:number, v:number, q:number)
+
+// recursion seeds: part of the program, not of the instance
+Natural(-8).
+
+Natural(n+1) :- Natural(n), Lim(l), n < l.
+Tak(x, y, z, y, 0) :- y >= x, Natural(x), Natural(y), Natural(z).
+Tak(x, y, z, v, q1+q2+q3+q4+1) :- Tak(x-1, y, z, v1, q1), Tak(y-1, z, x, v2, q2), Tak(z-1, x, y, v3, q3), Tak(v1, v2, v3, v, q4), y < x.
+Query(n, q) :- Tak(n, 0, n+1, _, q), n >= 0, n < 10.

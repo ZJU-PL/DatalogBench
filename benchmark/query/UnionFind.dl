@@ -1,0 +1,15 @@
+.decl Equal(x: symbol, y: symbol)
+.input Equal
+.decl Union(x: symbol, y: symbol)
+.input Union
+.decl Find(x: symbol, y: symbol)
+.input Find
+
+.decl SameSet(x: symbol, y: symbol)
+.output SameSet
+
+SameSet(x, y) :- Equal(x, y).
+SameSet(x, z) :- SameSet(x, y), Union(y, z).
+SameSet(x, z) :- SameSet(x, y), Find(y, z).
+SameSet(x, y) :- SameSet(y, x).
+SameSet(x, z) :- SameSet(x, y), SameSet(y, z).

@@ -1,0 +1,418 @@
+{
+ "_comment": "Human verdicts on survivors the automatic checks could not settle. Each entry records the rule text it was judged on, so a change to the golden program invalidates the entry visibly rather than silently.",
+ "verdicts": {
+  "LUBM#0": {
+   "verdict": "equivalent",
+   "reason": "subsumed via two steps: DegreeFrom :- MastersDegreeFrom, then University :- DegreeFrom(_,y)",
+   "rule": "University(y) :- MastersDegreeFrom(_, y).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#1": {
+   "verdict": "equivalent",
+   "reason": "HasAlumnus has no .input and is derived only from DegreeFrom, so this re-derives what already holds",
+   "rule": "DegreeFrom(x, y) :- HasAlumnus(y, x).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#2": {
+   "verdict": "equivalent",
+   "reason": "mutually redundant with Person :- HasAlumnus(_,y); removing either alone changes nothing",
+   "rule": "Person(x) :- DegreeFrom(x, _).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#3": {
+   "verdict": "equivalent",
+   "reason": "covered by the three specific degree rules (doctoral / masters / undergraduate)",
+   "rule": "University(y) :- DegreeFrom(_, y).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#4": {
+   "verdict": "equivalent",
+   "reason": "mutually redundant with Person :- DegreeFrom(x,_)",
+   "rule": "Person(y) :- HasAlumnus(_, y).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#5": {
+   "verdict": "equivalent",
+   "reason": "subsumed by the weaker TeachingAssistant :- TeachingAssistantOf(x,_), which derives a superset",
+   "rule": "TeachingAssistant(x) :- Person(x), TeachingAssistantOf(x, y), Course(y).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#6": {
+   "verdict": "equivalent",
+   "reason": "circular with Member :- MemberOf(y,x); adds no tuple",
+   "rule": "MemberOf(x, y) :- Member(y, x).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "LUBM#7": {
+   "verdict": "equivalent",
+   "reason": "same closure as University :- DegreeFrom(_,y) once HasAlumnus is unfolded",
+   "rule": "University(x) :- HasAlumnus(x, _).",
+   "evidence": "no distinguishing input found by a schema-complete input nor by 120 entity-overlapping random inputs; implication argument above",
+   "reviewed": "2026-08-30"
+  },
+  "Centroids#0": {
+   "verdict": "equivalent",
+   "reason": "NotLeaf is a subset of the nodes with an incoming edge (its body requires Edge(a,n)), and Leaf is defined as that set minus NotLeaf. Their union is therefore fixed however the split is drawn, and TreeCard uses only the sum, so no change to the NotLeaf rule can reach Centroid",
+   "rule": "NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b.",
+   "evidence": "no distinguishing input among 250 random graphs (cycles, non-trees, multi-component) over a 6-node pool; argument above",
+   "reviewed": "2026-08-30"
+  },
+  "Centroids#1": {
+   "verdict": "equivalent",
+   "reason": "NotLeaf is a subset of the nodes with an incoming edge (its body requires Edge(a,n)), and Leaf is defined as that set minus NotLeaf. Their union is therefore fixed however the split is drawn, and TreeCard uses only the sum, so no change to the NotLeaf rule can reach Centroid (rule replaced, same argument)",
+   "rule": "NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b.",
+   "evidence": "no distinguishing input among 250 random graphs (cycles, non-trees, multi-component) over a 6-node pool; argument above",
+   "reviewed": "2026-08-30"
+  },
+  "Centroids#2": {
+   "verdict": "equivalent",
+   "reason": "NotLeaf is a subset of the nodes with an incoming edge (its body requires Edge(a,n)), and Leaf is defined as that set minus NotLeaf. Their union is therefore fixed however the split is drawn, and TreeCard uses only the sum, so no change to the NotLeaf rule can reach Centroid (rule replaced, same argument)",
+   "rule": "NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b.",
+   "evidence": "no distinguishing input among 250 random graphs (cycles, non-trees, multi-component) over a 6-node pool; argument above",
+   "reviewed": "2026-08-30"
+  },
+  "Centroids#3": {
+   "verdict": "equivalent",
+   "reason": "Edge is closed under reversal by `Edge(m,n) :- Edge(n,m)`, so reading the edge in either direction derives the same relation",
+   "rule": "InSubtree(m, n, n) :- Edge(m, n).",
+   "evidence": "no distinguishing input among 250 random graphs (cycles, non-trees, multi-component) over a 6-node pool; argument above",
+   "reviewed": "2026-08-30"
+  },
+  "BuildWall#1": {
+   "verdict": "equivalent",
+   "reason": "ValidSurface(t) in the body of BuildWall(s,t) :- EligiblePlace(s,t), ValidSurface(t) is implied two steps back: EligiblePlace(s,t) is only derivable via EligiblePlace(s,t) :- FetchPlace(s,t), ValidSurface(t)",
+   "rule": "BuildWall(s, t) :- EligiblePlace(s, t), ValidSurface(t).",
+   "evidence": "implication argument above; EligiblePlace has a single defining rule, whose body already carries ValidSurface on the same variable",
+   "reviewed": "2026-08-30"
+  },
+  "Earley#0": {
+   "verdict": "equivalent",
+   "reason": "the predictor's Product(y,p,n) guard is implied by the completer that must absorb the seed: a predicted state State(c,x,1,c) can only reach Accept through the completer, whose parent State(c,x',p,j) must satisfy Product(x',p,n) with n = x's LHS -- exactly the guard. Extra seeds are therefore never absorbed, so Accept is unchanged.",
+   "rule": "State(c, x, 1, c) :- State(c, y, p, _), Product(x, 0, n), Product(y, p, n).",
+   "evidence": "induction on the derivation tree of Accept (every seed used is one golden also predicts); no distinguishing input among 700 random grammars over 3 nonterminals / 2 terminals, productions of length 1-3, strings of length 1-4, with and without a second input seed",
+   "reviewed": "2026-08-30"
+  },
+  "MinPathGen#0": {
+   "verdict": "equivalent",
+   "reason": "the program symmetrises the graph with Edge(a, b, w) :- Edge(b, a, w), so Edge is its own converse and every relation built from it (Path, ConnectedNodes, FindingShorterPath) is symmetric by induction; reversing the argument order therefore selects the same tuples; base case reads the symmetric closure either way",
+   "rule": "Path(a, c, w) :- Edge(a, c, w).",
+   "evidence": "120 random weighted digraphs (3-6 nodes, 2-9 directed edges, asymmetric weights) produced no distinguishing input",
+   "reviewed": "2026-08-30"
+  },
+  "MinPathGen#1": {
+   "verdict": "equivalent",
+   "reason": "the program symmetrises the graph with Edge(a, b, w) :- Edge(b, a, w), so Edge is its own converse and every relation built from it (Path, ConnectedNodes, FindingShorterPath) is symmetric by induction; reversing the argument order therefore selects the same tuples; Path is symmetric, so its projection is too",
+   "rule": "ConnectedNodes(a, b) :- Path(a, b, _).",
+   "evidence": "120 random weighted digraphs (3-6 nodes, 2-9 directed edges, asymmetric weights) produced no distinguishing input",
+   "reviewed": "2026-08-30"
+  },
+  "MinPathEnum#0": {
+   "verdict": "equivalent",
+   "reason": "Edge is explicitly symmetric. The bounded Path recurrence therefore preserves symmetry at every hop count, so projecting either orientation from Path derives the same Reached tuples.",
+   "rule": "Reached(a, c, w) :- Path(a, c, w, _).",
+   "evidence": "induction on the hop-count argument of Path: the base reads symmetric Edge, and reversing a composed path reverses its symmetric edges in the opposite order",
+   "reviewed": "2026-09-21"
+  },
+  "MinPathEnum#1": {
+   "verdict": "equivalent",
+   "reason": "Reached is symmetric by the Path induction, and FindingShorterPath is defined only by two Reached atoms on the same ordered endpoints, so it is symmetric too. Reversing both atoms in the ShortestPath rule preserves the result.",
+   "rule": "ShortestPath(a, b, w) :- Reached(a, b, w), !FindingShorterPath(a, b, w).",
+   "evidence": "symmetry implication through Edge -> Path -> Reached -> FindingShorterPath; the positive and negated atoms are reversed together",
+   "reviewed": "2026-09-21"
+  },
+  "MinPathEnum#2": {
+   "verdict": "equivalent",
+   "reason": "Edge is explicitly symmetric, so the one-hop Path base derives the same weighted edges in either orientation.",
+   "rule": "Path(a, c, w, 1) :- Edge(a, c, w).",
+   "evidence": "direct consequence of the symmetric closure rule Edge(a,b,w) :- Edge(b,a,w)",
+   "reviewed": "2026-09-21"
+  },
+  "MagicPrime#0": {
+   "verdict": "equivalent",
+   "reason": "dropping Nat(b) widens Succ by exactly one edge, (Lim, Lim+1), because Nat is the contiguous range 0..Lim. That edge can only carry Add/Mul results up to Lim+1, and Prime is bounded by Candidate, which is a subset of Nat -- so no Prod(x) with x <= Lim is gained and the graded output is unchanged. Partial products never exceed the final product, so no multiplication of two candidates needs the extra edge either.",
+   "rule": "Succ(a, b) :- Nat(a), Nat(b), b=a+1.",
+   "evidence": "argument above; no difference in Prime for Lim in {0,1,2,3,4,5,7,10,13,20,31,60,100}",
+   "reviewed": "2026-08-30"
+  },
+  "MinSpanTree#0": {
+   "verdict": "equivalent",
+   "reason": "subsumed in three steps by NotValidEdge(step, e) :- AddedNode(step, v), Edge(e, _, v, _). Choosing an edge at prev_step makes its target a ChosenNode, hence an AddedNode from prev_step+1 onwards, and AddedNode propagates forward -- so the third NotValidEdge rule already marks that edge invalid on exactly the steps the deleted rule covers (prev_step < step). Both are bounded by ValidStep, so the coverage domains coincide.",
+   "rule": "NotValidEdge(step, edge_id) :- ValidStep(step), ChosenEdge(prev_step, edge_id), prev_step < step.",
+   "evidence": "subsumption argument above; no difference in MinimumSpanningTree over 120 random connected weighted graphs (3-6 nodes) and 45 adversarial ones (self-loops, parallel edges, all-equal weights, disconnected, random directed)",
+   "reviewed": "2026-08-30"
+  },
+  "MinSpanTree#1": {
+   "verdict": "equivalent",
+   "reason": "UndirectedEdge is exactly the symmetric closure of Graph: its two defining rules emit both orientations for every input edge. Reading UndirectedEdge(y,x,w) instead of UndirectedEdge(x,y,w) therefore gives Edge the identical tuple set.",
+   "rule": "Edge(autoinc(), x, y, w) :- UndirectedEdge(x, y, w).",
+   "evidence": "the paired rules UndirectedEdge(x,y,w) :- Graph(x,y,w) and UndirectedEdge(y,x,w) :- Graph(x,y,w) prove closure under transposition",
+   "reviewed": "2026-09-21"
+  },
+  "Disconnected#0": {
+   "verdict": "equivalent",
+   "reason": "the rule's only unique contribution is reflexivity for a *pure sink* -- a node that is a target but never a source, since Connected(n, n) :- Edge(n, _) already covers every source. Both Disconnected rules require Edge(n, _), so the first argument of the negated Connected(n, m) is always a source; a pure sink's reflexive fact is therefore never queried. It cannot feed the transitive rule either, having no outgoing edge.",
+   "rule": "Connected(n, n) :- Edge(_, n).",
+   "evidence": "no difference in Disconnected over 126 inputs: hand-built shapes (pure sink, self-loop, two components, 2-cycle, shared sink with unconnected sources) plus 120 random digraphs on 5 nodes",
+   "reviewed": "2026-08-30"
+  },
+  "Disconnected#1": {
+   "verdict": "equivalent",
+   "reason": "subsumed in two steps: an edge (n, m) makes Edge(n, _) true, so Connected(n, n) holds by Connected(n, n) :- Edge(n, _), and the transitive rule Connected(n, m) :- Connected(n, z), Edge(z, m) then derives Connected(n, m) with z = n.",
+   "rule": "Connected(n, m) :- Edge(n, m).",
+   "evidence": "no difference in Disconnected over 126 inputs: hand-built shapes (pure sink, self-loop, two components, 2-cycle, shared sink with unconnected sources) plus 120 random digraphs on 5 nodes",
+   "reviewed": "2026-08-30"
+  },
+  "DfaMin#0": {
+   "verdict": "equivalent",
+   "reason": "Dis is explicitly symmetrised by Dis(q, r) :- Dis(r, q), so the base set and its transpose have the same symmetric closure. The golden seeds {(q, r) : q final, r not}; the mutant seeds exactly its transpose, and both close to {(q, r) : exactly one of q, r is final}. The recursive rule then runs over the same relation.",
+   "rule": "Dis(q, r) :- Q(q), Q(r), Final(q), !Final(r).",
+   "evidence": "no difference in MinEquiv over 104 DFAs: hand-built shapes (no final states, all final, single self-looping state, an indistinguishable pair) plus 100 random complete DFAs over 2-4 states and a 1-2 symbol alphabet",
+   "reviewed": "2026-08-30"
+  },
+  "DfaMin#1": {
+   "verdict": "equivalent",
+   "reason": "Dis is symmetric by Dis(q, r) :- Dis(r, q), so !Dis(q, r) and !Dis(r, q) are the same condition; the two Q atoms are merely reordered.",
+   "rule": "Equiv(q, r) :- Q(q), Q(r), !Dis(q, r).",
+   "evidence": "no difference in MinEquiv over 104 DFAs: hand-built shapes (no final states, all final, single self-looping state, an indistinguishable pair) plus 100 random complete DFAs over 2-4 states and a 1-2 symbol alphabet",
+   "reviewed": "2026-08-30"
+  },
+  "UnionFind#0": {
+   "verdict": "equivalent",
+   "reason": "SameSet is explicitly symmetrised by SameSet(x, y) :- SameSet(y, x), so seeding it from Equal(x, y) or from Equal(y, x) gives the same symmetric closure; the two extension rules then run over the same relation.",
+   "rule": "SameSet(x, y) :- Equal(x, y).",
+   "evidence": "no difference in SameSet over 106 inputs: hand-built shapes (Equal only, Union only, Find only, a three-relation chain, a self-loop, two components) plus 100 random triples of relations over 5 nodes",
+   "reviewed": "2026-08-30"
+  },
+  "UnionFind#1": {
+   "verdict": "equivalent",
+   "reason": "absorbed by the equivalence closure added this round: with SameSet symmetric and transitive, extending from any member of x's class (the original) and extending from x itself then propagating (the mutant) reach the same fixpoint",
+   "rule": "SameSet(x, z) :- SameSet(x, y), Union(y, z).",
+   "evidence": "400 random Equal/Union/Find instances over 2-7 elements: no distinguishing input",
+   "reviewed": "2026-08-31"
+  },
+  "UnionFind#2": {
+   "verdict": "equivalent",
+   "reason": "same as UnionFind#1 with Find in place of Union",
+   "rule": "SameSet(x, z) :- SameSet(x, y), Find(y, z).",
+   "evidence": "400 random Equal/Union/Find instances over 2-7 elements: no distinguishing input",
+   "reviewed": "2026-08-31"
+  },
+  "Planar#0": {
+   "verdict": "equivalent",
+   "reason": "made redundant by this round's ordering fix: the deleted rule excludes pairs whose start points coincide, and (x1<x3);(x1=x3,y1<y3) already rejects those, since x1=x3 and y1=y3 satisfies neither disjunct",
+   "rule": "SharedNode(x1, y1, x2, y2, x3, y3, x4, y4) :- Edge(x1, y1, x2, y2), Edge(x3, y3, x4, y4), x3 - x1 = 0, y3 - y1 = 0.",
+   "evidence": "400 random segment sets (2-5 segments on a 7x7 integer grid): no distinguishing input",
+   "reviewed": "2026-08-31"
+  },
+  "TopologicalOrdering#0": {
+   "verdict": "equivalent",
+   "reason": "the mutant also gives every source vertex an index of 0, but a source with outgoing edges already carries index 1 and Index now takes the maximum, so the graded relations are unchanged. Before Index was corrected to a max aggregate this same mutant was a real gap",
+   "rule": "Indices(x, 0) :- Vertex(x), !Edge(_, x), !Edge(x, _).",
+   "evidence": "300 random DAGs over 2-7 vertices, comparing only the graded IsBefore/IsAfter/Index: no distinguishing input",
+   "reviewed": "2026-08-31"
+  },
+  "PointstoJava#2": {
+   "verdict": "equivalent",
+   "reason": "InstanceVarType only feeds Alias, whose v1/v2 are already instance variables via Load/StoreInstanceVarPointsTo, and InstanceTypes(x) :- InstanceVarType(_, x), which then only adds reflexive compatibility for types Alias never queries; dropping the InstanceVar guard cannot change VarPointsTo",
+   "rule": "InstanceVarType(var, type) :- VarType(var, type), InstanceVar(var).",
+   "evidence": "survives every shipped variant, the 32,000-fact eval/3, and eval/6 (return flow; exact, subtype and failing casts; field aliasing between comparable, unrelated and identical isolated types), which kills every other mutant of the fixed reference; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "PointstoJava#5": {
+   "verdict": "equivalent",
+   "reason": "the LoadInstanceFieldIndex filter is re-imposed downstream: the field-flow Assign rule joins Alias(iLoadVar,_) with LoadInstanceFieldIndex(iLoadVar, ...), so extra LoadInstanceVarPointsTo rows never reach VarPointsTo",
+   "rule": "LoadInstanceVarPointsTo(var, heap) :- InstanceVarPointsTo(var, heap), LoadInstanceFieldIndex(var, _, _, _).",
+   "evidence": "survives every shipped variant, the 32,000-fact eval/3, and eval/6 (return flow; exact, subtype and failing casts; field aliasing between comparable, unrelated and identical isolated types), which kills every other mutant of the fixed reference; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "PointstoJava#6": {
+   "verdict": "equivalent",
+   "reason": "the StoreInstanceFieldIndex filter is re-imposed downstream: the field-flow Assign rule joins Alias(_,iStoreVar) with StoreInstanceFieldIndex(_, iStoreVar, ...)",
+   "rule": "StoreInstanceVarPointsTo(var, heap) :- InstanceVarPointsTo(var, heap), StoreInstanceFieldIndex(_, var, _, _).",
+   "evidence": "survives every shipped variant, the 32,000-fact eval/3, and eval/6 (return flow; exact, subtype and failing casts; field aliasing between comparable, unrelated and identical isolated types), which kills every other mutant of the fixed reference; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "PointstoJava#8": {
+   "verdict": "equivalent",
+   "reason": "IsInstanceTypeCompatible is consumed only by InstanceTypeComparable, which takes both argument orders, so swapping the Supertype direction yields the same InstanceTypeComparable relation",
+   "rule": "IsInstanceTypeCompatible(sub, super) :- Supertype(sub, super).",
+   "evidence": "survives every shipped variant, the 32,000-fact eval/3, and eval/6 (return flow; exact, subtype and failing casts; field aliasing between comparable, unrelated and identical isolated types), which kills every other mutant of the fixed reference; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#0": {
+   "verdict": "equivalent",
+   "reason": "Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+   "rule": "Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _), !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), a1 != \" \", b1 != \" \", c1 != \" \", a2 != \" \", b2 != \" \", c2 != \" \", a3 != \" \", b3 != \" \", c3 != \" \".",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#1": {
+   "verdict": "equivalent",
+   "reason": "Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+   "rule": "Finished(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#4": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b1, c1) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#5": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, a2, b2, c2) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#6": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#7": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Col1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, a2, a3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#8": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Col2(a1, b1, c1, a2, b2, c2, a3, b3, c3, b1, b2, b3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#9": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, c2, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#10": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Dig1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b2, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#11": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, b2, a3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#12": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#13": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#14": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#15": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "TicTacToe#16": {
+   "verdict": "equivalent",
+   "reason": "AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+   "rule": "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x).",
+   "evidence": "no distinguishing output on any shipped variant nor on 40 random legal start positions, 17 of them late-game positions from which draws are reachable; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#8": {
+   "verdict": "equivalent",
+   "reason": "subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+   "rule": "Person(x) :- UndergraduateDegreeFrom(x, _).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#9": {
+   "verdict": "equivalent",
+   "reason": "subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+   "rule": "Person(x) :- DoctoralDegreeFrom(x, _).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#10": {
+   "verdict": "equivalent",
+   "reason": "subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+   "rule": "University(y) :- DoctoralDegreeFrom(_, y).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#11": {
+   "verdict": "equivalent",
+   "reason": "subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+   "rule": "University(y) :- UndergraduateDegreeFrom(_, y).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#12": {
+   "verdict": "equivalent",
+   "reason": "subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+   "rule": "Person(x) :- MastersDegreeFrom(x, _).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#13": {
+   "verdict": "equivalent",
+   "reason": "the only rule deriving Chair(x) already requires Person(x)",
+   "rule": "Person(x) :- Chair(x).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "LUBM#16": {
+   "verdict": "equivalent",
+   "reason": "Organization(y) is implied by WorksFor(x,y): MemberOf(x,y) :- WorksFor(x,y), Member(y,x) :- MemberOf(x,y), Organization(y) :- Member(y,_)",
+   "rule": "Employee(x) :- Person(x), WorksFor(x, y), Organization(y).",
+   "evidence": "survives the shipped variant and a hand-built in-domain input (graduate student taking a graduate course, undergraduate taking a taught course, professor working for a department) that kills the two non-equivalent survivors; implication argument above",
+   "reviewed": "2026-09-22"
+  },
+  "MinSpanTree#2": {
+   "verdict": "equivalent",
+   "reason": "UnusedEdge is implied by UnaddedNode on the target: after an edge is chosen, its target becomes ChosenNode and therefore AddedNode at the next and all later steps, so that edge can never again satisfy UnaddedNode in ValidEdge",
+   "rule": "ValidEdge(step, edge_id) :-ReachableEdge(step, edge_id), Edge(edge_id, _, node_id, _), UnaddedNode(step, node_id), UnusedEdge(step, edge_id).",
+   "evidence": "multi-step implication through ChosenEdge -> ChosenNode -> AddedNode, with AddedNode propagated forward; the rule with UnusedEdge removed survived every shipped variant and the directed-orientation counterexample added as eval/1",
+   "reviewed": "2026-09-22"
+  },
+  "MinSpanTree#3": {
+   "verdict": "equivalent",
+   "reason": "the mutant swaps only the step and edge_id fields emitted by PrimsTrace; for each ChosenEdge(step, edge_id) it still looks up Edge(edge_id, ..., weight), and MinimumSpanningTree aggregates only the weight field",
+   "rule": "PrimsTrace(step, edge_id, x, y, w) :- ChosenEdge(step, edge_id), Edge(edge_id, x, y, w).",
+   "evidence": "direct variable-renaming argument on the mutant body and final sum projection; no difference across 1,000 randomly oriented weighted graphs over three to five nodes",
+   "reviewed": "2026-09-22"
+  }
+ }
+}

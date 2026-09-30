@@ -1,0 +1,11 @@
+.decl HasDefaultArgs(function:symbol)
+.input HasDefaultArgs
+.decl Params(function:symbol, parameter:symbol, type:symbol)
+.input Params
+.decl Mutable(parameter:symbol)
+.input Mutable
+
+.decl PyFuncDefaultMutable(function:symbol)
+.output PyFuncDefaultMutable
+
+PyFuncDefaultMutable(def) :- HasDefaultArgs(def), Params(def, _, t), Mutable(t).

@@ -1,0 +1,830 @@
+{
+  "MutualRecursion": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "alpha_identical",
+      "removed": [],
+      "added": [],
+      "source": "auto"
+    }
+  ],
+  "MagicPrime": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: dropping Nat(b) widens Succ by exactly one edge, (Lim, Lim+1), because Nat is the contiguous range 0..Lim. That edge can only carry Add/Mul results up to Lim+1, and Prime is bounded by Candidate, which is a subset of Nat -- so no Prod(x) with x <= Lim is gained and the graded output is unchanged. Partial products never exceed the final product, so no multiplication of two candidates needs the extra edge either.",
+      "removed": [
+        "Succ(a, b) :- Nat(a), Nat(b), b=a+1."
+      ],
+      "added": [
+        "Succ(a, b) :-Nat(a), b=a+1."
+      ],
+      "source": "human"
+    }
+  ],
+  "DfaMin": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: Dis is explicitly symmetrised by Dis(q, r) :- Dis(r, q), so the base set and its transpose have the same symmetric closure. The golden seeds {(q, r) : q final, r not}; the mutant seeds exactly its transpose, and both close to {(q, r) : exactly one of q, r is final}. The recursive rule then runs over the same relation.",
+      "removed": [
+        "Dis(q, r) :- Q(q), Q(r), Final(q), !Final(r)."
+      ],
+      "added": [
+        "Dis(q, r) :- Q(r), Q(q), Final(r), !Final(q)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: Dis is symmetric by Dis(q, r) :- Dis(r, q), so !Dis(q, r) and !Dis(r, q) are the same condition; the two Q atoms are merely reordered.",
+      "removed": [
+        "Equiv(q, r) :- Q(q), Q(r), !Dis(q, r)."
+      ],
+      "added": [
+        "Equiv(q, r) :- Q(r), Q(q), !Dis(r, q)."
+      ],
+      "source": "human"
+    }
+  ],
+  "Earley": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: the predictor's Product(y,p,n) guard is implied by the completer that must absorb the seed: a predicted state State(c,x,1,c) can only reach Accept through the completer, whose parent State(c,x',p,j) must satisfy Product(x',p,n) with n = x's LHS -- exactly the guard. Extra seeds are therefore never absorbed, so Accept is unchanged.",
+      "removed": [
+        "State(c, x, 1, c) :- State(c, y, p, _), Product(x, 0, n), Product(y, p, n)."
+      ],
+      "added": [
+        "State(c, x, 1, c) :-State(c, y, p, _), Product(x, 0, n)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "alpha_identical",
+      "removed": [],
+      "added": [],
+      "source": "auto"
+    }
+  ],
+  "MinPathGen": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: the program symmetrises the graph with Edge(a, b, w) :- Edge(b, a, w), so Edge is its own converse and every relation built from it (Path, ConnectedNodes, FindingShorterPath) is symmetric by induction; reversing the argument order therefore selects the same tuples; base case reads the symmetric closure either way",
+      "removed": [
+        "Path(a, c, w) :- Edge(a, c, w)."
+      ],
+      "added": [
+        "Path(a, c, w) :- Edge(c, a, w)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: the program symmetrises the graph with Edge(a, b, w) :- Edge(b, a, w), so Edge is its own converse and every relation built from it (Path, ConnectedNodes, FindingShorterPath) is symmetric by induction; reversing the argument order therefore selects the same tuples; Path is symmetric, so its projection is too",
+      "removed": [
+        "ConnectedNodes(a, b) :- Path(a, b, _)."
+      ],
+      "added": [
+        "ConnectedNodes(a, b) :- Path(b, a, _)."
+      ],
+      "source": "human"
+    }
+  ],
+  "Permutations": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "alpha_identical",
+      "removed": [],
+      "added": [],
+      "source": "auto"
+    }
+  ],
+  "TopologicalOrdering": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: the mutant also gives every source vertex an index of 0, but a source with outgoing edges already carries index 1 and Index now takes the maximum, so the graded relations are unchanged. Before Index was corrected to a max aggregate this same mutant was a real gap",
+      "removed": [
+        "Indices(x, 0) :- Vertex(x), !Edge(_, x), !Edge(x, _)."
+      ],
+      "added": [
+        "Indices(x, 0) :-Vertex(x), !Edge(_, x)."
+      ],
+      "source": "human"
+    }
+  ],
+  "LUBM": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed via two steps: DegreeFrom :- MastersDegreeFrom, then University :- DegreeFrom(_,y)",
+      "removed": [
+        "University(y) :- MastersDegreeFrom(_, y)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: HasAlumnus has no .input and is derived only from DegreeFrom, so this re-derives what already holds",
+      "removed": [
+        "DegreeFrom(x, y) :- HasAlumnus(y, x)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: mutually redundant with Person :- HasAlumnus(_,y); removing either alone changes nothing",
+      "removed": [
+        "Person(x) :- DegreeFrom(x, _)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 3,
+      "verdict": "equivalent",
+      "reason": "reviewed: covered by the three specific degree rules (doctoral / masters / undergraduate)",
+      "removed": [
+        "University(y) :- DegreeFrom(_, y)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 4,
+      "verdict": "equivalent",
+      "reason": "reviewed: mutually redundant with Person :- DegreeFrom(x,_)",
+      "removed": [
+        "Person(y) :- HasAlumnus(_, y)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 5,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed by the weaker TeachingAssistant :- TeachingAssistantOf(x,_), which derives a superset",
+      "removed": [
+        "TeachingAssistant(x) :- Person(x), TeachingAssistantOf(x, y), Course(y)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 6,
+      "verdict": "equivalent",
+      "reason": "reviewed: circular with Member :- MemberOf(y,x); adds no tuple",
+      "removed": [
+        "MemberOf(x, y) :- Member(y, x)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 7,
+      "verdict": "equivalent",
+      "reason": "reviewed: same closure as University :- DegreeFrom(_,y) once HasAlumnus is unfolded",
+      "removed": [
+        "University(x) :- HasAlumnus(x, _)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 8,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+      "removed": [
+        "Person(x) :- UndergraduateDegreeFrom(x, _)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 9,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+      "removed": [
+        "Person(x) :- DoctoralDegreeFrom(x, _)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 10,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+      "removed": [
+        "University(y) :- DoctoralDegreeFrom(_, y)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 11,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+      "removed": [
+        "University(y) :- UndergraduateDegreeFrom(_, y)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 12,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in two steps: DegreeFrom(x,y) :- <kind>DegreeFrom(x,y), then Person(x) :- DegreeFrom(x,_) or University(y) :- DegreeFrom(_,y)",
+      "removed": [
+        "Person(x) :- MastersDegreeFrom(x, _)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 13,
+      "verdict": "equivalent",
+      "reason": "reviewed: the only rule deriving Chair(x) already requires Person(x)",
+      "removed": [
+        "Person(x) :- Chair(x)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 14,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed by the weaker TeachingAssistant :- TeachingAssistantOf(x,_), which derives a superset",
+      "removed": [
+        "TeachingAssistant(x) :- Person(x), TeachingAssistantOf(x, y), Course(y)."
+      ],
+      "added": [
+        "TeachingAssistant(x) :-Person(x), TeachingAssistantOf(x, y)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 15,
+      "verdict": "equivalent",
+      "reason": "reviewed: Organization(y) is implied by WorksFor(x,y): MemberOf(x,y) :- WorksFor(x,y), Member(y,x) :- MemberOf(x,y), Organization(y) :- Member(y,_)",
+      "removed": [
+        "Employee(x) :- Person(x), WorksFor(x, y), Organization(y)."
+      ],
+      "added": [
+        "Employee(x) :-Person(x), WorksFor(x, y)."
+      ],
+      "source": "human"
+    }
+  ],
+  "Disconnected": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in two steps: an edge (n, m) makes Edge(n, _) true, so Connected(n, n) holds by Connected(n, n) :- Edge(n, _), and the transitive rule Connected(n, m) :- Connected(n, z), Edge(z, m) then derives Connected(n, m) with z = n.",
+      "removed": [
+        "Connected(n, m) :- Edge(n, m)."
+      ],
+      "added": [],
+      "source": "human"
+    }
+  ],
+  "Planar": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: made redundant by this round's ordering fix: the deleted rule excludes pairs whose start points coincide, and (x1<x3);(x1=x3,y1<y3) already rejects those, since x1=x3 and y1=y3 satisfies neither disjunct",
+      "removed": [
+        "SharedNode(x1, y1, x2, y2, x3, y3, x4, y4) :- Edge(x1, y1, x2, y2), Edge(x3, y3, x4, y4), x3 - x1 = 0, y3 - y1 = 0."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: made redundant by this round's ordering fix: the deleted rule excludes pairs whose start points coincide, and (x1<x3);(x1=x3,y1<y3) already rejects those, since x1=x3 and y1=y3 satisfies neither disjunct",
+      "removed": [
+        "SharedNode(x1, y1, x2, y2, x3, y3, x4, y4) :- Edge(x1, y1, x2, y2), Edge(x3, y3, x4, y4), x3 - x1 = 0, y3 - y1 = 0."
+      ],
+      "added": [
+        "SharedNode(x1, y1, x2, y2, x3, y3, x4, y4) :- Edge(y1, x1, x2, y2), Edge(x3, y3, x4, y4), x3 - y1 = 0, y3 - x1 = 0."
+      ],
+      "source": "human"
+    }
+  ],
+  "Centroids": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: NotLeaf is a subset of the nodes with an incoming edge (its body requires Edge(a,n)), and Leaf is defined as that set minus NotLeaf. Their union is therefore fixed however the split is drawn, and TreeCard uses only the sum, so no change to the NotLeaf rule can reach Centroid",
+      "removed": [
+        "NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: NotLeaf is a subset of the nodes with an incoming edge (its body requires Edge(a,n)), and Leaf is defined as that set minus NotLeaf. Their union is therefore fixed however the split is drawn, and TreeCard uses only the sum, so no change to the NotLeaf rule can reach Centroid",
+      "removed": [
+        "NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b."
+      ],
+      "added": [
+        "NotLeaf(n) :- Edge(n, a), Edge(b, a), n != b."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: NotLeaf is a subset of the nodes with an incoming edge (its body requires Edge(a,n)), and Leaf is defined as that set minus NotLeaf. Their union is therefore fixed however the split is drawn, and TreeCard uses only the sum, so no change to the NotLeaf rule can reach Centroid",
+      "removed": [
+        "NotLeaf(n) :- Edge(a, n), Edge(b, n), a != b."
+      ],
+      "added": [
+        "NotLeaf(n) :- Edge(a, b), Edge(n, b), a != n."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 3,
+      "verdict": "equivalent",
+      "reason": "reviewed: Edge is closed under reversal by `Edge(m,n) :- Edge(n,m)`, so reading the edge in either direction derives the same relation",
+      "removed": [
+        "InSubtree(m, n, n) :- Edge(m, n)."
+      ],
+      "added": [
+        "InSubtree(m, n, n) :- Edge(n, m)."
+      ],
+      "source": "human"
+    }
+  ],
+  "TicTacToe": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+      "removed": [
+        "Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _), !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), a1 != \" \", b1 != \" \", c1 != \" \", a2 != \" \", b2 != \" \", c2 != \" \", a3 != \" \", b3 != \" \", c3 != \" \"."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+      "removed": [
+        "Finished(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3)."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+      "removed": [
+        "Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _), !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), a1 != \" \", b1 != \" \", c1 != \" \", a2 != \" \", b2 != \" \", c2 != \" \", a3 != \" \", b3 != \" \", c3 != \" \"."
+      ],
+      "added": [
+        "Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :-AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _), a1 != \" \", b1 != \" \", c1 != \" \", a2 != \" \", b2 != \" \", c2 != \" \", a3 != \" \", b3 != \" \", c3 != \" \"."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 3,
+      "verdict": "equivalent",
+      "reason": "alpha_identical",
+      "removed": [],
+      "added": [],
+      "source": "auto"
+    },
+    {
+      "index": 4,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b1, c1) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b1, c1) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 5,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, a2, b2, c2) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, a2, b2, c2) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 6,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, a3, b3, c3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 7,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Col1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, a2, a3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Col1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, a2, a3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 8,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Col2(a1, b1, c1, a2, b2, c2, a3, b3, c3, b1, b2, b3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Col2(a1, b1, c1, a2, b2, c2, a3, b3, c3, b1, b2, b3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 9,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, c2, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, c2, c3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 10,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Dig1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b2, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Dig1(a1, b1, c1, a2, b2, c2, a3, b3, c3, a1, b2, c3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 11,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, b2, a3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "added": [
+        "Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, c1, b2, a3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 12,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row1(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "added": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row1(b1, a1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 13,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "added": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row2(b1, a1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 14,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row3(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "added": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Row3(b1, a1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 15,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Col3(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "added": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Col3(b1, a1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 16,
+      "verdict": "equivalent",
+      "reason": "reviewed: AllStates is the full product Cell^9 x Player, so it is closed under exchanging two positions; exchanging a1 and b1 in the AllStates atom either leaves the line's values untouched or permutes them within the line, so every Row/Col/Dig and HasWon fact is unchanged",
+      "removed": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Dig2(a1, b1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "added": [
+        "HasWon(a1, b1, c1, a2, b2, c2, a3, b3, c3, x) :- Dig2(b1, a1, c1, a2, b2, c2, a3, b3, c3, x, x, x)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 17,
+      "verdict": "equivalent",
+      "reason": "reviewed: Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+      "removed": [
+        "Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- AllStates(a1, b1, c1, a2, b2, c2, a3, b3, c3, _), !Won(a1, b1, c1, a2, b2, c2, a3, b3, c3), a1 != \" \", b1 != \" \", c1 != \" \", a2 != \" \", b2 != \" \", c2 != \" \", a3 != \" \", b3 != \" \", c3 != \" \"."
+      ],
+      "added": [
+        "Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- AllStates(b1, a1, c1, a2, b2, c2, a3, b3, c3, _), !Won(b1, a1, c1, a2, b2, c2, a3, b3, c3), b1 != \" \", a1 != \" \", c1 != \" \", a2 != \" \", b2 != \" \", c2 != \" \", a3 != \" \", b3 != \" \", c3 != \" \"."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 18,
+      "verdict": "equivalent",
+      "reason": "reviewed: Draw requires all nine cells to be non-blank, while StateSucc requires ValidMove, which requires a blank cell; the two never hold on the same board, so Draw and Finished :- Draw cannot change StateSucc, PossibleResults or DecidedGames",
+      "removed": [
+        "Finished(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- Draw(a1, b1, c1, a2, b2, c2, a3, b3, c3)."
+      ],
+      "added": [
+        "Finished(a1, b1, c1, a2, b2, c2, a3, b3, c3) :- Draw(b1, a1, c1, a2, b2, c2, a3, b3, c3)."
+      ],
+      "source": "human"
+    }
+  ],
+  "PointstoJava": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: InstanceVarType only feeds Alias, whose v1/v2 are already instance variables via Load/StoreInstanceVarPointsTo, and InstanceTypes(x) :- InstanceVarType(_, x), which then only adds reflexive compatibility for types Alias never queries; dropping the InstanceVar guard cannot change VarPointsTo",
+      "removed": [
+        "InstanceVarType(var, type) :- VarType(var, type), InstanceVar(var)."
+      ],
+      "added": [
+        "InstanceVarType(var, type) :-VarType(var, type)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: the LoadInstanceFieldIndex filter is re-imposed downstream: the field-flow Assign rule joins Alias(iLoadVar,_) with LoadInstanceFieldIndex(iLoadVar, ...), so extra LoadInstanceVarPointsTo rows never reach VarPointsTo",
+      "removed": [
+        "LoadInstanceVarPointsTo(var, heap) :- InstanceVarPointsTo(var, heap), LoadInstanceFieldIndex(var, _, _, _)."
+      ],
+      "added": [
+        "LoadInstanceVarPointsTo(var, heap) :-InstanceVarPointsTo(var, heap)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: the StoreInstanceFieldIndex filter is re-imposed downstream: the field-flow Assign rule joins Alias(_,iStoreVar) with StoreInstanceFieldIndex(_, iStoreVar, ...)",
+      "removed": [
+        "StoreInstanceVarPointsTo(var, heap) :- InstanceVarPointsTo(var, heap), StoreInstanceFieldIndex(_, var, _, _)."
+      ],
+      "added": [
+        "StoreInstanceVarPointsTo(var, heap) :-InstanceVarPointsTo(var, heap)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 3,
+      "verdict": "equivalent",
+      "reason": "reviewed: IsInstanceTypeCompatible is consumed only by InstanceTypeComparable, which takes both argument orders, so swapping the Supertype direction yields the same InstanceTypeComparable relation",
+      "removed": [
+        "IsInstanceTypeCompatible(sub, super) :- Supertype(sub, super)."
+      ],
+      "added": [
+        "IsInstanceTypeCompatible(sub, super) :- Supertype(super, sub)."
+      ],
+      "source": "human"
+    }
+  ],
+  "MinPathEnum": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: Edge is explicitly symmetric, so the one-hop Path base derives the same weighted edges in either orientation.",
+      "removed": [
+        "Path(a, c, w, 1) :- Edge(a, c, w)."
+      ],
+      "added": [
+        "Path(a, c, w, 1) :- Edge(c, a, w)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: Edge is explicitly symmetric. The bounded Path recurrence therefore preserves symmetry at every hop count, so projecting either orientation from Path derives the same Reached tuples.",
+      "removed": [
+        "Reached(a, c, w) :- Path(a, c, w, _)."
+      ],
+      "added": [
+        "Reached(a, c, w) :- Path(c, a, w, _)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: Reached is symmetric by the Path induction, and FindingShorterPath is defined only by two Reached atoms on the same ordered endpoints, so it is symmetric too. Reversing both atoms in the ShortestPath rule preserves the result.",
+      "removed": [
+        "ShortestPath(a, b, w) :- Reached(a, b, w), !FindingShorterPath(a, b, w)."
+      ],
+      "added": [
+        "ShortestPath(a, b, w) :- Reached(b, a, w), !FindingShorterPath(b, a, w)."
+      ],
+      "source": "human"
+    }
+  ],
+  "MinSpanTree": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in three steps by NotValidEdge(step, e) :- AddedNode(step, v), Edge(e, _, v, _). Choosing an edge at prev_step makes its target a ChosenNode, hence an AddedNode from prev_step+1 onwards, and AddedNode propagates forward -- so the third NotValidEdge rule already marks that edge invalid on exactly the steps the deleted rule covers (prev_step < step). Both are bounded by ValidStep, so the coverage domains coincide.",
+      "removed": [
+        "NotValidEdge(step, edge_id) :- ValidStep(step), ChosenEdge(prev_step, edge_id), prev_step < step."
+      ],
+      "added": [],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: UnusedEdge is implied by UnaddedNode on the target: after an edge is chosen, its target becomes ChosenNode and therefore AddedNode at the next and all later steps, so that edge can never again satisfy UnaddedNode in ValidEdge",
+      "removed": [
+        "ValidEdge(step, edge_id) :-ReachableEdge(step, edge_id), Edge(edge_id, _, node_id, _), UnaddedNode(step, node_id), UnusedEdge(step, edge_id)."
+      ],
+      "added": [
+        "ValidEdge(step, edge_id) :-ReachableEdge(step, edge_id), Edge(edge_id, _, node_id, _), UnaddedNode(step, node_id)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: UndirectedEdge is exactly the symmetric closure of Graph: its two defining rules emit both orientations for every input edge. Reading UndirectedEdge(y,x,w) instead of UndirectedEdge(x,y,w) therefore gives Edge the identical tuple set.",
+      "removed": [
+        "Edge(autoinc(), x, y, w) :- UndirectedEdge(x, y, w)."
+      ],
+      "added": [
+        "Edge(autoinc(), x, y, w) :- UndirectedEdge(y, x, w)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 3,
+      "verdict": "equivalent",
+      "reason": "reviewed: subsumed in three steps by NotValidEdge(step, e) :- AddedNode(step, v), Edge(e, _, v, _). Choosing an edge at prev_step makes its target a ChosenNode, hence an AddedNode from prev_step+1 onwards, and AddedNode propagates forward -- so the third NotValidEdge rule already marks that edge invalid on exactly the steps the deleted rule covers (prev_step < step). Both are bounded by ValidStep, so the coverage domains coincide.",
+      "removed": [
+        "NotValidEdge(step, edge_id) :- ValidStep(step), ChosenEdge(prev_step, edge_id), prev_step < step."
+      ],
+      "added": [
+        "NotValidEdge(step, edge_id) :- ValidStep(step), ChosenEdge(edge_id, prev_step), edge_id < step."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 4,
+      "verdict": "equivalent",
+      "reason": "reviewed: the mutant swaps only the step and edge_id fields emitted by PrimsTrace; for each ChosenEdge(step, edge_id) it still looks up Edge(edge_id, ..., weight), and MinimumSpanningTree aggregates only the weight field",
+      "removed": [
+        "PrimsTrace(step, edge_id, x, y, w) :- ChosenEdge(step, edge_id), Edge(edge_id, x, y, w)."
+      ],
+      "added": [
+        "PrimsTrace(step, edge_id, x, y, w) :- ChosenEdge(edge_id, step), Edge(step, x, y, w)."
+      ],
+      "source": "human"
+    }
+  ],
+  "GetMybatisDOClass": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "equality_constrained_swap",
+      "removed": [
+        "DoClass(class_name) :- JavaClass(_, class_name), DbElementType(_, type_name), class_name = type_name."
+      ],
+      "added": [
+        "DoClass(class_name) :- JavaClass(_, type_name), DbElementType(_, class_name), type_name = class_name."
+      ],
+      "source": "auto"
+    }
+  ],
+  "CommentRatioJava": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "alpha_identical",
+      "removed": [],
+      "added": [],
+      "source": "auto"
+    }
+  ],
+  "UnionFind": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: SameSet is explicitly symmetrised by SameSet(x, y) :- SameSet(y, x), so seeding it from Equal(x, y) or from Equal(y, x) gives the same symmetric closure; the two extension rules then run over the same relation.",
+      "removed": [
+        "SameSet(x, y) :- Equal(x, y)."
+      ],
+      "added": [
+        "SameSet(x, y) :- Equal(y, x)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 1,
+      "verdict": "equivalent",
+      "reason": "reviewed: absorbed by the equivalence closure added this round: with SameSet symmetric and transitive, extending from any member of x's class (the original) and extending from x itself then propagating (the mutant) reach the same fixpoint",
+      "removed": [
+        "SameSet(x, z) :- SameSet(x, y), Union(y, z)."
+      ],
+      "added": [
+        "SameSet(x, z) :- SameSet(y, x), Union(x, z)."
+      ],
+      "source": "human"
+    },
+    {
+      "index": 2,
+      "verdict": "equivalent",
+      "reason": "reviewed: same as UnionFind#1 with Find in place of Union",
+      "removed": [
+        "SameSet(x, z) :- SameSet(x, y), Find(y, z)."
+      ],
+      "added": [
+        "SameSet(x, z) :- SameSet(y, x), Find(x, z)."
+      ],
+      "source": "human"
+    }
+  ],
+  "SCC": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "alpha_identical",
+      "removed": [],
+      "added": [],
+      "source": "auto"
+    }
+  ],
+  "BuildWall": [
+    {
+      "index": 0,
+      "verdict": "equivalent",
+      "reason": "reviewed: ValidSurface(t) in the body of BuildWall(s,t) :- EligiblePlace(s,t), ValidSurface(t) is implied two steps back: EligiblePlace(s,t) is only derivable via EligiblePlace(s,t) :- FetchPlace(s,t), ValidSurface(t)",
+      "removed": [
+        "BuildWall(s, t) :- EligiblePlace(s, t), ValidSurface(t)."
+      ],
+      "added": [
+        "BuildWall(s, t) :-EligiblePlace(s, t)."
+      ],
+      "source": "human"
+    }
+  ]
+}

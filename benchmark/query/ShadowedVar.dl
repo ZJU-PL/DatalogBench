@@ -1,0 +1,9 @@
+.decl DeclVar(block_id:symbol, var_name:symbol)
+.input DeclVar
+.decl Encloses(outer_block_id:symbol, inner_block_id:symbol)
+.input Encloses
+
+.decl ShadowedVar(outer_block_id:symbol, inner_block_id:symbol, var_name:symbol)
+.output ShadowedVar
+
+ShadowedVar(blockId1, blockId2, varName) :- DeclVar(blockId1, varName), DeclVar(blockId2, varName), Encloses(blockId1, blockId2).

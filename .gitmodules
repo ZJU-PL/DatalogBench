@@ -1,0 +1,12 @@
+[submodule "baselines/gensynth"]
+	path = baselines/gensynth
+	url = https://github.com/jonomendelson/gensynth
+	ignore = dirty
+[submodule "baselines/egs"]
+	path = baselines/egs
+	url = https://github.com/aalok-thakkar/egs-artifact
+	ignore = dirty
+[submodule "baselines/prosynth"]
+	path = baselines/prosynth
+	url = https://github.com/petablox/popl2020-artifact
+	ignore = dirty

@@ -1,0 +1,24 @@
+.decl MethodArgHeap(method:symbol, arg_index:symbol, var:symbol)
+.input MethodArgHeap
+.decl MethodRetHeap(method:symbol, ret_index:symbol, var:symbol)
+.input MethodRetHeap
+.decl VarPointsTo(var:symbol, heap:symbol)
+.input VarPointsTo
+.decl HeapField(base_heap:symbol, field:symbol, target_heap:symbol)
+.input HeapField
+
+.decl ReachHeapToHeap(src_heap:symbol, dst_heap:symbol)
+.output ReachHeapToHeap
+.decl ReachFromArg(method:symbol, heap:symbol)
+.output ReachFromArg
+.decl ReachFromRet(method:symbol, heap:symbol)
+.output ReachFromRet
+
+ReachHeapToHeap(v0, v2) :- HeapField(v0, _, v2).
+ReachHeapToHeap(v0, v2) :- ReachHeapToHeap(v0, v1), ReachHeapToHeap(v1, v2).
+
+ReachFromArg(m, h) :- MethodArgHeap(m, _, v), VarPointsTo(v, h).
+ReachFromArg(m, h2) :- ReachFromArg(m, h1), ReachHeapToHeap(h1, h2).
+
+ReachFromRet(m, h) :- MethodRetHeap(m, _, v), VarPointsTo(v, h).
+ReachFromRet(m, h2) :- ReachFromRet(m, h1), ReachHeapToHeap(h1, h2).

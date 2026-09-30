@@ -1,0 +1,1986 @@
+[
+ {
+  "id": "GradeCompare",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Find instances where the same person has a lower grade compared to another record, using less-than constraints.",
+  "input_relation": {
+   "GradeRecord(id, pid, name, grade)": "Ingested data containing person ID, name, and grade.",
+   "LessThan(x, y)": "Less-than relationship between two numbers."
+  },
+  "output_relation": {
+   "GradeCompare(pid, name, x, y)": "The same person has a lower grade compared to another record."
+  }
+ },
+ {
+  "id": "IntField",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Track how integer fields and variable references map to points-to information.",
+  "input_relation": {
+   "Store(var1, field, var2)": "Variable var1 stores var2 into the specified field.",
+   "IntVar(var, int_id)": "The variable var is an integer variable with value int_id.",
+   "VarPointsTo(var, heap)": "Variable var points to heap."
+  },
+  "output_relation": {
+   "IntField(heap, field, int_id)": "The integer field mapping to points-to information."
+  }
+ },
+ {
+  "id": "Agent",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "What are the valid moves for an agent in a grid, considering adjacency, wall obstacles, and door lock statuses?",
+  "input_relation": {
+   "Adjacent(src_cell, dst_cell)": "Indicates src_cell is adjacent to dst_cell in the grid.",
+   "AgentAt(cell, time)": "Indicates the agent is located at the cell at the time.",
+   "NotWall(src_cell, dst_cell)": "There is no wall between src_cell and dst_cell.",
+   "Unlocked(cell)": "The door at the specified cell is unlocked."
+  },
+  "output_relation": {
+   "ValidMove(cell, time)": "The agent can move to the specified cell at the time."
+  }
+ },
+ {
+  "id": "Animals",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "question": "Classify animals into categories based on biological traits.",
+  "input_relation": {
+   "HasMilk(animal)": "The animal produces milk.",
+   "HasGills(animal)": "The animal has gills for breathing underwater.",
+   "Scales(cover)": "The covering is made of scales.",
+   "HasCovering(animal, cover)": "The animal has a specific covering type.",
+   "Feathers(cover)": "The covering is made of feathers."
+  },
+  "output_relation": {
+   "Mammal(animal)": "The animal is classified as a mammal.",
+   "Fish(animal)": "The animal is classified as a fish.",
+   "Reptile(animal)": "The animal is classified as a reptile.",
+   "Bird(animal)": "The animal is classified as a bird."
+  }
+ },
+ {
+  "id": "ShadowedVar",
+  "category": "program_analysis",
+  "sub_category": "bug_detection_safety",
+  "question": "Detect variables that are shadowed by inner scopes based on declaration and enclosure.",
+  "input_relation": {
+   "DeclVar(block_id, var_name)": "The variable var_name is declared in the block with block_id.",
+   "Encloses(outer_block_id, inner_block_id)": "The block with outer_block_id encloses the block with inner_block_id."
+  },
+  "output_relation": {
+   "ShadowedVar(outer_block_id, inner_block_id, var_name)": "The variable var_name declared in outer_block_id is shadowed by its declaration in inner_block_id."
+  }
+ },
+ {
+  "id": "Schedule",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Report each task that is assigned to one slot under two constraints that are required to differ.",
+  "input_relation": {
+   "Assigned(task, slot, constraint)": "Task is assigned to slot with constraint.",
+   "NotEqual(constraint0, constraint1)": "Constraints c1 and c2 must be different."
+  },
+  "output_relation": {
+   "Conflict(task)": "There is a conflict for the task."
+  }
+ },
+ {
+  "id": "SequentialKinship",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "Derive multi-generational kinship relations including parent, grandparent,and great-grandparent from parentage.",
+  "input_relation": {
+   "Father(person1, person2)": "Indicates that person1 is the father of person2.",
+   "Mother(person1, person2)": "Indicates that person1 is the mother of person2."
+  },
+  "output_relation": {
+   "Parent(person1, person2)": "Indicates that person1 is a parent of person2.",
+   "Grandparent(person1, person2)": "Indicates that person1 is a grandparent of person2.",
+   "GreatGrandparent(person1, person2)": "Indicates that person1 is a great-grandparent of person2."
+  }
+ },
+ {
+  "id": "ContainAllergen",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "question": "Find dishes containing specific allergens from ingredients.",
+  "input_relation": {
+   "Allergens(ingredient, allergen)": "The ingredient contains the specified allergen.",
+   "IsMadeFrom(dish, ingredient)": "The dish is made from the specified ingredient."
+  },
+  "output_relation": {
+   "Contains(dish, allergen)": "The dish contains the specified allergen."
+  }
+ },
+ {
+  "id": "ColorTarget",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Find suppliers that supply a part of targeted color.",
+  "input_relation": {
+   "Supplier(supplier_key, part_id)": "The supplier supplies the specified part.",
+   "Color(part_id, color)": "The part has the specified color.",
+   "Constraint(color)": "The color matches the target constraint."
+  },
+  "output_relation": {
+   "SupplierWithColor(supplier_key)": "The supplier supplies a part of the targeted color."
+  }
+ },
+ {
+  "id": "PublicChannel",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Select accounts on public channels that match a specific target account.",
+  "input_relation": {
+   "PublicType(public_type)": "Indicates that the type is public.",
+   "TargetAccount(target_account)": "Specifies the target account to match.",
+   "ChannelInfo(channel, name, ctype)": "Information about channels including their type.",
+   "ChannelMember(channel, account, role)": "Members of channels."
+  },
+  "output_relation": {
+   "PublicMember(channel, account, role)": "Members of public channels."
+  }
+ },
+ {
+  "id": "MutualRecursion",
+  "category": "program_analysis",
+  "sub_category": "data_control_flow",
+  "question": "Identify pairs of functions that are mutually recursive based on function calls, reporting the transitive call-reachability relation as well.",
+  "input_relation": {
+   "FunctionCall(caller, callee)": "The caller function calls the callee function."
+  },
+  "output_relation": {
+   "MutualRecursion(func1, func2)": "The functions func1 and func2 are mutually recursive.",
+   "CallReachable(caller, callee)": "Transitive closure of the function-call relation: caller can reach callee through one or more calls."
+  }
+ },
+ {
+  "id": "Ship",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Match products to cities for shipping by correlating customer cities with order history.",
+  "input_relation": {
+   "CustomerCity(customer, city)": "The customer is located in the specified city.",
+   "HasOrdered(customer, product)": "Indicates that the customer has ordered the product.",
+   "ProductName(product, product_name)": "The product has the specified name."
+  },
+  "output_relation": {
+   "ShipTo(product_name, city)": "Indicates that the product should be shipped to the specified city."
+  }
+ },
+ {
+  "id": "IntervalOverlap",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Find pairs of intervals that overlap, counting a shared endpoint as an overlap, and report each such pair once, ordered so that the interval with the smaller id comes first.",
+  "input_relation": {
+   "In(id, d1, d2)": "Input relation containing intervals with their start and end."
+  },
+  "output_relation": {
+   "Out(id, d1, d2, id2, od1, od2)": "Each overlapping pair: the first interval (id, d1, d2) followed by the second (id2, od1, od2)."
+  }
+ },
+ {
+  "id": "Inflammation",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "question": "Diagnose potential bladder inflammation based on specific symptoms.",
+  "input_relation": {
+   "Nausea(patient_id)": "The patient is experiencing nausea.",
+   "NotLumbarPain(patient_id)": "The patient is not experiencing lumbar pain.",
+   "UrinePushing(patient_id)": "The patient is experiencing urine pushing."
+  },
+  "output_relation": {
+   "Inflammation(patient_id)": "The patient has inflammation."
+  },
+  "knowledge": "In the Acute Inflammations diagnostic data, bladder inflammation is indicated when a patient has urine pushing together with either an absence of lumbar pain or nausea."
+ },
+ {
+  "id": "ReallocMisuseDraft",
+  "category": "program_analysis",
+  "sub_category": "bug_detection_safety",
+  "question": "Identify potential misuse of the `realloc` function by analyzing assignments and parameters.",
+  "input_relation": {
+   "Assign(var, func)": "The variable var is assigned the result of function func.",
+   "Params(func, param_index, var)": "The variable var is a parameter at index param_index for function func.",
+   "ReallocExp(func)": "The function func is a realloc expression."
+  },
+  "output_relation": {
+   "ReallocMisuse(func, var)": "The function func potentially misuses realloc with variable var."
+  }
+ },
+ {
+  "id": "OnlyChild",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "Find people who are the only child.",
+  "input_relation": {
+   "Sibling(person1, person2)": "Indicates that person1 and person2 are siblings.",
+   "Parent(person1, person2)": "Indicates that person1 is a parent of person2."
+  },
+  "output_relation": {
+   "OnlyChild(person)": "Indicates that person is an only child."
+  }
+ },
+ {
+  "id": "ParentExists",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Which IDs and names appear in the data as a parent of at least one other person?",
+  "input_relation": {
+   "ParentRecord(id, name, age, parent)": "The record of a person with their ID, name, age, and parent ID."
+  },
+  "output_relation": {
+   "ParentSelf(id, name)": "IDs and names that appear as a parent of at least one other person."
+  }
+ },
+ {
+  "id": "ReachingDefEntry",
+  "category": "program_analysis",
+  "sub_category": "data_control_flow",
+  "question": "Compute the reaching definitions at a program entry point based on flow and exit.",
+  "input_relation": {
+   "Flow(line1, line2)": "There is a control flow from line1 to line2.",
+   "ReachingDefExit(line, var, def)": "The definition def of variable var reaches the exit of line."
+  },
+  "output_relation": {
+   "ReachingDefEntry(line, var, def)": "The definition def of variable var reaches the entry of line."
+  }
+ },
+ {
+  "id": "Headquarters",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "question": "Deduce the headquarter state of a business by checking located city information.",
+  "input_relation": {
+   "IsBasedIn(business, city)": "The business is based in the specified city.",
+   "IsLocatedIn(city, state)": "The city is located in the specified state."
+  },
+  "output_relation": {
+   "IsHeadquarteredIn(business, state)": "The business is headquartered in the specified state."
+  }
+ },
+ {
+  "id": "Reduce",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Derive which brand of drug reduces which symptom.",
+  "input_relation": {
+   "KnownGenericallyAs(brand, drug)": "The brand name corresponds to the generic drug name.",
+   "Reduces(drug, symptom)": "The generic drug reduces the specified symptom."
+  },
+  "output_relation": {
+   "Reduce(brand, symptom)": "The brand of drug reduces the specified symptom."
+  }
+ },
+ {
+  "id": "Reach",
+  "category": "program_analysis",
+  "sub_category": "data_control_flow",
+  "question": "For each statement that assigns a variable, report the statement, the variable it assigns, and each location that immediately follows the statement's own location in control flow.",
+  "input_relation": {
+   "Follows(location, next_location)": "The location next_location immediately follows location in control flow.",
+   "Assign(stmt, var)": "The statement stmt assigns a value to the variable var.",
+   "StatementAt(location, stmt)": "The statement stmt sits at the given source location."
+  },
+  "output_relation": {
+   "Reach(stmt, var, next_location)": "A statement, the variable it assigns, and a location immediately following it."
+  }
+ },
+ {
+  "id": "ActionDiff",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Find rows where the same entity identified by first/last name is associated with different actions.",
+  "input_relation": {
+   "Input(id, phone, first_name, last_name, action)": "The input relation containing entity details and associated actions.",
+   "NotEqual(action1, action2)": "Action action1 and action2 are inequal."
+  },
+  "output_relation": {
+   "Output(id, phone, first_name, last_name, action)": "The output relation containing rows where the same entity is associated with different actions."
+  }
+ },
+ {
+  "id": "Overrides",
+  "category": "program_analysis",
+  "sub_category": "bug_detection_safety",
+  "question": "Infer method overrides by analyzing class inheritance and method declaration.",
+  "input_relation": {
+   "Extends(super_class, sub_class)": "The sub_class extends super_class.",
+   "HasMethod(class, method)": "The class has the specified method."
+  },
+  "output_relation": {
+   "Overrides(super_class, sub_class, method)": "The sub_class overrides the method from super_class."
+  }
+ },
+ {
+  "id": "PyFuncDefaultMutable",
+  "category": "program_analysis",
+  "sub_category": "bug_detection_safety",
+  "question": "Flag Python functions that utilize mutable objects as default arguments.",
+  "input_relation": {
+   "Mutable(type)": "The type is mutable.",
+   "HasDefaultArgs(function)": "The function has default arguments.",
+   "Params(function, parameter, type)": "The type of each parameter for a function."
+  },
+  "output_relation": {
+   "PyFuncDefaultMutable(function)": "The function uses mutable objects as default arguments."
+  }
+ },
+ {
+  "id": "GraphColor",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Given a colouring already assigned to the graph's nodes, report every node that shares its colour with a node it is connected to by an edge.",
+  "input_relation": {
+   "Color(node, color)": "Color assigned to each node.",
+   "Edge(u_node, v_node)": "An undirected edge between u_node and v_node."
+  },
+  "output_relation": {
+   "Target(node)": "Nodes that violate the coloring constraint."
+  }
+ },
+ {
+  "id": "ArithmeticError",
+  "category": "program_analysis",
+  "sub_category": "bug_detection_safety",
+  "question": "Detect potential arithmetic errors, such as division-by-zero, by analyzing division expressions and variable values.",
+  "input_relation": {
+   "DivExp(result, left_var, right_var)": "The result is dividing left_var by right_var.",
+   "IntVar(var, int_id)": "The variable var is an integer variable with value int_id.",
+   "IsMaybeZero(int_id)": "The value of int_id might be zero."
+  },
+  "output_relation": {
+   "ArithmeticError(result)": "There is a potential arithmetic error at result."
+  }
+ },
+ {
+  "id": "Amicable",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Find pairs of amicable numbers (where the sum of divisors equals the other number) within a limit.",
+  "input_relation": {
+   "Lim(n)": "Defines the upper limit for finding amicable numbers."
+  },
+  "output_relation": {
+   "Amicable(a, b)": "Pairs of amicable numbers within the limit."
+  }
+ },
+ {
+  "id": "TwoSAT",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Decide the satisfiability of a 2-SAT formula whose literal polarities are the symbols \"Pos\" and \"Neg\", reporting the variables forced into contradiction and the overall verdict as \"Yes\" or \"No\".",
+  "input_relation": {
+   "Clause(polarity0, variable0, polarity1, variable1)": "A clause of the 2-SAT formula: variable0 under polarity0 or variable1 under polarity1, where a polarity is the symbol \"Pos\" or \"Neg\".",
+   "Not(polarity0, polarity1)": "States that polarity0 is the negation of polarity1, over the same \"Pos\" / \"Neg\" symbols."
+  },
+  "output_relation": {
+   "Satisfiable(result)": "Indicates whether the 2-SAT formula is satisfiable ('Yes' or 'No').",
+   "Incon(variable)": "Variables forced to be both true and false by the implication closure; the formula is unsatisfiable exactly when this relation is non-empty."
+  }
+ },
+ {
+  "id": "MagicPrime",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute prime numbers over the natural numbers from zero up to a specified limit.",
+  "input_relation": {
+   "Lim(x)": "Upper bound on the natural numbers to consider."
+  },
+  "output_relation": {
+   "Prime(x)": "Prime numbers within the range."
+  }
+ },
+ {
+  "id": "DFA",
+  "category": "program_analysis",
+  "sub_category": "data_control_flow",
+  "question": "Determine the reachability of definitions in a program based on generation, killing, and control flow.",
+  "input_relation": {
+   "GenDef(state, definition)": "The state generates the definition.",
+   "KillDef(state, definition)": "The state kills the definition.",
+   "Edge(src_state, dst_state)": "There is a transition from src_state to dst_state."
+  },
+  "output_relation": {
+   "Reachable(state, definition)": "The definition is reachable at the state."
+  }
+ },
+ {
+  "id": "DfaMin",
+  "category": "program_analysis",
+  "sub_category": "data_control_flow",
+  "question": "Determine which states of a Deterministic Finite Automaton are equivalent, and report each state paired with the smallest state equivalent to it.",
+  "input_relation": {
+   "Final(state)": "The state is a final state.",
+   "Tr(src_state, input_symbol, dst_state)": "Transition from src_state to dst_state on input_symbol."
+  },
+  "output_relation": {
+   "MinEquiv(state1, state2)": "States state1 and state2 are equivalent in the minimized DFA."
+  }
+ },
+ {
+  "id": "HighestDegree",
+  "category": "graph_analytics",
+  "sub_category": "topology_structure",
+  "question": "Find the nodes in a graph that possess the highest in-degree or out-degree.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "HighestInDegree(degree)": "Highest in-degree value among all nodes.",
+   "HighestOutDegree(degree)": "Highest out-degree value among all nodes."
+  }
+ },
+ {
+  "id": "Factorial",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute the factorial of numbers up to a specified limit.",
+  "input_relation": {
+   "Lim(n)": "Defines the upper limit for computing factorials."
+  },
+  "output_relation": {
+   "Fact(i, n)": "Factorial values for numbers up to the specified limit."
+  }
+ },
+ {
+  "id": "Recipes",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "For each ingredient of the recipe whose nutrition is known, report the amount used together with its carbohydrate, fat and protein content scaled to that amount, and the calories it contributes. Scaling divides by the quantity the nutrition table is quoted against, and every division truncates; in the calorie figure each term is multiplied by its factor before that division rather than after, so the calories are not simply the factors applied to the three reported figures. Report also the highest index appearing in the recipe and the total calories over all its ingredients.",
+  "input_relation": {
+   "Food(name, carbs, fat, protein, per, measure)": "food nutrition information per measure.",
+   "Recipe(index, name, amount, measure)": "recipe information including index, name, amount, and measure."
+  },
+  "output_relation": {
+   "Calories(result)": "Total calories for the recipe.",
+   "MaxIndex(result)": "Maximum index in the recipe.",
+   "Totals(name, amount, carbs, fat, protein, calories)": "Total nutritional values for each ingredient in the recipe."
+  },
+  "knowledge": "Food energy is conventionally computed with the Atwater factors: four calories per gram of carbohydrate, nine per gram of fat, and four per gram of protein."
+ },
+ {
+  "id": "Kinship",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "Derive kinship relations from parentage: the parent relation itself, plus ancestor, grandparent, sibling, cousin and aunt/uncle.",
+  "input_relation": {
+   "Father(person1, person2)": "Indicates that person1 is the father of person2.",
+   "Mother(person1, person2)": "Indicates that person1 is the mother of person2."
+  },
+  "output_relation": {
+   "Ancestor(person1, person2)": "Indicates that person1 is an ancestor of person2.",
+   "Cousin(person1, person2)": "Indicates that person1 and person2 are cousins.",
+   "Grandparent(person1, person2)": "Indicates that person1 is a grandparent of person2.",
+   "Parent(person1, person2)": "Indicates that person1 is a parent of person2.",
+   "Relative(person1, person2)": "Indicates that person1 is a aunt or uncle of person2.",
+   "Sibling(person1, person2)": "Indicates that person1 and person2 are siblings."
+  }
+ },
+ {
+  "id": "EditDistance",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "Compute the minimum edit distance between two strings, where the only permitted operations are inserting and deleting a single character, each costing one; a substitution therefore costs two.",
+  "input_relation": {
+   "String1(position, character)": "The first input string represented as a sequence of characters with their positions.",
+   "String2(position, character)": "The second input string represented as a sequence of characters with their positions."
+  },
+  "output_relation": {
+   "MinEditDistance(distance)": "The minimum edit distance between the two strings."
+  }
+ },
+ {
+  "id": "Earley",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "Given a grammar and an input string, decide whether the grammar accepts the string, parsing from the first production at the first position of the string; report \"Yes\" when it does and nothing when it does not. Also report, for each production, one past its last symbol position, and one past the last position of the input string.",
+  "input_relation": {
+   "Product(nonterminal, position, character)": "Grammar production rules.",
+   "String(position, character)": "Input string characters."
+  },
+  "output_relation": {
+   "Accept(result)": "The starting symbol completely matches the input string - accepted by the grammar ('Yes').",
+   "EndProduct(nonterminal, position)": "One past the last symbol position of the given nonterminal's production.",
+   "EndString(position)": "One past the last position of the input string."
+  }
+ },
+ {
+  "id": "MatchBucket",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Given one or more six-field templates and a set of six-field tuples, report for each tuple which fields may be ignored for it to agree with a template. A tuple is reported against a window of one to four consecutive field positions when it agrees with some template on every position outside that window, and against the empty window when it agrees on all six.",
+  "input_relation": {
+   "Check(n1, n2, n3, n4, n5, n6)": "A six-field template tuple. There may be more than one; a tuple need only agree with one of them.",
+   "In(n1, n2, n3, n4, n5, n6, id)": "A six-field tuple to be bucketed, carrying its own identifier id."
+  },
+  "output_relation": {
+   "Bucket(start, length, id)": "The tuple id agrees with some template outside the window of `length` consecutive positions beginning at `start`; start = length = 0 reports a tuple that agrees on all six fields."
+  }
+ },
+ {
+  "id": "MinPathGen",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute shortest paths between all node pairs by generating paths and taking the minimum weight per pair in an undirected graph.",
+  "input_relation": {
+   "Edge(u_node, v_node, weight)": "An undirected edge connecting u_node and v_node with weight."
+  },
+  "output_relation": {
+   "ShortestPath(u_node, v_node, weight)": "The shortest path from u_node to v_node with total weight."
+  }
+ },
+ {
+  "id": "LongestPath",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute the lengths of the longest paths in a directed acyclic graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "LongestPath(src_node, dst_node, path_len)": "The longest path with its node pairs and length."
+  }
+ },
+ {
+  "id": "Permutations",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Generate every non-empty ordered selection of distinct elements from the given set, each written as its elements joined by commas.",
+  "input_relation": {
+   "Item(item)": "An element from the input set."
+  },
+  "output_relation": {
+   "Permutation(permutation)": "A k-permutation of the input elements."
+  }
+ },
+ {
+  "id": "MinPathSrc",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute the shortest distance from the given source node to every node reachable from it in a directed weighted graph, reporting one distance per reachable node and nothing for the nodes the source cannot reach.",
+  "input_relation": {
+   "Start(node)": "Source node from which to start path computations.",
+   "Edge(src_node, dst_node, weight)": "An directed edge from src_node and dst_node with weight."
+  },
+  "output_relation": {
+   "ShortestPath(node, weight)": "The shortest distance from source node to each node."
+  }
+ },
+ {
+  "id": "DNF",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Over five input predicates A, B, C, D and E, derive: U, the union of all five; N, the intersection of A and B; R1, the elements in A or in both B and D; R2, the elements of U in neither B nor D; R3, the elements of U not in both B and D; and R6, the elements of U that are either not in B or are in D.",
+  "input_relation": {
+   "A(x)": "Predicate A holds for x.",
+   "B(x)": "Predicate B holds for x.",
+   "C(x)": "Predicate C holds for x.",
+   "D(x)": "Predicate D holds for x.",
+   "E(x)": "Predicate E holds for x."
+  },
+  "output_relation": {
+   "N(x)": "Intersection of A and B.",
+   "R1(x)": "Number x in A or in both B and D.",
+   "R2(x)": "Number x in U but not in B or D.",
+   "R3(x)": "Number x in U but not in both B and D.",
+   "R6(x)": "Number x in not B or D and in U.",
+   "U(x)": "Union of A, B, C, D, and E."
+  }
+ },
+ {
+  "id": "TopologicalOrdering",
+  "category": "graph_analytics",
+  "sub_category": "topology_structure",
+  "question": "Compute the topological ordering of the vertices of a directed acyclic graph: report which vertices come before and after which others, and each vertex's level -- one more than the highest level among the vertices that must come before it, with a vertex that has no edges at all at level 0.",
+  "input_relation": {
+   "Vertex(vertex)": "A vertex in the directed acyclic graph.",
+   "Edge(src_vertex, dst_vertex)": "A directed edge from src_vertex to dst_vertex."
+  },
+  "output_relation": {
+   "IsBefore(src_vertex, dst_vertex)": "Indicates if src_vertex comes before dst_vertex in the topological order.",
+   "IsAfter(src_vertex, dst_vertex)": "Indicates if src_vertex comes after dst_vertex in the topological order.",
+   "Index(vertex, index)": "The topological index of the vertex."
+  }
+ },
+ {
+  "id": "LUBM",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "input_relation": {
+   "AssistantProfessor(a)": "Assistant Professor role for individual a.",
+   "AssociateProfessor(a)": "Associate Professor role for individual a.",
+   "Course(a)": "A course offered at the university.",
+   "Department(a)": "A department within the university.",
+   "FullProfessor(a)": "Full Professor role for individual a.",
+   "GraduateCourse(a)": "A graduate-level course.",
+   "GraduateStudent(a)": "A graduate student.",
+   "Lecturer(a)": "Lecturer role for individual a.",
+   "Publication(a)": "A publication authored by individual a.",
+   "ResearchAssistant(a)": "Research assistant role for individual a.",
+   "ResearchGroup(a)": "A research group within the university.",
+   "TeachingAssistant(a)": "Teaching assistant role for individual a.",
+   "UndergraduateStudent(a)": "An undergraduate student.",
+   "University(a)": "A university entity.",
+   "Advisor(a, b)": "Advisor relationship between a and b.",
+   "DoctoralDegreeFrom(a, b)": "Doctoral degree obtained by a from b.",
+   "EmailAddress(a, b)": "Email address b associated with individual a.",
+   "HeadOf(a, b)": "Head of relationship between a and b.",
+   "MastersDegreeFrom(a, b)": "Masters degree obtained by a from b.",
+   "MemberOf(a, b)": "Membership of a in organization b.",
+   "Name(a, b)": "Name b associated with entity a.",
+   "PublicationAuthor(a, b)": "Publication authored by a with identifier b.",
+   "ResearchInterest(a, b)": "Research interest b of individual a.",
+   "SubOrganizationOf(a, b)": "Sub-organization relationship between a and b.",
+   "TakesCourse(a, b)": "Individual a takes course b.",
+   "TeacherOf(a, b)": "Individual a teaches course b.",
+   "TeachingAssistantOf(a, b)": "Individual a is a teaching assistant of course b.",
+   "Telephone(a, b)": "Telephone number b associated with individual a.",
+   "UndergraduateDegreeFrom(a, b)": "Undergraduate degree obtained by a from b.",
+   "WorksFor(a, b)": "Employment relationship where a works for b."
+  },
+  "output_relation": {
+   "Chair(a)": "Chair role for individual a.",
+   "Course(a)": "A course offered at the university.",
+   "Employee(a)": "An employee of the university.",
+   "Faculty(a)": "A faculty member of the university.",
+   "Lecturer(a)": "Lecturer role for individual a.",
+   "Organization(a)": "An organization within the university.",
+   "Person(a)": "A person associated with the university.",
+   "Professor(a)": "Professor role for individual a.",
+   "Publication(a)": "A publication authored by individual a.",
+   "ResearchGroup(a)": "A research group within the university.",
+   "Student(a)": "A student at the university.",
+   "TeachingAssistant(a)": "Teaching assistant role for individual a.",
+   "University(a)": "A university entity.",
+   "Work(a)": "A work entity.",
+   "DegreeFrom(a, b)": "Degree obtained by a from b.",
+   "HasAlumnus(a, b)": "Alumnus relationship between a and b.",
+   "Member(a, b)": "Membership of a in organization b.",
+   "MemberOf(a, b)": "Membership of a in organization b.",
+   "SubOrganizationOf(a, b)": "Sub-organization relationship between a and b.",
+   "WorksFor(a, b)": "Employment relationship where a works for b."
+  },
+  "question": "Perform ontology queries over the LUBM university dataset to infer roles and memberships."
+ },
+ {
+  "id": "Bigrams",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "Extract all bigrams from a given sequence of words.",
+  "input_relation": {
+   "Words(position, word)": "A word at a specific position in the sequence."
+  },
+  "output_relation": {
+   "Bigram(word1, word2)": "A bigram consisting of two adjacent words in the sequence."
+  }
+ },
+ {
+  "id": "FibNumeric",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute Fibonacci numbers up to a specified index limit, using numeric recursion.",
+  "input_relation": {
+   "Lim(n)": "Upper bound on the index of the Fibonacci numbers to compute."
+  },
+  "output_relation": {
+   "Fib(n, x)": "The Fibonacci number x at position n."
+  }
+ },
+ {
+  "id": "Josephus",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Solve the Josephus problem in which every second survivor is eliminated: report the state of the elimination ring at every step, and the survivor.",
+  "input_relation": {
+   "Relation(start, next, step, turn)": "The relation representing connections between start and next with steps and turns."
+  },
+  "output_relation": {
+   "Josephus(survivor)": "The surviving node that is mutually linked back to itself through the process.",
+   "Relation(start, next, step, turn)": "The relation representing connections between start and next with steps and turns."
+  }
+ },
+ {
+  "id": "DfaParse",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "For each string to parse, report whether the DFA accepts it, as \"Accept\" or \"Reject\".",
+  "input_relation": {
+   "Accepting(state)": "An accepting state in the DFA.",
+   "Start(state)": "A start state of the DFA.",
+   "Toparse(string)": "Input strings to parse.",
+   "Transition(from, on, to)": "The state transitions from one state to another on a token."
+  },
+  "output_relation": {
+   "Out(string, result)": "The 'Accept' or 'Reject' result of parsing the string."
+  }
+ },
+ {
+  "id": "PerfectNum",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute all perfect numbers (where the sum of divisors equals the number) up to a specified limit.",
+  "input_relation": {
+   "Lim(x)": "The upper limit for generating numbers."
+  },
+  "output_relation": {
+   "Perfect(x)": "Perfect numbers where the sum of divisors equals the number."
+  }
+ },
+ {
+  "id": "CircuitSAT",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Find satisfying assignments for a boolean circuit given its logic gates. A configuration is a number from zero up to the given maximum whose bits assign the input variables: a variable is true in a configuration exactly when the bit at that variable's index is set. Report, for each configuration that makes the circuit's output true, the input variables it sets to true.",
+  "input_relation": {
+   "CircuitAND(result, op1, op2)": "An AND gate with two operands op1 and op2 producing result.",
+   "CircuitNOT(result, op1)": "A NOT gate with operand op1 producing result.",
+   "CircuitOR(result, op1, op2)": "An OR gate with two operands op1 and op2 producing result.",
+   "CircuitResult(result)": "The output result of the circuit.",
+   "Lim(x)": "Maximum configuration number.",
+   "VarIndex(symbol, number)": "Mapping from variable to a bit index."
+  },
+  "output_relation": {
+   "Satisfy(conf, var)": "Output satisfying configurations and the input variables set to true."
+  }
+ },
+ {
+  "id": "Counter",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "For each program string, run a counter that starts at zero, adds one for each \"+\" and subtracts one for each \"-\", and report the counter's final value together with the program.",
+  "input_relation": {
+   "Torun(program)": "A program string to evaluate."
+  },
+  "output_relation": {
+   "CounterVal(counter, program)": "The value of specific operation in a given program string."
+  }
+ },
+ {
+  "id": "Func",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Output pairs of function symbols whose terms have matching arguments up to index \"3\".",
+  "input_relation": {
+   "TermHasFunc(term_id, function_sym)": "A term has a specific function symbol.",
+   "TermArg(term_id, arg_idx, arg_value)": "The argument value at a specific index for a term.",
+   "ArgIndexNext(prev_idx, next_idx)": "Order argument indice."
+  },
+  "output_relation": {
+   "FuncEqual(func1, func2)": "Pairs of function symbols with matching arguments up to index 3."
+  }
+ },
+ {
+  "id": "LinkSum",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute path distances in a weighted directed graph where a path may be extended by prepending an edge only when the pair formed by the distance so far and that edge's weight appears in the constraint table, in which case the extended distance is their sum. Report every distance obtainable this way, including the single-edge ones.",
+  "input_relation": {
+   "Edge(src_node, dst_node, weight)": "An directed edge from src_node and dst_node with weight.",
+   "Constraint(distance_so_far, edge_weight)": "A pair of weights whose sum the constraint permits, gating how a path may be extended."
+  },
+  "output_relation": {
+   "LinkSum(src_node, dst_node, weight)": "The weighted path distance from src_node to dst_node."
+  }
+ },
+ {
+  "id": "AccessPolicy",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "question": "Report which employee records each user may view, and with which fields redacted. The administrator, the user named Alice, sees every record in full. Every employee sees their own record in full, and an employee whose position is Manager also sees the full records of everyone in their own department. Beyond that, any employee sees any other employee's record with the SSN replaced by \"0\" and the salary by 0. An insurance user sees, for each person they share a log entry with on day 92311, that person's record with the SSN and salary likewise replaced, the e-mail, department and position each replaced by a single space, and only the birthday kept. The schema also carries bank and privilege tables that this query does not consult.",
+  "input_relation": {
+   "Bank1(data1, data2)": "The bank1 data records.",
+   "Bank2(data1, data2)": "The bank2 data records.",
+   "CwPriv(user, bank1_priv, bank2_priv)": "Coworker privileges assignment.",
+   "DelcwPriv(user, bank1_priv, bank2_priv)": "Delegation privilege flag.",
+   "Employee(person, ssn, salary, email, dept, position, bday)": "The employee records.",
+   "InscwPriv(user, bank1_priv, bank2_priv)": "Insurance coworker privilege flags.",
+   "Inslogtable(user, person, day)": "Insurance access log entries.",
+   "Insurance(user)": "Users in the insurance role.",
+   "ViewBank1(user, data1, data2)": "Viewable bank1 data records to user under the policy.",
+   "ViewBank2(user, data1, data2)": "Viewable bank2 data records to user under the policy.",
+   "ViewCwPriv(user, person, bank1_priv, bank2_priv)": "Viewable coworker privileges to user and person under the policy."
+  },
+  "output_relation": {
+   "ViewEmployee(user, person, ssn, salary, email, dept, position, bday)": "One row per record that `user` may see of `person`, with the fields the policy does not grant replaced as described."
+  }
+ },
+ {
+  "id": "MatrixMult",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute the multiplication result of sparse matrixs.",
+  "input_relation": {
+   "Mat1(row, col, value)": "A non-zero entry in matrix 1 at (row, col) with value.",
+   "Mat2(row, col, value)": "A non-zero entry in matrix 2 at (row, col) with value."
+  },
+  "output_relation": {
+   "Mat3(row, col, value)": "The resulting non-zero entries in the product matrix at (row, col) with value."
+  }
+ },
+ {
+  "id": "CircuitEval",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Evaluate a boolean logic circuit, where a boolean value is the symbol \"true\" or \"false\": report the value assigned to every node, and separately the values of the nodes that are not explicit inputs.",
+  "input_relation": {
+   "CircuitAND(out_gate, left_in, right_in)": "A boolean AND gate with output out_gate and inputs left_in and right_in.",
+   "CircuitNOT(out_gate, in_gate)": "A boolean NOT gate whose output is out_gate and whose input is in_gate.",
+   "CircuitOR(out_gate, left_in, right_in)": "A boolean OR gate with output out_gate and inputs left_in and right_in.",
+   "SetInput(node, value)": "Set the input node to a boolean value, written as the symbol \"true\" or \"false\"."
+  },
+  "output_relation": {
+   "CircuitAssign(node, value)": "The boolean assignment of node, as the symbol \"true\" or \"false\".",
+   "YieldOuts(node, value)": "The values of the nodes that are not explicit inputs, in the same \"true\" / \"false\" encoding."
+  }
+ },
+ {
+  "id": "WeightedDistances",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute all path distances and flag non-minimal duplicates for the same endpoints.",
+  "input_relation": {
+   "Edge(src_node, dst_node, weight)": "An directed edge from src_node and dst_node with weight."
+  },
+  "output_relation": {
+   "Reachable(src_node, dst_node, weight)": "Nodes src_node and dst_node are reachable along weighted path.",
+   "ShortestDuplicates(src_node, dst_node, weight)": "Non-minimal duplicate path distances from src_node to dst_node."
+  }
+ },
+ {
+  "id": "CourseSelection",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "From the course data, report the prerequisite relation closed under transitivity -- a course is a prerequisite of another when it is one through any chain -- and the students who have selected two or more different courses.",
+  "input_relation": {
+   "Prerequisite(pre_course, post_course)": "Course pre_course is a prerequisite for course post_course.",
+   "SelectCourse(student, course)": "The student has selected the course."
+  },
+  "output_relation": {
+   "Prerequisite(pre_course, post_course)": "Course pre_course is a prerequisite for course post_course, including transitive closure.",
+   "Student2Course(student)": "Students who have selected two courses."
+  }
+ },
+ {
+  "id": "Array",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "Given the array's length and the values placed in it, generate the array's valid indices, report the value at each index, and report the neighbourhood (left, current, right) around each element.",
+  "input_relation": {
+   "Default(null)": "A default value for missing elements.",
+   "Parameters(length)": "The length of the array.",
+   "Values(index, value)": "The values at specific indices in the array."
+  },
+  "output_relation": {
+   "Element(index, value)": "The elements in the array.",
+   "Indices(index)": "The valid indices in the array.",
+   "Neighbourhood(index, left, current, right)": "The neighborhood values around each element in the array."
+  }
+ },
+ {
+  "id": "Game",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Analyse a game given its possible moves: report the positions from which a move can be made, the position pairs reachable in an odd number of moves, the positions that reach a position with no moves available in an odd number of moves, and the positions having a move to a position that is not one of those.",
+  "input_relation": {
+   "Move(src_node, dst_node)": "A possible move from one game position to another."
+  },
+  "output_relation": {
+   "CanMove(node)": "Game positions from which a move can be made.",
+   "OddMove(src_node, dst_node)": "Positions reachable by an odd number of moves.",
+   "PossibleWinning(node)": "Positions from which a winning move is possible.",
+   "Winning(node)": "Winning positions in the game."
+  }
+ },
+ {
+  "id": "NotMatch",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Find strings that do not match \"a.*\".",
+  "input_relation": {
+   "InputData(string)": "Input strings to be filtered."
+  },
+  "output_relation": {
+   "OutputData(string)": "Strings that do not match the pattern \"a.*\"."
+  }
+ },
+ {
+  "id": "Factoring",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute the prime factorization of the numbers from one up to a specified limit.",
+  "input_relation": {
+   "Lim(x)": "Defines the upper limit for generating numbers."
+  },
+  "output_relation": {
+   "PrimeFactor(x, fc)": "Prime factors of numbers up to the specified limit."
+  }
+ },
+ {
+  "id": "Equal",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Compute the equality closure over terms linked by a successor relation, starting from the pair of first terms, and report each equal pair tagged with the label \"1\".",
+  "input_relation": {
+   "Succ(prev, curr)": "Successor relation between prev and curr."
+  },
+  "output_relation": {
+   "Equal(left, right, label)": "An equal pair with its label."
+  }
+ },
+ {
+  "id": "ShortestEdges",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Select the single shortest outgoing edge for every node in the graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node, weight)": "An directed edge from src_node and dst_node with weight."
+  },
+  "output_relation": {
+   "ShortestEdge(node, length)": "The shortest outgoing edge length of node."
+  }
+ },
+ {
+  "id": "Flights",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Find spot pairs reachable by flights of QA, VA, and by flights of QA but not by VA.",
+  "input_relation": {
+   "Flight(airline, src_spot, dst_spot)": "A flight operated by the airline from src_spot to dst_spot."
+  },
+  "output_relation": {
+   "QAflies(src_spot, dst_spot)": "Spot pairs reachable by QA flights.",
+   "VAflies(src_spot, dst_spot)": "Spot pairs reachable by VA flights.",
+   "QAonly(src_spot, dst_spot)": "Spot pairs reachable by QA flights but not by VA flights."
+  }
+ },
+ {
+  "id": "TrafficStops",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Compute stop-to-stop reachability and line-transfer opportunities at shared stops.",
+  "input_relation": {
+   "AdjacentStops(src_stop, dst_stop, line)": "A directed connection from src_stop to dst_stop on line."
+  },
+  "output_relation": {
+   "ReachableStops(src_stop, dst_stop)": "Reachability from src_stop to dst_stop via one or more adjacent steps.",
+   "TransferrableStops(src_line, dst_line, stop)": "Transferring from src_line to dst_line at stop."
+  }
+ },
+ {
+  "id": "CbaExprValue",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Determine the literal values that lambda-calculus-like terms can produce. A term's kind is \"Lit\" for a literal, \"Var\" for a variable, \"App\" for an application and \"Abs\" for an abstraction. Collect a variable's bindings over the whole program rather than per application, so a parameter used by several applications takes on every argument any of them supplies and each of those applications in turn produces all of those results.",
+  "input_relation": {
+   "Abs(abs_id, param_var_id, body_term_id)": "An abstraction with a parameter and body.",
+   "App(app_id, func_term_id, arg_term_id)": "An application of a function term to an argument term.",
+   "Kind(kind_name)": "The kinds of terms available.",
+   "Lits(lit_id, lit_value)": "Map literal ids to literal values.",
+   "Term(term_id, kind_name, payload_id)": "A term by id, its kind, and a payload reference.",
+   "Vars(var_id, var_name)": "Map variable ids to variable names."
+  },
+  "output_relation": {
+   "DataTerm(term_id, data_value)": "The data value resulting from evaluating the term."
+  },
+  "knowledge": "In the lambda calculus a literal denotes itself and an abstraction denotes itself as a function; an application evaluates its function part, then evaluates the body of the abstraction that part denotes, with the abstraction's parameter bound to the argument. A variable denotes whatever its parameter was bound to."
+ },
+ {
+  "id": "Disconnected",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Find all disconnected node pairs in a graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "Disconnected(src_node, dst_node)": "Nodes src_node and dst_node are not connected."
+  }
+ },
+ {
+  "id": "TuringMachine",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Simulate a small Turing machine to determine all reachable tape and state configurations. A transition moves the head left on \"L\" and right on \"R\", and a cell the head reaches beyond the tape's current bounds holds the blank symbol \"b\".",
+  "input_relation": {
+   "Configuration(position, state, step)": "The head position and machine state at time step.",
+   "Tape(position, symbol, step)": "The tape cell at position holding symbol at time step.",
+   "TapeLimits(step, left, right)": "The current left/right bounds of the tape at time step.",
+   "Transition(src, dst, read, write, move)": "A Turing machine transition from state src to dst reading symbol read, writing symbol write, and moving in (L or R) move."
+  },
+  "output_relation": {
+   "Configuration(position, state, step)": "The head position and machine state at time step.",
+   "Tape(position, symbol, step)": "The tape cell at position holding symbol at time step.",
+   "TapeLimits(step, left, right)": "The current left/right bounds of the tape at time step."
+  }
+ },
+ {
+  "id": "PathRecursion",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Compute the transitive closure of a graph using left and right recursive variants.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "LeftReachable(src_node, dst_node)": "Reachability from src_node to dst_node using left-recursive expansion.",
+   "RightReachable(src_node, dst_node)": "Reachability from src_node to dst_node using right-recursive expansion."
+  }
+ },
+ {
+  "id": "LabelTwoStepReach",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Report the node pairs linked by a two-step chain whose two edges carry the same label, optionally preceded by any number of two-step chains whose labels need not match, and separately the pairs obtained by following one further edge of any label from such a pair.",
+  "input_relation": {
+   "LabeledEdge(src_node, label, dst_node)": "A directed edge from src_node to dst_node with label."
+  },
+  "output_relation": {
+   "SameLabelPath(src_node, dst_node)": "Reachability from src_node to dst_node via a same-label two-step path.",
+   "ReachAfterPath(src_node, dst_node)": "Reachability from src_node to dst_node via a same-label two-step path followed by one more edge."
+  }
+ },
+ {
+  "id": "Grid",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "Given the grid's dimensions and the values placed in it, report the grid's coordinates starting at the origin, the value at each coordinate (using the supplied default where no value was placed), and the 3x3 neighbourhood around each coordinate, padding out-of-grid neighbours with the default.",
+  "input_relation": {
+   "Default(null)": "A default value for missing elements.",
+   "Parameters(row, column)": "The dimensions of the grid.",
+   "Values(row, column, value)": "The values at each position in the grid."
+  },
+  "output_relation": {
+   "Element(row, column, value)": "The elements in the grid.",
+   "Indices(row, column)": "The valid coordinates in the grid.",
+   "Neighbourhood(row, column, up_left, up, up_right, left, current, right, down_left, down, down_right)": "The 3*3 neighborhood values around each element in the grid."
+  }
+ },
+ {
+  "id": "SuccIntersect",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Starting from element 3, follow the successor chain in steps of two and in steps of three, and report the elements reached by each of the two chains and by both.",
+  "input_relation": {
+   "Succ(a, b)": "The successor relation between a and b."
+  },
+  "output_relation": {
+   "CountSecond(a)": "Elements reached by stepping two successors repeatedly.",
+   "CountThird(a)": "Elements reached by stepping three successors repeatedly.",
+   "CountAll(a)": "Elements that satisfy both CountSecond and CountThird."
+  }
+ },
+ {
+  "id": "Palindrome",
+  "category": "knowledge_discovery",
+  "sub_category": "string_sequence_analysis",
+  "question": "Detect if a given sequence of elements forms a palindrome.",
+  "input_relation": {
+   "Length(string_id, length)": "The length of the string with id string_id.",
+   "String(string_id, left_pos, character, right_pos)": "A character at position left_pos in string string_id points to position right_pos."
+  },
+  "output_relation": {
+   "Palindrome(string_id)": "Indicates that the string with id string_id is a palindrome."
+  }
+ },
+ {
+  "id": "Planar",
+  "category": "graph_analytics",
+  "sub_category": "topology_structure",
+  "question": "Find pairs of line segments in a geometric graph that intersect without sharing an endpoint, reporting each pair once with the segment whose start point is lexicographically smaller first.",
+  "input_relation": {
+   "Edge(x1, y1, x2, y2)": "A line segment between points (x1, y1) and (x2, y2)."
+  },
+  "output_relation": {
+   "Planar(x1, y1, x2, y2, x3, y3, x4, y4)": "Line segments (x1, y1)-(x2, y2) and (x3, y3)-(x4, y4) intersect without sharing a node."
+  }
+ },
+ {
+  "id": "ShortestPath",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute the shortest paths between node pairs in a weighted directed graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node, weight)": "An directed edge from src_node and dst_node with weight."
+  },
+  "output_relation": {
+   "ShortestPath(src_node, dst_node, weight)": "The shortest path from src_node to dst_node with total weight."
+  }
+ },
+ {
+  "id": "Degree",
+  "category": "graph_analytics",
+  "sub_category": "topology_structure",
+  "question": "Report, for each node that has at least one incoming edge, its in-degree, and for each node that has at least one outgoing edge, its out-degree.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "InDegree(node, degree)": "The in-degree of the node.",
+   "OutDegree(node, degree)": "The out-degree of the node."
+  }
+ },
+ {
+  "id": "Movies",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "From the movie data, derive each actor's rating, pair every movie title with its actors, and list the movies associated with Joe Bloggs.",
+  "input_relation": {
+   "Actors(actor_id, name)": "Actors with their IDs and names.",
+   "Movie(id, title, rating)": "Movies with their IDs, titles, and ratings.",
+   "MovieActors(movie_id, actor_id)": "Relations between movies and actors."
+  },
+  "output_relation": {
+   "ActorsRatings(name, rating)": "Ratings of actors.",
+   "JoeBloggsMovies(title)": "Movies associated with Joe Bloggs.",
+   "MovieActorsText(title, actor_name)": "Movie titles paired with actors."
+  }
+ },
+ {
+  "id": "Andersen",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute inclusion-based points-to analysis for C programs.",
+  "input_relation": {
+   "AddressOf(var_ptr, var)": "var_ptr points to the address of var.",
+   "Assign(var_dst, var_src)": "var_dst is assigned the value of var_src.",
+   "Load(var_dst, var_addr)": "var_dst is loaded from the address in var_addr.",
+   "Store(var_src, var_addr)": "var_src is stored into the address in var_addr."
+  },
+  "output_relation": {
+   "PointsTo(var_ptr, var)": "var_ptr may point to var."
+  }
+ },
+ {
+  "id": "Tak",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Evaluate the Tak function at (n, 0, n+1) over the integer domain that starts at -8 and extends up to a specified limit, and report for each n from 0 to 9 the number of recursive calls the evaluation takes, not the value it returns.",
+  "input_relation": {
+   "Lim(n)": "Upper bound on the naturals the Tak recursion ranges over."
+  },
+  "output_relation": {
+   "Query(n, q)": "Each n from 0 to 9 with the number of recursive calls the Tak evaluation takes."
+  }
+ },
+ {
+  "id": "Orbits",
+  "category": "knowledge_discovery",
+  "sub_category": "natural_reasoning",
+  "question": "Classify orbiting bodies into planets, satellites and find intermediate orbit relations in an orbit graph..",
+  "input_relation": {
+   "Orbits(src_body, dst_body)": "A directed orbit relation from src_body to dst_body.",
+   "Star(body)": "A star in the system."
+  },
+  "output_relation": {
+   "Intermediate(src_body, dst_body)": "The orbit from src_body and dst_body is indirect via another body.",
+   "Planet(src_body)": "The src_body orbits a star without any intermediate body.",
+   "Satellite(src_body, dst_body)": "The src_body orbits the non-star dst_body without any intermediate body."
+  }
+ },
+ {
+  "id": "FibSymbolic",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute Fibonacci numbers, with addition taken from the given value domain's addition table.",
+  "input_relation": {
+   "Succ(a, b)": "The successor relation between a and b.",
+   "PlusMod(x, y, r)": "The addition table of the symbolic value domain: PlusMod(x, y, r) holds when x plus y is r in that domain. The table is finite and wraps around, so sums are taken within it rather than over unbounded integers."
+  },
+  "output_relation": {
+   "Fib(x, y)": "The Fibonacci number y at position x."
+  }
+ },
+ {
+  "id": "Centroids",
+  "category": "graph_analytics",
+  "sub_category": "topology_structure",
+  "question": "Compute the centroids of an undirected tree.",
+  "input_relation": {
+   "Edge(u_node, v_node)": "An undirected edge connecting u_node and v_node."
+  },
+  "output_relation": {
+   "Centroid(node)": "A node that is a centroid of the tree."
+  }
+ },
+ {
+  "id": "Speed",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "A neighbour makes progress when its distance to the sink is smaller than the current node's, and the speed it offers is that progress divided by the delay of reaching it; the neighbour is feasible when that speed is at least the current node's distance divided by its deadline. Report each feasible neighbour with its progress, its delay and its identifier, and separately the identifier of the neighbour offering the highest speed together with that speed.",
+  "input_relation": {
+   "CurrentNode(distance_to_sink, deadline)": "The current node's distance to destination and deadline.",
+   "NeighborNode(distance_to_sink, delay_to_neighbor, id)": "A neighboring node's distance to destination, delay to reach it, and its identifier."
+  },
+  "output_relation": {
+   "CandidateNode(progress, delay_to_neighbor, id)": "A neighbour that satisfies the speed feasibility constraint, with the progress it makes towards the sink.",
+   "NextHop(id, speed)": "The identifier of the next hop node and the maximum feasible speed to it."
+  }
+ },
+ {
+  "id": "Catalan",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute the Catalan numbers indexed from zero up to a specified limit.",
+  "input_relation": {
+   "Lim(n)": "An upper limit for natural numbers."
+  },
+  "output_relation": {
+   "Catalan(n, v)": "The nth Catalan number v."
+  }
+ },
+ {
+  "id": "TicTacToe",
+  "category": "formal_reasoning",
+  "sub_category": "games_simulation",
+  "question": "Given one or more tic-tac-toe positions, where the two players are \"X\" and \"O\" and an unplayed cell holds a single space, explore the games reachable from them and report the positions whose outcome is already decided, together with the player to move and the winner that player cannot avoid.",
+  "input_relation": {
+   "Player(player)": "A player in the game, (e.g., \"X\", \"O\").",
+   "Other(p, q)": "The other player of p is q.",
+   "Cell(cell)": "A cell in the tic-tac-toe board (e.g., \" \", \"X\", \"O\").",
+   "ReachableState(r1c1, r1c2, r1c3, r2c1, r2c2, r2c3, r3c1, r3c2, r3c3, turn)": "A reachable game state with cell values and the player whose turn it is."
+  },
+  "output_relation": {
+   "DecidedGames(r1c1, r1c2, r1c3, r2c1, r2c2, r2c3, r3c1, r3c2, r3c3, player, winner)": "Games where the winner is decided for a given reachable state."
+  }
+ },
+ {
+  "id": "Ackermann",
+  "category": "formal_reasoning",
+  "sub_category": "arithmetic_number_theory",
+  "question": "Compute the values of the Ackermann function using recursive relations.",
+  "input_relation": {
+   "GreaterThanZ(a)": "Number a is greater than zero.",
+   "Succ(a, b)": "The successor relation between a and b."
+  },
+  "output_relation": {
+   "Ack(a, b, c)": "The Ackermann function value for inputs a and b is c."
+  },
+  "knowledge": "Numbers are given only through the successor relation: Succ(a, b) means b is the number immediately after a. In this encoding zero is written 0 and one is written 1, and GreaterThanZ(a) holds exactly for the numbers greater than zero."
+ },
+ {
+  "id": "DfaLiveVars",
+  "category": "program_analysis",
+  "sub_category": "data_control_flow",
+  "question": "Compute the live-variable dataflow facts for entry and exit points in a control-flow graph.",
+  "input_relation": {
+   "CfEdge(src_point, dst_point)": "A control-flow edge from src_point to dst_point.",
+   "Def(point, variable)": "Variable defined at the program point.",
+   "Use(point, variable)": "Variable used at the program point."
+  },
+  "output_relation": {
+   "LiveVarsIn(point, variable)": "Variable is live at the entry of the program point.",
+   "LiveVarsOut(point, variable)": "Variable is live at the exit of the program point."
+  }
+ },
+ {
+  "id": "NumericGraph",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Find strictly increasing paths over a directed numeric graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "Increasing(src_node, dst_node)": "There is a path from node1 to node2 where node values strictly increase along the path."
+  }
+ },
+ {
+  "id": "PointstoJava",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute a context-insensitive points-to analysis for Java variables -- one that does not distinguish the call sites a method is reached through -- and report every heap object each variable may point to.",
+  "input_relation": {
+   "AssignLocal(var_assigned, var_assigned_to, method)": "A local variable assignment from var_assigned to var_assigned_to in method.",
+   "ActualParam(index, callsite, var)": "The actual parameter var at position index for the callsite.",
+   "AssignReturnValue(callsite, var)": "The variable var assigned the return value of the callsite.",
+   "ThisVar(method, var)": "The 'this' variable var in the method.",
+   "DirectSuperclass(subclass, superclass)": "The direct superclass relationship between subclass and superclass.",
+   "DirectSuperinterface(type, interface)": "The direct superinterface relationship between type and interface.",
+   "SpecialMethodInvocationSignature(callsite, method)": "The special method invocation from callsite to method.",
+   "StaticMethodInvocationSignature(callsite, method)": "The static method invocation from callsite to method.",
+   "VirtualMethodInvocationSignature(callsite, method)": "The virtual method invocation from callsite to method.",
+   "VirtualMethodInvocationBase(callsite, var)": "The base variable var for the virtual method invocation at callsite.",
+   "SpecialMethodInvocationBase(callsite, var)": "The base variable var for the special method invocation at callsite.",
+   "FormalParam(index, method, var)": "The formal parameter var at position index for the method.",
+   "VarType(var, type)": "The type of variable var.",
+   "AssignCast(cast_type, var_from, var_to, method)": "A cast from var_from to var_to of type cast_type in method.",
+   "AssignHeapAllocation(heap, var, method)": "The variable var is assigned a heap allocation heap in method.",
+   "HeapAllocationType(heap, type)": "The type of the heap allocation heap.",
+   "DirectFieldIndexSignature(class, index, field)": "The field signature for field at index in class.",
+   "ReturnVar(var, method)": "The return variable var of the method.",
+   "LoadInstanceFieldIndex(var, field, var_assigned_to, method)": "Loading from instance field field of variable var into var_assigned_to in method.",
+   "StoreInstanceFieldIndex(var_stored, var, field, method)": "Storing variable var into instance field field of variable var_stored in method."
+  },
+  "output_relation": {
+   "VarPointsTo(var, heap)": "The variable var may point to the heap allocation heap."
+  },
+  "knowledge": "A points-to analysis propagates heap objects along interprocedural value flow: local assignments, each actual argument reaching the matching formal parameter at a call, a method's return value reaching the variable that receives it, and a call's base object reaching the callee's own reference. A cast lets an object through only when the object's type is the cast's type or a subtype of it, subtyping running through chains of superclasses and through directly declared interfaces. Field access is resolved by aliasing: two variables through which a field is read and written may denote the same object when their points-to sets meet and their declared types are comparable, and a value written to a field is then visible to a read of that field through the other."
+ },
+ {
+  "id": "MinPathEnum",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Compute shortest paths between all node pairs by enumerating paths and filtering out non-minimal weights in an undirected graph.",
+  "input_relation": {
+   "Edge(u_node, v_node, weight)": "An undirected edge connecting u_node and v_node with weight."
+  },
+  "output_relation": {
+   "ShortestPath(u_node, v_node, weight)": "The shortest path from u_node to v_node with total weight."
+  }
+ },
+ {
+  "id": "MinSpanTree",
+  "category": "graph_analytics",
+  "sub_category": "topology_structure",
+  "question": "Compute the total weight of a minimum spanning tree using Prim's algorithm.",
+  "input_relation": {
+   "Graph(u_node, v_node, weight)": "An undirected edge connecting u_node and v_node with weight."
+  },
+  "output_relation": {
+   "MinimumSpanningTree(weight)": "The total weight of the minimum spanning tree."
+  }
+ },
+ {
+  "id": "GetBean",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Identify Spring-style bean definitions and their target classes by parsing XML configuration attributes and parentage.",
+  "input_relation": {
+   "BeanElement(id)": "An XML element representing a Spring bean definition.",
+   "PropertyElement(id)": "An XML element representing a property within a Spring bean definition.",
+   "EntryElement(id)": "An XML element representing an entry within a property definition.",
+   "XmlAttribute(id, name, value)": "An XML attribute with a unique identifier, name, and value.",
+   "XmlParent(child_id, parent_id)": "A parent-child relationship between two XML elements."
+  },
+  "output_relation": {
+   "BeanDef(class_name, p_name, k_name)": "A Spring-style bean definition with its target class and properties."
+  },
+  "knowledge": "In Spring's XML configuration a <bean> element's class attribute names the class it instantiates, a <property> element's name attribute names the property being set, and inside a map-valued property each <entry> element's key attribute names one map key."
+ },
+ {
+  "id": "RPC",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Identify RPC endpoints and call sites by analyzing XML element metadata and their structural relationships.",
+  "input_relation": {
+   "XmlElement(id, name)": "An XML element with a unique identifier and its name.",
+   "XmlAttribute(id, name, value)": "An XML attribute with a unique identifier, name, and value.",
+   "XmlParent(child_id, parent_id)": "A parent-child relationship between two XML elements."
+  },
+  "output_relation": {
+   "RpcInfo(value)": "Information about an RPC endpoint identified by its service bean value."
+  },
+  "knowledge": "In SOFA's XML configuration a <mobileService> element declares a remote service and its serviceBean attribute names the bean that implements it. A <sofa:extension> element carries the extension configuration that applies to the service it sits under."
+ },
+ {
+  "id": "GetImportSpringFrameworkFileJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Find Java files that contain import statements referencing the Spring Framework packages.",
+  "input_relation": {
+   "JavaImport(import_id, name, file_id)": "A Java import statement with a unique identifier, the imported name, and the file it belongs to.",
+   "JavaFile(file_id, file_path)": "A Java file with a unique identifier and its path."
+  },
+  "output_relation": {
+   "ImportStatement(name, file_path)": "A Java import statement that references the Spring Framework, along with the path of the file it is in."
+  },
+  "knowledge": "Spring Framework classes live under package names containing \"springframework\" (org.springframework.*), so an import naming one identifies a file that uses the framework."
+ },
+ {
+  "id": "ClassHierarchy",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Find all class and the inheritances including parent class inheritance and ancestor class inheritance.",
+  "input_relation": {
+   "ClassInfo(class_id, class_name)": "Information about a class, including its unique identifier and name.",
+   "ClassInheritance(child_id, parent_id)": "A direct inheritance relationship where the class with child_id inherits from the class with parent_id."
+  },
+  "output_relation": {
+   "ClassHierarchy(class_name, super_class_name)": "A class hierarchy relationship where class_name is a subclass (directly or indirectly) of super_class_name."
+  }
+ },
+ {
+  "id": "GetMybatisDOClass",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Identify MyBatis Data Object classes based on Java class names and XML usage patterns.",
+  "input_relation": {
+   "JavaClass(class_id, class_name)": "Information about a Java class, including its unique identifier and name.",
+   "XmlElement(id, name)": "An XML element with a unique identifier and its name.",
+   "XmlAttribute(id, name, value)": "An XML attribute with a unique identifier, name, and value."
+  },
+  "output_relation": {
+   "DoClass(class_name)": "A MyBatis Data Object class identified by its name."
+  },
+  "knowledge": "In a MyBatis mapper XML a <resultMap> element describes how a query's columns map onto a Java class, and its type attribute holds the fully qualified name of that class. Such a class is the mapping's data object."
+ },
+ {
+  "id": "ChangeEffect",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Find the code entities that are potentially impacted by a set of changes, based on function locations, call sites, and enclosing scopes.",
+  "input_relation": {
+   "CallSite(expr, callee)": "A call site where expr calls callee.",
+   "EnclosingScope(expr, caller)": "The function caller encloses the expression expr.",
+   "FuncSymbol(func_id, signature)": "The signature of the function with func_id.",
+   "FuncLocation(func_id, file_path, start_line, end_line)": "The location of the function with func_id."
+  },
+  "output_relation": {
+   "FuncSrcEff(src, src_sig, src_path, src_sl, src_el, eff, eff_sig, eff_path, eff_sl, eff_el)": "The source function and the effected function with their signatures and locations."
+  }
+ },
+ {
+  "id": "CommentCodePairsJavaScript",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Map JavaScript functions to their associated comments by analyzing AST node types and parentage.",
+  "input_relation": {
+   "JsFunction(func_id, type, text)": "Information about a JavaScript function, including its unique identifier, type (e.g., \"FunctionDeclaration\", \"FunctionExpression\", \"ArrowFunction\"), and text content.",
+   "JsNodeComment(node_id, comment_id)": "A relationship indicating that a comment with comment_id is associated with the AST node with node_id.",
+   "JsAstParent(child_id, parent_id)": "A parent-child relationship between two AST nodes in the JavaScript code.",
+   "JsNodeType(node_id, type)": "The type of an AST node (e.g., \"VariableStatement\", \"PropertyDeclaration\").",
+   "JsComment(comment_id, comment_text)": "Information about a JavaScript comment, including its unique identifier and text content."
+  },
+  "output_relation": {
+   "CmtCodePair(method_text, comment_text)": "Pairs of JavaScript function text and their associated comment text."
+  },
+  "knowledge": "In this TypeScript-flavoured JavaScript AST vocabulary a function written as a value has node type FunctionExpression or ArrowFunction. Such a function is not itself the declaration a comment attaches to: VariableStatement is the statement node that wraps a variable declaration, and PropertyDeclaration is a class property."
+ },
+ {
+  "id": "POM",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Extract Maven POM dependency and artifact information from XML character and element data.",
+  "input_relation": {
+   "XmlCharacter(id, text, element_id)": "An XML character data with a unique identifier, its text content, and the associated XML element ID.",
+   "XmlElement(id, name, parent_id, file_id)": "An XML element with a unique identifier, its name, parent element ID, and the file it belongs to.",
+   "PomFile(file_id, file_name)": "A Maven POM file with a unique identifier and its name."
+  },
+  "output_relation": {
+   "PomInfo(file_name, group_id, version, artifact_id)": "Information about a Maven dependency extracted from the POM file, including the file name, group ID, version, and artifact ID."
+  },
+  "knowledge": "In a Maven POM a <dependency> element identifies the artifact it depends on through its child elements groupId, artifactId and version -- the three coordinates that name a Maven artifact."
+ },
+ {
+  "id": "ASTPrintPython",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Print the parent-child edges of the Python Abstract Syntax Tree. Each edge carries the file path, the parent's distance from the file's root, and for both nodes their identifier, type, printed form and location. The parent's printed form is its type when it is a statement or an expression spanning more than four lines, and its content otherwise; the child's printed form is always its content.",
+  "input_relation": {
+   "FileRelPath(id, path)": "Maps file IDs to their respective file paths.",
+   "FileRoot(file_id, root_id)": "Identifies the root node of the AST for each file.",
+   "AstParent(child_id, parent_id)": "Defines parent-child relationships between AST nodes.",
+   "NodeType(id, type)": "Specifies the type of each AST node.",
+   "NodeContent(id, content)": "Provides the content of each AST node.",
+   "AstLocation(id, line, col)": "Gives the location (line and column) of each AST node.",
+   "IsStatement(id)": "Indicates whether a node is a statement.",
+   "IsExpression(id)": "Indicates whether a node is an expression.",
+   "NodeLineCount(id, line_cnt)": "Specifies the number of lines spanned by a node."
+  },
+  "output_relation": {
+   "ParentChildEdge(file_path, depth, parent, parent_kind, parent_content, parent_line, parent_column, child, child_kind, child_content, child_line, child_column)": "One row per parent-child pair, carrying the file path, the parent's depth, and the identifier, type, printed form and location of each node."
+  }
+ },
+ {
+  "id": "FanInJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Compute the number of callers for Java methods based on the method call graph.",
+  "input_relation": {
+   "JavaMethod(id, signature)": "Information about Java methods, including their unique identifier and signature.",
+   "MethodCall(caller_id, callee_id)": "A call from caller_id to callee_id."
+  },
+  "output_relation": {
+   "FanIn(count, signature)": "The number of callers for each Java method identified by its signature."
+  }
+ },
+ {
+  "id": "CyclomaticComplexityPython",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Calculate the cyclomatic complexity for Python functions based on their file path and defined metrics.",
+  "input_relation": {
+   "MetricFunction(id, name, value, file_id, start_line, end_line)": "Represents a metric function with its name, value, associated file ID, and line range.",
+   "FilePath(file_id, path)": "Maps file IDs to their respective file paths."
+  },
+  "output_relation": {
+   "CycloComplexity(name, value, path, s_line, e_line)": "Tuples representing the cyclomatic complexity of Python functions along with their file path and location."
+  }
+ },
+ {
+  "id": "CommentRatioJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Compute the comment-to-code ratio for Java files. The elements that count are the public classes, interfaces, fields, enum constants and constructors, together with the public methods that are neither declared inside an anonymous class nor inherited. An element counts as documented when a Javadoc names it as its owner, when an unowned Javadoc -- one whose owner is 0 -- ends on the line directly above it, or when a comment ends on the line directly above it or begins on the element's own first line -- except that a comment starting directly below a Javadoc belongs to that Javadoc and does not count. Report the documented fraction multiplied by 1000 as a whole number, or -1 when no element counts.",
+  "input_relation": {
+   "JavaAnnotation(id, name)": "Associates a Java element with its annotations.",
+   "JavaElement(id, type, parent_id, file_id, start_line, end_line)": "Information about Java elements including their type and location.",
+   "JavaDoc(id, file_id, start_line, end_line, owner_id)": "Information about Javadoc comments including their location and associated element.",
+   "JavaModifier(id, modifier)": "Associates a Java element with its modifiers.",
+   "JavaAnonymousClass(id, parent_id)": "Identifies anonymous classes and their parent elements.",
+   "JavaComment(id, file_id, start_line, end_line)": "Information about comments including their location."
+  },
+  "output_relation": {
+   "CommentRatio(ratio)": "The comment-to-code ratio for Java files, multiplied by 1000 for precision. A value of -1 indicates no code elements were found."
+  },
+  "knowledge": "In this Java element vocabulary an element's type is one of Class, Interface, Field, EnumConstant, Method or Constructor, and its modifiers are the Java keywords, so a publicly visible element carries the modifier \"public\". An annotation is named by its fully qualified name, so the override annotation appears as \"java.lang.Override\"; a method carrying it is inherited rather than newly declared, and a method declared inside an anonymous class has no name of its own to document."
+ },
+ {
+  "id": "CommentCodePairsPython",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Pair Python functions with their associated docstrings or comments.",
+  "input_relation": {
+   "PyFunction(func_id, signature, method_text)": "Information about Python functions, including their unique identifier, signature, and method text.",
+   "PyDocstring(id, text, owner)": "A docstring with its own identifier and text, attached to the element identified by owner.",
+   "PyComment(id, text, owner)": "A comment with its own identifier and text, attached to the element identified by owner."
+  },
+  "output_relation": {
+   "CmtCodePair(method_text, comment_text, signature)": "Pairs of Python function method text and their associated comment text along with the function signature."
+  }
+ },
+ {
+  "id": "ASTPrintJavaScript",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Print the parent-child edges of the JavaScript Abstract Syntax Tree using node location, type, and syntax kind metadata.",
+  "input_relation": {
+   "File(id, path)": "File identifier and its corresponding file path.",
+   "Location(id, file_id, sline, eline)": "Location identifier, associated file ID, and start/end lines.",
+   "Node(id, kind_id, parent_id, index, location_id)": "AST Node identifier, kind identifier, parent node ID, index among siblings, and location ID.",
+   "SyntaxKind(id, name)": "Syntax kind identifier and its corresponding name."
+  },
+  "output_relation": {
+   "ParentChildEdge(file_path, parent_id, parent_kind, parent_start_line, parent_end_line, child_id, child_kind, child_start_line, child_end_line, index)": "Edges representing parent-child relationships in the AST along with their metadata."
+  }
+ },
+ {
+  "id": "CyclomaticComplexityJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Calculate the cyclomatic complexity for Java methods by analyzing AST node types and their parent-child relationships.",
+  "input_relation": {
+   "AstNodeType(id, type)": "Associates an AST node with its type.",
+   "AstParent(child_id, parent_id)": "Defines parent-child relationships between AST nodes.",
+   "JavaMethod(id, signature)": "Information about Java methods, including their unique identifier and signature."
+  },
+  "output_relation": {
+   "CycloComplexity(score, signature)": "The cyclomatic complexity score for a Java method along with its signature."
+  },
+  "knowledge": "Cyclomatic complexity counts a method's decision points, plus one. In this Java AST vocabulary the node types that constitute a decision point are IfStatement, ForStatement, EnhancedForStatement, WhileStatement, DoStatement, SwitchCase, CatchClause and ConditionalExpression."
+ },
+ {
+  "id": "CommentCodePairsJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Pair each Java callable with the comment text attached to it, leaving out every callable in an auto-generated file. A file counts as auto-generated when its path contains one of the given folder patterns, when one of its comments or Javadocs contains one of the given keywords, or when it carries a generated-code annotation. A callable's comment is the Javadoc that names it as its owner, an unowned Javadoc -- one whose owner is 0 -- that ends on the line directly above it, or a comment that ends on the line directly above it.",
+  "input_relation": {
+   "AnnotationInfo(file_id, name, arg_value)": "A generated-code annotation carried by the file, with its name and argument value.",
+   "CommentInfo(id, text, file_id, start_line, end_line)": "Information about comments in Java files, including their text content and location.",
+   "FolderFilter(pattern)": "Patterns used to identify auto-generated files based on their paths.",
+   "JavaFile(id, path)": "Information about Java files, including their unique identifier and file path.",
+   "JavadocInfo(id, text, file_id, start_line, end_line, owner_id)": "Information about Javadoc comments in Java files, including their text content and location.",
+   "KeywordFilter(key)": "Keywords used to identify auto-generated files based on comment or Javadoc content.",
+   "CallableInfo(cid, signature, method_text, file_id, c_start)": "Information about callable entities (methods/functions) in Java files, including their signature, source code text, and location."
+  },
+  "output_relation": {
+   "CmtCodePair(signature, method_text, comment_text)": "Pairs of Java method signatures, their source code text, and associated comment text."
+  },
+  "knowledge": "In Java, sources emitted by a code generator are marked with the javax.annotation.Generated annotation, whose argument names the generator."
+ },
+ {
+  "id": "GetTotalNumberOfLinesOfCodeJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Compute the total lines of code for Java methods across different files and modules.",
+  "input_relation": {
+   "JavaLocation(id, start_line, end_line)": "Information about the location of Java methods, including their start and end lines.",
+   "JavaMethod(id, signature)": "Information about Java methods, including their unique identifier and signature.",
+   "JavaModifier(id, modifier)": "Associates a Java method with its modifiers, such as 'abstract'."
+  },
+  "output_relation": {
+   "TotalNumberOfLinesOfCode(signature, loc)": "The total lines of code for a Java method identified by its signature."
+  },
+  "knowledge": "In Java the \"abstract\" modifier marks a method that declares a signature but carries no body, so such a method contributes no lines of code."
+ },
+ {
+  "id": "MethodComment",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "For every declared class and function, report its type, name and location together with a flag that is 1 when a docstring or a comment is attached to it and 0 otherwise.",
+  "input_relation": {
+   "ClassDecl(id, name)": "Represents the declaration of a class with its unique identifier and name.",
+   "FunctionDecl(id, name)": "Represents the declaration of a function with its unique identifier and name.",
+   "DocstringLink(comment_id, element_id)": "Associates a docstring comment with a specific code element.",
+   "CommentLink(comment_id, element_id)": "Associates a normal comment with a specific code element.",
+   "ElementLocation(id, file_path, start_line, end_line)": "Provides the location of a code element in terms of file path and line numbers.",
+   "ElementType(id, type)": "Specifies the type of a code element (e.g., class, function)."
+  },
+  "output_relation": {
+   "CodeInfo(type, name, path, s_line, e_line, has_comment)": "Information about declared code elements, including their type, name, location, and whether a docstring or comment is attached (1 for yes, 0 for no)."
+  }
+ },
+ {
+  "id": "DocumentedPercentage",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Calculate the percentage of documented code entities (classes and functions) among all those defined, counting an entity once however many docstrings or comments it carries. Report the percentage multiplied by 1000 as a whole number, or -1 when no code entities were found.",
+  "input_relation": {
+   "ClassDef(id)": "Represents the definition of a class with its unique identifier.",
+   "FunctionDef(id)": "Represents the definition of a function with its unique identifier.",
+   "DocstringComment(id, element_id)": "Associates a docstring comment with a specific code element.",
+   "NormalComment(id, element_id)": "Associates a normal comment with a specific code element."
+  },
+  "output_relation": {
+   "GetDocumentedPercentage(percentage)": "The percentage of documented code entities, multiplied by 1000 for precision. A value of -1 indicates no code entities were found."
+  }
+ },
+ {
+  "id": "ClassMethods",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Find all methods declared in each class.",
+  "input_relation": {
+   "ClassInfo(class_id, class_name)": "Provides the mapping of class IDs to their names.",
+   "MethodInfo(method_id, method_name)": "Provides the mapping of method IDs to their names.",
+   "ClassMethod(class_id, method_id)": "Associates methods with their respective classes."
+  },
+  "output_relation": {
+   "Methods(class_name, method_name)": "Pairs of class names and their declared method names."
+  }
+ },
+ {
+  "id": "UnusedMethod",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Find methods that are defined in the codebase but are never targeted by any call binding.",
+  "input_relation": {
+   "MethodInfo(method_id, signature)": "Information about methods, including their unique identifier and signature.",
+   "MethodCallBinding(callsite_id, callee_id)": "Represents a call binding from a call site to a method."
+  },
+  "output_relation": {
+   "UnusedMethod(signature)": "Signatures of methods that are defined but never called in the codebase."
+  }
+ },
+ {
+  "id": "CyclomaticComplexityJavaScript",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Calculate the cyclomatic complexity for JavaScript functions based on their location and structural info.",
+  "input_relation": {
+   "FileInfo(file_id, file_path)": "Information about JavaScript files, including their unique identifier and file path.",
+   "FunctionInfo(func_id, function_name, complexity)": "Information about JavaScript functions, including their unique identifier, name, and cyclomatic complexity.",
+   "NodeLocation(func_id, file_id, start_line, end_line)": "Location information for JavaScript functions, including their associated file ID and start/end lines."
+  },
+  "output_relation": {
+   "CycloComplexity(file_path, function_name, complexity, start_line, end_line)": "Tuples representing the cyclomatic complexity of JavaScript functions along with their file path and location."
+  }
+ },
+ {
+  "id": "CallChainWithPathFilter",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Print the call chains between callables, leaving out every callable defined in a file whose path contains the filter pattern: report a caller/callee signature pair for each pair of remaining callables where the caller reaches the callee through one or more call edges.",
+  "input_relation": {
+   "Callable(callable_id, signature)": "Maps callable IDs to their signatures.",
+   "CallableFile(callable_id, file_id)": "Associates callables with their defining file IDs.",
+   "CallEdge(caller_id, callee_id)": "Represents a call from one callable to another.",
+   "FilePath(file_id, path)": "Maps file IDs to their respective file paths.",
+   "FilterPattern(pattern)": "Defines a pattern used to filter files based on their paths."
+  },
+  "output_relation": {
+   "OutputSignature(caller_signature, callee_signature)": "Pairs of caller and callee signatures for callables that are reachable and not filtered by the specified file path pattern."
+  }
+ },
+ {
+  "id": "CyclomaticComplexityGo",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Report the cyclomatic complexity of Go functions along with their file name and location, leaving out the functions in files marked as auto-generated.",
+  "input_relation": {
+   "GoFile(file_id, file_name, is_generated)": "Information about Go files, including their unique identifier, name, and whether they are auto-generated.",
+   "GoFunction(func_id, func_name, file_id, cmplx)": "Information about Go functions, including their unique identifier, name, associated file ID, and cyclomatic complexity.",
+   "FunctionLocation(func_id, start_line, end_line)": "Location information for Go functions, including their start and end lines."
+  },
+  "output_relation": {
+   "CycloComplexity(file_name, func_name, complexity, start_line, end_line)": "Tuples representing the cyclomatic complexity of Go functions along with their file name and location."
+  }
+ },
+ {
+  "id": "CallChainWithSignature",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Print the call chains leading to the callables with the checked signatures: a callable counts as relevant when it is one of those callables or can reach one by following call edges. For every call edge between two relevant callables that are both methods, report the two method names with their class names.",
+  "input_relation": {
+   "CallableInfo(id, signature, name)": "Information about callables including their unique identifier, signature, and name.",
+   "CallEdge(caller_id, callee_id)": "Edges representing calls from caller to callee in the call graph.",
+   "CheckedSignature(signature)": "A specific signature used to identify target callables for the call chain analysis.",
+   "IsMethod(id)": "Predicate indicating whether a callable ID corresponds to a method.",
+   "MethodClass(id, class_name)": "Associates a method ID with its class name."
+  },
+  "output_relation": {
+   "GetCallGraph(call_name, call_class_name, callee_name, callee_class_name)": "Tuples representing the call graph with caller and callee names along with their respective class names for methods that are reachable from the specified target callables."
+  }
+ },
+ {
+  "id": "FanOutJava",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Compute the number of callees for Java methods based on the method call graph.",
+  "input_relation": {
+   "JavaMethod(id, signature)": "Information about Java methods, including their unique identifier and signature.",
+   "MethodCall(caller_id, callee_id)": "Represents a method call from caller_id to callee_id."
+  },
+  "output_relation": {
+   "FanOut(count, signature)": "The number of callees for each Java method identified by its signature."
+  }
+ },
+ {
+  "id": "CallChain",
+  "category": "program_analysis",
+  "sub_category": "code_metrics",
+  "question": "Print the call chains starting from the callables with the specified signatures: report a caller/callee signature pair for every call edge whose caller is one of those callables or is reachable from one by following call edges forward.",
+  "input_relation": {
+   "CallableInfo(id, signature)": "Information about callables including their unique identifier and signature.",
+   "CallEdge(caller_id, callee_id)": "Edges representing calls from caller to callee in the call graph.",
+   "SpecifiedSignature(signature)": "A specific signature used to identify root callables for the call chain analysis."
+  },
+  "output_relation": {
+   "OutputSignature(caller_sig, callee_sig)": "Pairs of caller and callee signatures that are reachable from the specified root callables."
+  }
+ },
+ {
+  "id": "Traffic",
+  "category": "knowledge_discovery",
+  "sub_category": "relational_queries",
+  "question": "Find the pairs of roads that can collide, meaning they intersect and both show a green signal, and the roads that actually crash, meaning the road carries traffic and can collide with another road that also carries traffic.",
+  "input_relation": {
+   "GreenSignal(road)": "Indicates that the road has a green traffic signal.",
+   "HasTraffic(road)": "Indicates that there is traffic on the road.",
+   "Intersect(road_a, road_b)": "Indicates that road_a intersect road_b."
+  },
+  "output_relation": {
+   "Crashable(road_a, road_b)": "Indicates that road_a and road_b can collide: they intersect and both show a green signal.",
+   "Crashes(road)": "Indicates that a road crashes with some other road."
+  }
+ },
+ {
+  "id": "UnionFind",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Find all element pairs that belong to the same set after disjoint set operations.",
+  "input_relation": {
+   "Equal(x, y)": "Elements x and y are equal.",
+   "Union(x, y)": "Merge the sets containing x and y.",
+   "Find(x, y)": "Return y as the representative of the set containing x."
+  },
+  "output_relation": {
+   "SameSet(x, y)": "Elements x and y are in the same set."
+  }
+ },
+ {
+  "id": "RevSameGen",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "Find people in the same generation by lifting through a shared ancestor/descendant link based on initial same-generation relations.",
+  "input_relation": {
+   "Flat(person1, person2)": "A base same-generation relation between person1 and person2.",
+   "Down(person1, person2)": "A descendant link from person1 to person2.",
+   "Up(person1, person2)": "A ancestor link from person1 to person2."
+  },
+  "output_relation": {
+   "RevSameGen(person1, person2)": "Indicates that person1 and person2 are in the same generation."
+  }
+ },
+ {
+  "id": "SCC",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Partition a directed graph into its Strongly Connected Components (SCCs).",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "SCC(src_node, dst_node)": "Node pairs where src_node and dst_node reach each other."
+  }
+ },
+ {
+  "id": "NearlySCC",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Find all node pairs that are reachable in either direction in a graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "NearlySCC(src_node, dst_node)": "Node pairs where src_node reaches dst_node or dst_node reaches src_node."
+  }
+ },
+ {
+  "id": "OneObjectOneType",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute the points-to relations using a combined 1-type-1-object sensitivity model.",
+  "input_relation": {
+   "Assign(callsite1, callsite2, var1, callsite3, callsite4, var2)": "Assignment from var2 at callsite3 and callsite4 to var1 at callsite1 and callsite2.",
+   "Invocation(caller_heap, target_method)": "A call from a caller heap context to a target method.",
+   "Load(base_var, field, dest_var)": "Loading from field of base_var into dest_var.",
+   "PointsInitial(var, heap)": "Initial points-to relation for var pointing to heap.",
+   "ReceiverActual(method, var)": "Actual receiver variable var at method.",
+   "Store(base_var, field, src_var)": "Storing src_var into field of base_var.",
+   "EnclosingType(var, type)": "The enclosing type of variable var."
+  },
+  "output_relation": {
+   "Heappointsto(heap1, field, heap2)": "Heap1 points to heap2 via field."
+  }
+ },
+ {
+  "id": "Path",
+  "category": "graph_analytics",
+  "sub_category": "reachability_connectivity",
+  "question": "Compute the transitive closure in a directed graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "Reachable(src_node, dst_node)": "Reachability from src_node to dst_node by one or more edges."
+  }
+ },
+ {
+  "id": "EvenPath",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Find all node pairs connected by a path of even length in a directed graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "EvenPath(src_node, dst_node)": "A path of even length from src_node to dst_node."
+  }
+ },
+ {
+  "id": "ThreePath",
+  "category": "graph_analytics",
+  "sub_category": "path_distances",
+  "question": "Find all node pairs connected by a path of length 3 in a directed graph.",
+  "input_relation": {
+   "Edge(src_node, dst_node)": "A directed edge from src_node to dst_node."
+  },
+  "output_relation": {
+   "ThreePath(src_node, dst_node)": "A three-step path from src_node to dst_node via two immediate nodes."
+  }
+ },
+ {
+  "id": "TwoCallSite",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute the points-to relations for Java variables using 2-call-site sensitivity.",
+  "input_relation": {
+   "Assign(callsite1, callsite2, var1, callsite3, callsite4, var2)": "Assignment from var2 at callsite3 and callsite4 to var1 at callsite1 and callsite2.",
+   "Invocation(caller1, caller2, heap, callee1, callee2, target)": "A call from a caller context to a callee context, carrying a heap argument and a target function.",
+   "Load(base_var, field, dest_var)": "Loading from field of base_var into dest_var.",
+   "PointsInitial(var, heap)": "Initial points-to relation for var pointing to heap.",
+   "Store(base_var, field, src_var)": "Storing src_var into field of base_var."
+  },
+  "output_relation": {
+   "Heappointsto(heap1, field, heap2)": "Heap1 points to heap2 via field."
+  }
+ },
+ {
+  "id": "OneCallSite",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute the points-to relations for Java variables using 1-call-site sensitivity.",
+  "input_relation": {
+   "Assign(callsite1, var1, callsite2, var2)": "Assignment from var2 at callsite2 to var1 at callsite1.",
+   "Invocation(caller, heap, callee, target)": "A call from a caller context to a callee context, carrying a heap argument and a target function.",
+   "Load(base_var, field, dest_var)": "Loading from field of base_var into dest_var.",
+   "PointsInitial(var, heap)": "Initial points-to relation for var pointing to heap.",
+   "Store(base_var, field, src_var)": "Storing src_var into field of base_var."
+  },
+  "output_relation": {
+   "Heappointsto(heap1, field, heap2)": "Heap1 points to heap2 via field."
+  }
+ },
+ {
+  "id": "SameGen",
+  "category": "graph_analytics",
+  "sub_category": "grid_tree_genealogy",
+  "question": "Find people in the same generation based on parentage.",
+  "input_relation": {
+   "Parent(person1, person2)": "Indicates that person1 is a parent of person2."
+  },
+  "output_relation": {
+   "SameGen(person1, person2)": "Indicates that person1 and person2 are in the same generation."
+  }
+ },
+ {
+  "id": "OneType",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute the points-to relations for Java variables using 1-type sensitivity.",
+  "input_relation": {
+   "Assign(callsite1, var1, callsite2, var2)": "Assignment from var2 at callsite2 to var1 at callsite1.",
+   "Load(base_var, field, dest_var)": "Loading from field of base_var into dest_var.",
+   "PointsInitial(var, heap)": "Initial points-to relation for var pointing to heap.",
+   "Store(base_var, field, src_var)": "Storing src_var into field of base_var.",
+   "EnclosingType(var, type)": "The enclosing type of variable var."
+  },
+  "output_relation": {
+   "Heappointsto(heap1, field, heap2)": "Heap1 points to heap2 via field."
+  }
+ },
+ {
+  "id": "Escape",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Perform escape analysis for Java: compute which heap objects are reachable from one another through field references, and which objects escape each method by being reachable from its arguments or from its return value.",
+  "input_relation": {
+   "HeapField(heap1, field, heap2)": "Field of heap1 points to heap2.",
+   "MethodArgHeap(method, arg_index, var)": "Variable var is the heap passed as argument arg_index to method.",
+   "MethodRetHeap(method, ret_index, var)": "Variable var is the heap returned as ret_index from method.",
+   "VarPointsTo(var, heap)": "Variable var points to heap."
+  },
+  "output_relation": {
+   "ReachHeapToHeap(heap1, heap2)": "The heap object heap1 can reach heap2 through a chain of field references.",
+   "ReachFromArg(method, heap)": "The heap object heap is reachable from an argument of method, so it escapes into method.",
+   "ReachFromRet(method, heap)": "The heap object heap is reachable from a value returned by method, so it escapes out of method."
+  }
+ },
+ {
+  "id": "BuildWall",
+  "category": "formal_reasoning",
+  "sub_category": "logic_csp",
+  "question": "Learn a stable wall-building strategy by chaining fetch/place actions, where a brick counts as a valid surface only when it is both offset and continuous. One action fetches a brick via an intermediate and puts that intermediate on a base, and counts only when the base is a valid surface; report the pairs linked by one or more such actions.",
+  "input_relation": {
+   "Continuous(brick)": "The brick has a continuous surface suitable for placing other bricks.",
+   "Fetch(from_brick, via_brick)": "Action of fetching a brick to intermediate via_brick.",
+   "Offset(brick)": "The brick is offset in the structure.",
+   "PutOn(top_brick, base_brick)": "Action of placing top_brick on base_brick."
+  },
+  "output_relation": {
+   "BuildWall(from_brick, target_brick)": "A chain of eligible placements leading from_brick to target_brick."
+  }
+ },
+ {
+  "id": "OneObject",
+  "category": "program_analysis",
+  "sub_category": "pointer_analysis",
+  "question": "Compute the points-to relations for Java variables using 1-object sensitivity.",
+  "input_relation": {
+   "Assign(callsite1, var1, callsite2, var2)": "Assignment from var2 at callsite2 to var1 at callsite1.",
+   "Invocation(caller_heap, target_method)": "a heap-allocated callee object calleeHeap is invoked to target method target_method.",
+   "Load(base_var, field, dest_var)": "Loading from field of base_var into dest_var.",
+   "PointsInitial(var, heap)": "Initial points-to relation for var pointing to heap.",
+   "ReceiverActual(method, var)": "Actual receiver variable var at method.",
+   "Store(base_var, field, src_var)": "Storing src_var into field of base_var."
+  },
+  "output_relation": {
+   "Heappointsto(heap1, field, heap2)": "Heap1 points to heap2 via field."
+  }
+ }
+]

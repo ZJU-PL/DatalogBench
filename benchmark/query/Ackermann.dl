@@ -1,0 +1,10 @@
+.decl Succ(a:symbol, b:symbol)
+.input Succ
+.decl GreaterThanZ(a:symbol)
+.input GreaterThanZ
+.decl Ack(a:symbol, b:symbol, c:symbol)
+.output Ack
+
+Ack("0", n, ans) :- Succ(n, ans).
+Ack(m, "0", ans) :- GreaterThanZ(m), Succ(x, m), Ack(x, "1", ans).
+Ack(m, n, ans) :- GreaterThanZ(m), GreaterThanZ(n), Succ(x, m), Succ(y, n), Ack(m, y, ans2), Ack(x, ans2, ans).

@@ -1,0 +1,8 @@
+.decl Parent(person1:symbol, person2:symbol)
+.input Parent
+
+.decl SameGen(person1:symbol, person2:symbol)
+.output SameGen
+
+SameGen(x, y) :- Parent(p, x), Parent(p, y).
+SameGen(x, y) :- Parent(p1, x), Parent(p2, y), SameGen(p1, p2).

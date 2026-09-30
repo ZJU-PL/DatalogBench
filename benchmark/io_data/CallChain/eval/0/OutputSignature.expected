@@ -1,0 +1,2 @@
+com.alipay.demo.Main.test:void()	com.alipay.demo.Helper.doWork:void()
+com.alipay.demo.Helper.doWork:void()	com.alipay.demo.Logger.log:void()

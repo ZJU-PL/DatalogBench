@@ -1,0 +1,6 @@
+diff --git a/egs/project/build.properties b/egs/project/build.properties
+new file mode 100644
+--- /dev/null
++++ b/egs/project/build.properties
+@@ -0,0 +1 @@
++sbt.version=1.3.13

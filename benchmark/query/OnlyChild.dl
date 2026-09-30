@@ -1,0 +1,9 @@
+.decl Sibling(person1:symbol, person2:symbol)
+.input Sibling
+.decl Parent(person1:symbol, person2:symbol)
+.input Parent
+
+.decl OnlyChild(person:symbol)
+.output OnlyChild
+
+OnlyChild(x) :- Parent(_, x), !Sibling(x, _).

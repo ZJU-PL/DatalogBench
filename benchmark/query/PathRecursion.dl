@@ -1,0 +1,12 @@
+.decl Edge(src_node: symbol, dst_node: symbol)
+.input Edge
+
+.decl LeftReachable(src_node: symbol, dst_node: symbol)
+.output LeftReachable
+.decl RightReachable(src_node: symbol, dst_node: symbol)
+.output RightReachable
+
+LeftReachable(x, y) :- Edge(x, y).
+LeftReachable(x, y) :- LeftReachable(x, z), Edge(z, y).
+RightReachable(x, y) :- Edge(x, y).
+RightReachable(x, y) :- Edge(x, z), RightReachable(z, y).

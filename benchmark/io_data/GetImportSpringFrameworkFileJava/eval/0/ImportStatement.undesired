@@ -1,0 +1,4 @@
+1	src/main/java/com/example/App.java
+2	src/main/java/com/example/Service.java
+org.springframework.beans.factory.annotation.Autowired	2
+org.springframework.context.ApplicationContext	1

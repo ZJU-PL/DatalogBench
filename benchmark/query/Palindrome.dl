@@ -1,0 +1,17 @@
+.decl String(string_id:number, left_pos:number, character:symbol, right_pos:number)
+.input String
+.decl Length(string_id:number, length:number)
+.input Length
+.decl Position(position:number)
+
+.decl Palindrome(string_id:number)
+.output Palindrome
+
+.decl PalinAux(string_id:number, left_pos:number, right_pos:number)
+
+Position(x) :- String(_, _, _, x).
+PalinAux(s, x, x) :- String(s, _, _, _), Position(x).
+PalinAux(s, x, y) :- String(s, x, _, y).
+PalinAux(s, x, y) :- String(s, x, a, t), PalinAux(s, t, r), String(s, r, a, y).
+
+Palindrome(s) :- PalinAux(s, 0, l), Length(s, l).

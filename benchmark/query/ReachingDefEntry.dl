@@ -1,0 +1,9 @@
+.decl ReachingDefExit(line:symbol, var:symbol, def:symbol)
+.input ReachingDefExit
+.decl Flow(line1:symbol, line2:symbol)
+.input Flow
+
+.decl ReachingDefEntry(line:symbol, var:symbol, def:symbol)
+.output ReachingDefEntry
+
+ReachingDefEntry(l2, x, def) :- ReachingDefExit(l1, x, def), Flow(l1, l2).

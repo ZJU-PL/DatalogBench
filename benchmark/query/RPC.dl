@@ -1,0 +1,20 @@
+.decl XmlElement(id:symbol, name:symbol)
+.input XmlElement
+.decl XmlAttribute(id:symbol, name:symbol, value:symbol)
+.input XmlAttribute
+.decl XmlParent(child:symbol, parent:symbol)
+.input XmlParent
+
+.decl RpcInfo(value:symbol)
+.output RpcInfo
+
+.decl IsMobileService(id:symbol)
+.decl IsSofaExtension(id:symbol)
+.decl AncestorOf(descendant:symbol, ancestor:symbol)
+
+IsMobileService(id) :- XmlElement(id, "mobileService").
+IsSofaExtension(id) :- XmlElement(id, "sofa:extension").
+AncestorOf(child, parent) :- XmlParent(child, parent).
+AncestorOf(child, ancestor) :- XmlParent(child, parent), AncestorOf(parent, ancestor).
+
+RpcInfo(value) :- IsMobileService(m), IsSofaExtension(s), AncestorOf(m, s), XmlAttribute(m, "serviceBean", value).

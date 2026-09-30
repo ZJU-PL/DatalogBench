@@ -1,0 +1,13 @@
+.decl File(id:symbol, path:symbol)
+.input File
+.decl Location(id:symbol, file_id:symbol, sline:symbol, eline:symbol)
+.input Location
+.decl SyntaxKind(id:symbol, name:symbol)
+.input SyntaxKind
+.decl Node(id:symbol, kind_id:symbol, parent_id:symbol, index:symbol, location_id:symbol)
+.input Node
+
+.decl ParentChildEdge(file_path:symbol, parent_id:symbol, parent_kind:symbol, parent_start_line:symbol, parent_end_line:symbol, child_id:symbol, child_kind:symbol, child_start_line:symbol, child_end_line:symbol, index:symbol)
+.output ParentChildEdge
+
+ParentChildEdge(file_path, parent_id, parent_kind, p_start, p_end, child_id, child_kind, c_start, c_end, index) :- Node(child_id, child_kind_id, parent_id, index, child_loc_id), SyntaxKind(child_kind_id, child_kind), Node(parent_id, parent_kind_id, _, _, parent_loc_id), SyntaxKind(parent_kind_id, parent_kind), Location(parent_loc_id, file_id, p_start, p_end), Location(child_loc_id, _, c_start, c_end), File(file_id, file_path).

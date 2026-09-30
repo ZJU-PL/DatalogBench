@@ -1,0 +1,4 @@
+A.method3()V|%0	A.method3()V|new Z|0
+A.method3()V|%0	Hello
+X.foo()V|%1	X.foo()V|new Z|0
+A.method1()V|%1	Z.bar()V|new java.lang.String|0

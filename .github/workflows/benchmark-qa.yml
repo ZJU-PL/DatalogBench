@@ -1,0 +1,52 @@
+# Guards the benchmark's own integrity: dead rules in the reference programs,
+# blind oracle slots in their I/O variants, and relation-name mismatches
+# between dataset.json and the reference programs.
+#
+# Runs on Linux on purpose. The maintainers' macOS filesystem is
+# case-insensitive, so `SCC.expected` there silently resolves to
+# `Scc.expected` and a name mismatch stays invisible locally while breaking
+# for anyone who reproduces the artifact on Linux. This job is the only place
+# that difference is observable.
+#
+# The checks are pure static analysis over benchmark/ -- no Soufflé, no pip
+# install, no submodules -- so the job is a few seconds and cannot flake on a
+# toolchain. Executing the reference programs (the 136/136 regression) needs
+# Soufflé and is deliberately not part of this job.
+
+name: benchmark-qa
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  qa:
+    name: Benchmark integrity checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # baselines/* are third-party synthesizer submodules; nothing here
+          # reads them, and cloning them would dominate the runtime.
+          submodules: false
+
+      - uses: actions/setup-python@v5
+        with:
+          # The minimum Python version the repository supports.
+          python-version: "3.10"
+
+      # Fails (exit 1) on dead rules, on a graded relation the reference
+      # program does not export, or on a blind slot in a demo variant.
+      # Blind slots elsewhere are reported but tolerated: an empty expected set
+      # can be the correct answer. Add --strict-empty to fail on those too.
+      - name: Run benchmark QA
+        run: python3 benchmark/qa_check.py --json qa_report.json
+
+      - name: Upload QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report
+          path: qa_report.json
+          if-no-files-found: ignore

@@ -1,0 +1,11 @@
+.decl ReallocExp(func:symbol)
+.input ReallocExp
+.decl Assign(var:symbol, func:symbol)
+.input Assign
+.decl Params(func:symbol, param_index:symbol, var:symbol)
+.input Params
+
+.decl ReallocMisuse(func:symbol, var:symbol)
+.output ReallocMisuse
+
+ReallocMisuse(fid, var) :- ReallocExp(fid), Assign(var, fid), Params(fid, _, var).

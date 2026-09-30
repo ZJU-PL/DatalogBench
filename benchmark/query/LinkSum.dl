@@ -1,0 +1,13 @@
+.decl Edge(src_node:number, dst_node:number, weight:number)
+.input Edge
+.decl Constraint(src_node:number, dst_node:number)
+.input Constraint
+
+.decl LinkSum(src_node:number, dst_node:number, weight:number)
+.output LinkSum
+
+.decl Add(x:number, y:number, z:number)
+
+LinkSum(x, y, n) :- Edge(x, y, n).
+LinkSum(x, y, r) :- Edge(x, z, n), LinkSum(z, y, m), Add(m, n, r).
+Add(x, y, x+y) :- Constraint(x, y).

@@ -1,0 +1,16 @@
+.decl Edge(src_node:symbol, dst_node:symbol)
+.input Edge
+
+.decl HighestInDegree(degree:number)
+.output HighestInDegree
+.decl HighestOutDegree(degree:number)
+.output HighestOutDegree
+
+.decl InDegree(node:symbol, degree:number)
+.decl OutDegree(node:symbol, degree:number)
+
+InDegree(x, l) :- Edge(_, x), l = sum 1 : Edge(_, x).
+OutDegree(x, l) :- Edge(x, _), l = sum 1 : Edge(x, _).
+
+HighestInDegree(d) :- InDegree(_, _), d = max d : InDegree(_, d).
+HighestOutDegree(d) :- OutDegree(_, _), d = max d : OutDegree(_, d).

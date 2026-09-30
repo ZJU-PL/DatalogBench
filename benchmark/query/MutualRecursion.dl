@@ -1,0 +1,12 @@
+.decl FunctionCall(caller:symbol, callee:symbol)
+.input FunctionCall
+
+.decl MutualRecursion(func1:symbol, func2:symbol)
+.output MutualRecursion
+
+.decl CallReachable(caller:symbol, callee:symbol)
+.output CallReachable
+
+CallReachable(caller, callee) :- FunctionCall(caller, callee).
+CallReachable(caller, target) :- CallReachable(caller, intermediate), FunctionCall(intermediate, target).
+MutualRecursion(func1, func2) :- CallReachable(func1, func2), CallReachable(func2, func1), func1 != func2.

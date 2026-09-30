@@ -1,0 +1,4 @@
+sigA	bodyA	AUTOGEN marker
+sigB	bodyB	AUTOGEN doc
+sigB	bodyB	owned doc
+sigD	bodyD	note for D

@@ -1,0 +1,5 @@
+pkg/mod.py	0	1	Module	Module	1	0	4	Assign	x = foo(a, b)	2	0
+pkg/mod.py	1	4	Assign	Assign	2	0	2	Call	foo(a, b)	2	4
+pkg/mod.py	1	4	Assign	Assign	2	0	5	Name	y	4	8
+pkg/mod.py	2	2	Call	Call	2	4	3	Name	x	3	8
+pkg/mod.py	2	5	Name	y	4	8	6	Constant	1	4	12

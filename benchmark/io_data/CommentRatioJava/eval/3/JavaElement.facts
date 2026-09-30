@@ -1,0 +1,7 @@
+1	Constructor	0	10	10	10
+2	Constructor	0	20	20	20
+3	Class	0	30	30	35
+4	Field	0	40	50	50
+5	EnumConstant	0	40	50	50
+6	Interface	0	60	70	80
+69	Class	0	70	90	95

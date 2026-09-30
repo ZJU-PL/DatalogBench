@@ -1,0 +1,150 @@
+.decl University(a:symbol)
+.input University
+.decl Course(a:symbol)
+.input Course
+.decl AssociateProfessor(a:symbol)
+.input AssociateProfessor
+.decl AssistantProfessor(a:symbol)
+.input AssistantProfessor
+.decl GraduateStudent(a:symbol)
+.input GraduateStudent
+.decl ResearchAssistant(a:symbol)
+.input ResearchAssistant
+.decl GraduateCourse(a:symbol)
+.input GraduateCourse
+.decl UndergraduateStudent(a:symbol)
+.input UndergraduateStudent
+.decl ResearchGroup(a:symbol)
+.input ResearchGroup
+.decl Publication(a:symbol)
+.input Publication
+.decl TeachingAssistant(a:symbol)
+.input TeachingAssistant
+.decl FullProfessor(a:symbol)
+.input FullProfessor
+.decl Department(a:symbol)
+.input Department
+.decl TeachingAssistantOf(a:symbol, b:symbol)
+.input TeachingAssistantOf
+.decl HeadOf(a:symbol, b:symbol)
+.input HeadOf
+.decl TeacherOf(a:symbol, b:symbol)
+.input TeacherOf
+.decl PublicationAuthor(a:symbol, b:symbol)
+.input PublicationAuthor
+.decl DoctoralDegreeFrom(a:symbol, b:symbol)
+.input DoctoralDegreeFrom
+.decl UndergraduateDegreeFrom(a:symbol, b:symbol)
+.input UndergraduateDegreeFrom
+.decl MastersDegreeFrom(a:symbol, b:symbol)
+.input MastersDegreeFrom
+.decl SubOrganizationOf(a:symbol, b:symbol)
+.input SubOrganizationOf
+.decl TakesCourse(a:symbol, b:symbol)
+.input TakesCourse
+.decl WorksFor(a:symbol, b:symbol)
+.input WorksFor
+.decl MemberOf(a:symbol, b:symbol)
+.input MemberOf
+.decl Advisor(a:symbol, b:symbol)
+.input Advisor
+.decl EmailAddress(a:symbol, b:symbol)
+.input EmailAddress
+.decl Telephone(a:symbol, b:symbol)
+.input Telephone
+.decl Name(a:symbol, b:symbol)
+.input Name
+.decl ResearchInterest(a:symbol, b:symbol)
+.input ResearchInterest
+
+.output University
+.output Course
+.output ResearchGroup
+.output Publication
+.output TeachingAssistant
+.output SubOrganizationOf
+.output WorksFor
+.output MemberOf
+.decl Organization(a:symbol)
+.output Organization
+.decl Chair(a:symbol)
+.output Chair
+.decl Work(a:symbol)
+.output Work
+.decl Lecturer(a:symbol)
+.output Lecturer
+.input Lecturer
+.decl Student(a:symbol)
+.output Student
+.decl Person(a:symbol)
+.output Person
+.decl Employee(a:symbol)
+.output Employee
+.decl Faculty(a:symbol)
+.output Faculty
+.decl Professor(a:symbol)
+.output Professor
+.decl HasAlumnus(a:symbol, b:symbol)
+.output HasAlumnus
+.decl DegreeFrom(a:symbol, b:symbol)
+.output DegreeFrom
+.decl Member(a:symbol, b:symbol)
+.output Member
+
+University(y) :- MastersDegreeFrom(_, y).
+DegreeFrom(x, y) :- HasAlumnus(y, x).
+HasAlumnus(x, y) :- DegreeFrom(y, x).
+Employee(x) :- Faculty(x).
+Faculty(x) :- Professor(x).
+Professor(x) :- AssociateProfessor(x).
+Person(y) :- Member(_, y).
+Professor(x) :- AssistantProfessor(x).
+Professor(x) :- Chair(x).
+WorksFor(x, y) :- HeadOf(x, y).
+Person(x) :- DegreeFrom(x, _).
+University(y) :- DegreeFrom(_, y).
+Person(y) :- HasAlumnus(_, y).
+TeachingAssistant(x) :- Person(x), TeachingAssistantOf(x, y), Course(y).
+Chair(x) :- Person(x), HeadOf(x, y), Department(y).
+MemberOf(x, y) :- Member(y, x).
+Member(x, y) :- MemberOf(y, x).
+Course(y) :- TeacherOf(_, y).
+University(x) :- HasAlumnus(x, _).
+Person(x) :- Telephone(x, _).
+Organization(y) :- SubOrganizationOf(_, y).
+MemberOf(x, y) :- WorksFor(x, y).
+Person(x) :- Employee(x).
+Person(x) :- Advisor(x, _).
+Organization(x) :- Member(x, _).
+Organization(x) :- Department(x).
+Faculty(x) :- Lecturer(x).
+Person(y) :- PublicationAuthor(_, y).
+Professor(y) :- Advisor(_, y).
+Work(x) :- Course(x).
+Professor(x) :- FullProfessor(x).
+DegreeFrom(x, y) :- DoctoralDegreeFrom(x, y).
+TeachingAssistant(x) :- TeachingAssistantOf(x, _).
+Person(x) :- UndergraduateDegreeFrom(x, _).
+Organization(x) :- University(x).
+Person(x) :- DoctoralDegreeFrom(x, _).
+University(y) :- DoctoralDegreeFrom(_, y).
+Course(y) :- TeachingAssistantOf(_, y).
+University(y) :- UndergraduateDegreeFrom(_, y).
+DegreeFrom(x, y) :- MastersDegreeFrom(x, y).
+Person(x) :- GraduateStudent(x).
+Person(x) :- ResearchAssistant(x).
+Student(x) :- UndergraduateStudent(x).
+DegreeFrom(x, y) :- UndergraduateDegreeFrom(x, y).
+Publication(x) :- PublicationAuthor(x, _).
+Person(x) :- MastersDegreeFrom(x, _).
+Organization(x) :- ResearchGroup(x).
+Faculty(x) :- TeacherOf(x, _).
+Person(x) :- Chair(x).
+Employee(x) :- Person(x), WorksFor(x, y), Organization(y).
+Course(x) :- GraduateCourse(x).
+Student(x) :- Person(x), TakesCourse(x, y), Course(y).
+Person(x) :- TeachingAssistant(x).
+Organization(x) :- SubOrganizationOf(x, _).
+Person(x) :- Student(x).
+Person(x) :- EmailAddress(x, _).
+SubOrganizationOf(x, z) :- SubOrganizationOf(x, y), SubOrganizationOf(y, z).

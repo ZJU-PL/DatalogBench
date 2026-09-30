@@ -1,0 +1,19 @@
+.decl PointsInitial(var:symbol, heap:symbol)
+.input PointsInitial
+.decl Store(base_var:symbol, field:symbol, src_var:symbol)
+.input Store
+.decl Load(base_var:symbol, field:symbol, dst_var:symbol)
+.input Load
+.decl Invocation(caller:symbol, heap:symbol, callee:symbol, target:symbol)
+.input Invocation
+.decl Assign(callsite1:symbol, var1:symbol, callsite2:symbol, var2:symbol)
+.input Assign
+
+.decl Heappointsto(heap1:symbol, field:symbol, heap2:symbol)
+.output Heappointsto
+.decl Pointsto(callsite:symbol, var:symbol, heap:symbol)
+
+Pointsto(c, v, h) :- PointsInitial(v, h), Invocation(c, h, callee, tgt).
+Pointsto(c1, v1, h) :- Assign(c1, v1, c2, v2), Pointsto(c2, v2, h).
+Pointsto(c, v2, h2) :- Load(v1, f, v2), Pointsto(c, v1, h1), Heappointsto(h1, f, h2).
+Heappointsto(h1, f, h2) :- Store(v1, f, v2), Pointsto(c, v1, h1), Pointsto(c, v2, h2).

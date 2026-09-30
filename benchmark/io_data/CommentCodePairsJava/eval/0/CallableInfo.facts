@@ -1,0 +1,4 @@
+101	UserDao.insert:void()	{ insert... }	1	20
+201	Service.process:void()	{ process... }	2	15
+202	Service.helper:void()	{ helper... }	2	25
+301	Gen.do:void()	{ do... }	3	10

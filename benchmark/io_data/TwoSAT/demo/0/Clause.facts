@@ -1,0 +1,5 @@
+Neg	a	Pos	b
+Neg	b	Neg	a
+Pos	a	Pos	c
+Neg	c	Pos	a
+Pos	d	Pos	e

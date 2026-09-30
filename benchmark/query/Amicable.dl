@@ -1,0 +1,17 @@
+.decl Lim(n:number)
+.input Lim
+.decl Num(x:number)
+
+.decl Amicable(a:number, b:number)
+.output Amicable
+
+.decl Factor(x:number, f:number)
+.decl FactorSum(x:number, fs:number)
+
+// recursion seeds: part of the program, not of the instance
+Num(1).
+
+Num(x+1) :- Num(x), x < l, Lim(l).
+Factor(x, f) :- Num(x), Num(f), f <= x / 2, x % f = 0.
+FactorSum(x, f) :- Num(x), f = sum i:Factor(x, i).
+Amicable(a, b) :- FactorSum(a, b), FactorSum(b, a), a < b.

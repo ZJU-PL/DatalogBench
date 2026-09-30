@@ -1,0 +1,28 @@
+.decl Mother(person1:symbol, person2:symbol)
+.input Mother
+.decl Father(person1:symbol, person2:symbol)
+.input Father
+
+.decl Parent(person1:symbol, person2:symbol)
+.output Parent
+.decl Grandparent(person1:symbol, person2:symbol)
+.output Grandparent
+.decl GreatGrandparent(person1:symbol, person2:symbol)
+.output GreatGrandparent
+
+Parent(p0, p3) :- Mother(p0, p3).
+Parent(p0, p1) :- Father(p0, p1).
+
+Grandparent(p0, p3) :- Mother(p0, p1), Mother(p1, p3).
+Grandparent(p0, p3) :- Father(p0, p1), Father(p1, p3).
+Grandparent(p0, p7) :- Mother(p0, p5), Father(p5, p7).
+Grandparent(p0, p3) :- Father(p0, p1), Mother(p1, p3).
+
+GreatGrandparent(p0, p1) :- Father(p0, p3), Father(p3, p9), Mother(p9, p1).
+GreatGrandparent(p6, p0) :- Father(p6, p4), Mother(p4, p8), Mother(p8, p0).
+GreatGrandparent(p1, p3) :- Mother(p1, p2), Mother(p2, p6), Father(p6, p3).
+GreatGrandparent(p0, p9) :- Father(p0, p3), Father(p3, p5), Father(p5, p9).
+GreatGrandparent(p6, p9) :- Mother(p6, p4), Mother(p4, p3), Mother(p3, p9).
+GreatGrandparent(p2, p1) :- Mother(p2, p6), Father(p6, p5), Mother(p5, p1).
+GreatGrandparent(p6, p7) :- Father(p6, p5), Mother(p5, p8), Father(p8, p7).
+GreatGrandparent(p3, p4) :- Mother(p3, p7), Father(p7, p0), Father(p0, p4).

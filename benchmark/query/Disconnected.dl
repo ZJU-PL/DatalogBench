@@ -1,0 +1,18 @@
+.decl Edge(src_node:symbol, dst_node:symbol)
+.input Edge
+
+.decl Disconnected(src_node:symbol, dst_node:symbol)
+.output Disconnected
+
+.decl Node(node:symbol)
+.decl Connected(src_node:symbol, dst_node:symbol)
+
+Node(n) :- Edge(n, _).
+Node(n) :- Edge(_, n).
+
+Connected(n, n) :- Edge(n, _).
+Connected(n, n) :- Edge(_, n).
+Connected(n, m) :- Edge(n, m).
+Connected(n, m) :- Connected(n, z), Edge(z, m).
+
+Disconnected(n, m) :- Node(n), Node(m), !Connected(n, m).

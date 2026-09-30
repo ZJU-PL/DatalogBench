@@ -1,0 +1,36 @@
+.decl Lim(x:number)
+.input Lim
+.decl VarIndex(var:symbol, index:number)
+.input VarIndex
+.decl CircuitAND(result:symbol, op1:symbol, op2:symbol)
+.input CircuitAND
+.decl CircuitOR(result:symbol, op1:symbol, op2:symbol)
+.input CircuitOR
+.decl CircuitNOT(result:symbol, op1:symbol)
+.input CircuitNOT
+.decl CircuitResult(result:symbol)
+.input CircuitResult
+
+.decl Satisfy(conf:number, var:symbol)
+.output Satisfy
+
+.decl Conf(num:number)
+.decl Translation(conf:number, var:symbol, truthy:number)
+.decl Evaluate(conf:number, var:symbol, truthy:number)
+
+Conf(x+1) :- Conf(x), !Lim(x).
+Conf(0).
+// Bit test, written to be arithmetic rather than approximate. `2^k` routed
+// through floating-point exponentiation and disagreed across architectures once
+// an index exceeded the integer width, which VarIndex does (one variable sits at
+// index 110). A shift at or beyond the word size is undefined, so that case is
+// answered directly: no configuration bounded by Lim can have such a bit set.
+Translation(n, var, 0) :- VarIndex(var, k), Conf(n), k >= 31.
+Translation(n, var, 1) :- VarIndex(var, k), Conf(n), k < 31, ((1 bshl k) band n) != 0.
+Translation(n, var, 0) :- VarIndex(var, k), Conf(n), k < 31, ((1 bshl k) band n) = 0.
+Evaluate(conf, var, value) :- Translation(conf, var, value).
+Evaluate(conf, var, v1 band v2) :- CircuitAND(var, op1, op2), Evaluate(conf, op1, v1), Evaluate(conf, op2, v2).
+Evaluate(conf, var, v1 bor v2) :- CircuitOR(var, op1, op2), Evaluate(conf, op1, v1), Evaluate(conf, op2, v2).
+Evaluate(conf, var, lnot v1) :- CircuitNOT(var, op1), Evaluate(conf, op1, v1).
+
+Satisfy(conf, inputvar) :- CircuitResult(var), Evaluate(conf, var, 1), VarIndex(inputvar, _), Translation(conf, inputvar, 1).

@@ -1,0 +1,11 @@
+.decl Edge(src_node:symbol, dst_node:symbol)
+.input Edge
+
+.decl EvenPath(src_node:symbol, dst_node:symbol)
+.output EvenPath
+
+.decl OddPath(src_node:symbol, dst_node:symbol)
+
+OddPath(x, z) :- Edge(x, z).
+OddPath(x, z) :- Edge(x, y), EvenPath(y, z).
+EvenPath(x, z) :- Edge(x, y), OddPath(y, z).

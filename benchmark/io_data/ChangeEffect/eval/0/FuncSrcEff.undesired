@@ -1,0 +1,7 @@
+1	function A()	src/app.js	1	10	1	function A()	src/app.js	1	10
+1	function A()	src/app.js	1	10	2	function B()	src/app.js	12	20
+1	function B()	src/app.js	12	20	2	function A()	src/app.js	1	10
+1	function C()	src/lib.js	5	8	3	function A()	src/app.js	1	10
+2	function B()	src/app.js	12	20	2	function B()	src/app.js	12	20
+2	function B()	src/app.js	12	20	3	function C()	src/lib.js	5	8
+2	function C()	src/lib.js	5	8	3	function B()	src/app.js	12	20

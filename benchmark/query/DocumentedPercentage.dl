@@ -1,0 +1,27 @@
+.decl ClassDef(id:number)
+.input ClassDef
+.decl FunctionDef(id:number)
+.input FunctionDef
+.decl DocstringComment(id:number, element_id:number)
+.input DocstringComment
+.decl NormalComment(id:number, element_id:number)
+.input NormalComment
+
+.decl GetDocumentedPercentage(percentage:number)
+.output GetDocumentedPercentage
+
+.decl PublicVisitedElement(id:number)
+.decl ElementWithDocstring(id:number)
+.decl ElementWithComment(id:number)
+.decl IsDocumented(id:number)
+
+PublicVisitedElement(id) :- ClassDef(id).
+PublicVisitedElement(id) :- FunctionDef(id).
+ElementWithDocstring(id) :- PublicVisitedElement(id), DocstringComment(_, id).
+ElementWithComment(id) :- PublicVisitedElement(id), NormalComment(_, id).
+
+IsDocumented(id) :- ElementWithDocstring(id).
+IsDocumented(id) :- ElementWithComment(id).
+
+GetDocumentedPercentage(p) :- total_count = count :{ PublicVisitedElement(_) }, doc_count = count :{ IsDocumented(_) }, total_count > 0, p = doc_count * 1000 / total_count.
+GetDocumentedPercentage(-1) :- total_count = count :{ PublicVisitedElement(_) }, total_count = 0.

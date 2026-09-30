@@ -1,0 +1,11 @@
+.decl Fib(n:number, x:number)
+.decl Lim(n:number)
+.input Lim
+
+.output Fib
+
+// recursion seeds: part of the program, not of the instance
+Fib(0, 0).
+Fib(1, 1).
+
+Fib(n+1, x+y) :- Fib(n, x), Fib(n-1, y), Lim(l), n < l.

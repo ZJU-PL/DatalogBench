@@ -1,0 +1,13 @@
+.decl NotWall(src_cell:symbol, dst_cell:symbol)
+.input NotWall
+.decl Unlocked(src_cell:symbol)
+.input Unlocked
+.decl Adjacent(src_cell:symbol, dst_cell:symbol)
+.input Adjacent
+.decl AgentAt(cell:symbol, time:symbol)
+.input AgentAt
+
+.decl ValidMove(cell:symbol, time:symbol)
+.output ValidMove
+
+ValidMove(c0, t6) :- NotWall(c0, c1), Unlocked(c0), Adjacent(c1, c0), AgentAt(c1, t6).

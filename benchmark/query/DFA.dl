@@ -1,0 +1,12 @@
+.decl Edge(src_point:symbol, dst_point:symbol)
+.input Edge
+.decl GenDef(point:symbol, variable:symbol)
+.input GenDef
+.decl KillDef(point:symbol, variable:symbol)
+.input KillDef
+
+.decl Reachable(point:symbol, variable:symbol)
+.output Reachable
+
+Reachable(u,d) :- GenDef(u,d).
+Reachable(v,d) :- Edge(u,v), Reachable(u,d), !KillDef(u,d).

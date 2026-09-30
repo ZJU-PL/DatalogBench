@@ -1,0 +1,3 @@
+main.py	0	100	Module	Module	1	1	101	FunctionDef	def foo(): return 1	2	1
+main.py	1	101	FunctionDef	FunctionDef	2	1	102	Return	return 1	3	3
+main.py	2	102	Return	Return	3	3	103	Num	1	3	10
